@@ -19,6 +19,13 @@ const config: Config = {
           '900': '#1e3a8a',
           '950': '#172554',
         },
+        palette: {
+          black: '#0b0708',
+          gray: '#2f2a24',
+          red: '#99011e',
+          brown: '#8e5c57',
+          white: '#f9f3e6',
+        },
       },
     },
     fontFamily: {

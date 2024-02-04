@@ -10,7 +10,7 @@ import ThemeSwitcher from '@ui/theme-switcher';
 export default function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="w-full mx-auto bg-neutral-800 dark:bg-neutral-900 px-8 sticky top-0 z-30 backdrop-blur-md text-stone-50 dark:text-stone-200">
+    <header className="w-full mx-auto bg-palette-gray dark:bg-palette-black px-8 sticky top-0 z-30 backdrop-blur-md text-stone-50 dark:text-stone-200">
       <div className="container mx-auto">
         <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
           <div className="lg:w-0 lg:flex-1">
@@ -46,14 +46,26 @@ export default function Header() {
           </div>
           <nav className="hidden md:flex space-x-10">
             <Link
-              href="/"
-              className="text-base leading-6 font-medium text-secondary-500 hover:text-primary-500 border-transparent border-b-2 hover:border-primary-500 hover:border-b-primary hover:border-b-2 focus:outline-none focus:text-primary-500 transition duration-300"
+              href="/contact"
+              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
             >
-              Home
+              Contact Me
+            </Link>
+            <Link
+              href="/portfolio"
+              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
+            >
+              Portfolio
+            </Link>
+            <Link
+              href="/blog"
+              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
+            >
+              Blog
             </Link>
             <Link
               href="/about"
-              className="text-base leading-6 font-medium text-secondary-500 hover:text-primary-500 border-transparent border-b-2 hover:border-primary-500 hover:border-b-primary hover:border-b-2 focus:outline-none focus:text-primary-500 transition duration-300"
+              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
             >
               About
             </Link>
@@ -98,11 +110,27 @@ export default function Header() {
               <div>
                 <nav className="grid gap-y-8">
                   <Link
-                    href="/"
+                    href="/contact"
                     className="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition duration-300"
                   >
                     <div className="text-base leading-6 font-medium text-gray-900">
-                      Home
+                      Contact Me
+                    </div>
+                  </Link>
+                  <Link
+                    href="/portfolio"
+                    className="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition duration-300"
+                  >
+                    <div className="text-base leading-6 font-medium text-gray-900">
+                      Portfolio
+                    </div>
+                  </Link>
+                  <Link
+                    href="/blog"
+                    className="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition duration-300"
+                  >
+                    <div className="text-base leading-6 font-medium text-gray-900">
+                      Blog
                     </div>
                   </Link>
                   <Link

@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-neutral-50 dark:bg-gray-900">
+      <body className="bg-palette-white dark:bg-palette-gray">
         <ThemeProvider>
           <div className="mx-auto md:max-w-full min-h-screen">
             <Header />
