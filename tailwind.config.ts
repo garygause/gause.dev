@@ -20,9 +20,13 @@ const config: Config = {
           '950': '#172554',
         },
         palette: {
+          matte: '#121212',
           black: '#0b0708',
           gray: '#2f2a24',
-          red: '#99011e',
+          red: {
+            '50': '#ff0000',
+            DEFAULT: '#99011e',
+          },
           brown: '#8e5c57',
           white: '#f9f3e6',
         },
