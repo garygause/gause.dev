@@ -81,27 +81,27 @@ export default function Header() {
         style={{ display: open ? 'block' : 'none' }}
       >
         <div className="rounded-lg shadow-lg">
-          <div className="rounded-lg shadow-xs bg-white divide-y-2 divide-gray-50">
+          <div className="rounded-lg shadow-xs bg-palette-white divide-y-2 divide-palette-black">
             <div className="pt-5 pb-6 px-5 space-y-6">
               <div className="flex items-center justify-end">
                 <div className="-mr-2">
                   <button
                     onClick={() => setOpen(!open)}
                     type="button"
-                    className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-300"
+                    className="inline-flex items-center justify-center p-2 rounded-md text-palette-brown hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-300"
                   >
                     <svg
                       className="h-6 w-6"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke="currentColor"
                     >
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
                         d="M6 18L18 6M6 6l12 12"
+                        stroke="currentColor"
                       />
                     </svg>
                   </button>
@@ -112,32 +112,44 @@ export default function Header() {
                   <Link
                     href="/contact"
                     className="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition duration-300"
+                    onClick={(e) => {
+                      setOpen(false);
+                    }}
                   >
-                    <div className="text-base leading-6 font-medium text-gray-900">
+                    <div className="text-base leading-6 font-medium text-palette-brown">
                       Contact Me
                     </div>
                   </Link>
                   <Link
                     href="/portfolio"
                     className="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition duration-300"
+                    onClick={(e) => {
+                      setOpen(false);
+                    }}
                   >
-                    <div className="text-base leading-6 font-medium text-gray-900">
+                    <div className="text-base leading-6 font-medium text-palette-brown">
                       Portfolio
                     </div>
                   </Link>
                   <Link
                     href="/blog"
                     className="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition duration-300"
+                    onClick={(e) => {
+                      setOpen(false);
+                    }}
                   >
-                    <div className="text-base leading-6 font-medium text-gray-900">
+                    <div className="text-base leading-6 font-medium text-palette-brown">
                       Blog
                     </div>
                   </Link>
                   <Link
                     href="/about"
                     className="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition duration-300"
+                    onClick={(e) => {
+                      setOpen(false);
+                    }}
                   >
-                    <div className="text-base leading-6 font-medium text-gray-900">
+                    <div className="text-base leading-6 font-medium text-palette-brown">
                       About
                     </div>
                   </Link>

@@ -38,14 +38,14 @@ export function Hero() {
             Portfolio
           </a>
         </div>
-        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <div className="flex flex-wrap justify-center">
+        <div className="lg:mt-0 lg:col-span-5 lg:flex">
+          <div className="flex flex-wrap justify-center p-14 md:p-14 lg:p-0 xl:p-0">
             <Image
               src="/photo.jpg"
               alt="Photo Gary Gause"
               height="400"
               width="400"
-              className="shadow-lg rounded-full max-w-full h-auto align-middle border-none"
+              className="shadow-lg rounded-full max-w-full  h-auto align-middle border-none"
             />
           </div>
         </div>
