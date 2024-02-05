@@ -7,8 +7,8 @@ import linkedinIcon from '../../../public/linkedin.svg';
 
 export function Hero() {
   return (
-    <section>
-      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-20 lg:grid-cols-12">
+    <section className="border-b-2 border-palette-red">
+      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:pt-20 lg:pb-32 lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
             Enterprise Grade Software Development
@@ -53,7 +53,7 @@ export function Hero() {
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row pt-0 md:pt-10 md:space-x-4 items-center space-y-5 md:space-y-0">
+        <div className="flex flex-col lg:flex-row pt-0 lg:pt-10 lg:space-x-4 items-center space-y-5 lg:space-y-0">
           <div className="inline-flex items-center justify-center space-x-4">
             <Link
               href="mailto:garygause@gmail.com"
@@ -71,13 +71,9 @@ export function Hero() {
               360.722.9772
             </Link>
           </div>
-          <span className="hidden md:flex">|</span>
+          <span className="hidden lg:flex">|</span>
           <div className="inline-flex items-center justify-center space-x-6 md:space-x-4">
-            <Link
-              href="https://github.com/garygause"
-              target="_blank"
-              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
-            >
+            <Link href="https://github.com/garygause" target="_blank">
               <Image
                 className="max-w-6 dark:invert"
                 priority
@@ -85,11 +81,7 @@ export function Hero() {
                 alt="github"
               />
             </Link>
-            <Link
-              href="https://linkedin.com/in/garygause"
-              target="_blank"
-              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
-            >
+            <Link href="https://linkedin.com/in/garygause" target="_blank">
               <Image
                 className="max-w-6 rounded dark:invert"
                 priority
