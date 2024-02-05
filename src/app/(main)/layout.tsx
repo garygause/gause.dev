@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://gause.dev/site-preview.png',
-        secureUrl: 'https://gause.dev/site-preview.png',
+        url: 'https://gause.dev/images/site-preview.png',
+        secureUrl: 'https://gause.dev/images/site-preview.png',
         width: 1200,
         height: 630,
         alt: 'Preview image for gause.dev',
