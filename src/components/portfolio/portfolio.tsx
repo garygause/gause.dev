@@ -20,8 +20,8 @@ export function Portfolio() {
               <div className="container mx-auto space-y-10">
                 <PortfolioItem
                   imageSrc="/projects/powerline-1.png"
-                  imageHeight="600"
-                  imageWidth="800"
+                  imageHeight={600}
+                  imageWidth={800}
                   imageAlt="powerline project"
                   title="Project: Powerline Analytics"
                   stack="AWS ECS, Docker, AWS PostgreSQL RDS, Python/Flask API, Python ETL, React Web, Jupyter, Pandas, Matplotlib, Numpy"
@@ -33,8 +33,8 @@ export function Portfolio() {
                 />
                 <PortfolioItem
                   imageSrc="/projects/vendscreen-1.jpg"
-                  imageHeight="500"
-                  imageWidth="300"
+                  imageHeight={500}
+                  imageWidth={300}
                   imageAlt="vendscree project"
                   title="Project: VendScreen Realize App"
                   stack="Android, Java, C, NFC, Cellular, Payment Processing"

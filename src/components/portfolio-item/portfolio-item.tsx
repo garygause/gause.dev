@@ -1,7 +1,18 @@
 import React from 'react';
 import Image from 'next/image';
 
-export function PortfolioItem(props) {
+type Props = {
+  imageSrc: string;
+  imageWidth: number;
+  imageHeight: number;
+  imageAlt: string;
+  title: string;
+  stack: string;
+  description: string;
+  children?: React.ReactNode;
+};
+
+export function PortfolioItem(props: Props) {
   const {
     imageSrc,
     imageWidth,
