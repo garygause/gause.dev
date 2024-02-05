@@ -37,7 +37,7 @@ function PortfolioForm() {
       >
         <div>
           <label htmlFor="title">
-            Title: <span className="text-palette-red-50">*</span>
+            Title: <span className="text-palette-red-500">*</span>
           </label>
           <input
             type="text"
@@ -49,7 +49,7 @@ function PortfolioForm() {
         </div>
         <div>
           <label htmlFor="description">
-            Description: <span className="text-palette-red-50">*</span>
+            Description: <span className="text-palette-red-500">*</span>
           </label>
           <textarea
             className="h-32"

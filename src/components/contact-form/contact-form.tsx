@@ -40,7 +40,7 @@ function ContactForm() {
       >
         <div>
           <label htmlFor="fullName">
-            Full Name: <span className="text-palette-red-50">*</span>
+            Full Name: <span className="text-palette-red-500">*</span>
           </label>
           <input
             type="text"
@@ -52,7 +52,7 @@ function ContactForm() {
         </div>
         <div>
           <label htmlFor="email">
-            Email: <span className="text-palette-red-50">*</span>
+            Email: <span className="text-palette-red-500">*</span>
           </label>
           <input
             type="text"
@@ -64,7 +64,7 @@ function ContactForm() {
         </div>
         <div>
           <label htmlFor="message">
-            Message: <span className="text-palette-red-50">*</span>
+            Message: <span className="text-palette-red-500">*</span>
           </label>
           <textarea
             className="h-32"
