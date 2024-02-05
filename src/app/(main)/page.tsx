@@ -1,9 +1,11 @@
 import Hero from '@/components/hero';
+import Expertise from '@/components/expertise';
 
 export default function Home() {
   return (
     <main>
       <Hero />
+      <Expertise />
     </main>
   );
 }
