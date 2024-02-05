@@ -4,7 +4,7 @@ import Link from 'next/link';
 export function Expertise() {
   return (
     <section>
-      <div className="max-w-screen-xl px-4 py-8 mx-auto lg:py-10">
+      <div className="max-w-screen-xl px-4 pt-10 mx-auto">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="max-w-2xl md:mb-10 mb-8 text-4xl tracking-tight md:text-5xl dark:text-white">
             Expertise

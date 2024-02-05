@@ -2,10 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import githubIcon from '../../../public/github-mark.svg';
+import linkedinIcon from '../../../public/linkedin.svg';
+
 export function Hero() {
   return (
     <section>
-      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-20 lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
             Enterprise Grade Software Development
@@ -50,38 +53,51 @@ export function Hero() {
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row pt-0 md:pt-10 md:space-x-3 items-center space-y-5 md:space-y-0">
-          <Link
-            href="mailto:garygause@gmail.com"
-            target="_blank"
-            className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
-          >
-            garygause@gmail.com
-          </Link>
+        <div className="flex flex-col md:flex-row pt-0 md:pt-10 md:space-x-4 items-center space-y-5 md:space-y-0">
+          <div className="inline-flex items-center justify-center space-x-4">
+            <Link
+              href="mailto:garygause@gmail.com"
+              target="_blank"
+              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
+            >
+              garygause@gmail.com
+            </Link>
+            <span>|</span>
+            <Link
+              href="phone:3607229772"
+              target="_blank"
+              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
+            >
+              360.722.9772
+            </Link>
+          </div>
           <span className="hidden md:flex">|</span>
-          <Link
-            href="phone:3607229772"
-            target="_blank"
-            className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
-          >
-            360.722.9772
-          </Link>
-          <span className="hidden md:flex">|</span>
-          <Link
-            href="https://github.com/garygause"
-            target="_blank"
-            className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
-          >
-            github/garygause
-          </Link>
-          <span className="hidden md:flex">|</span>
-          <Link
-            href="https://linkedin.com/in/garygause"
-            target="_blank"
-            className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
-          >
-            in/garygause
-          </Link>
+          <div className="inline-flex items-center justify-center space-x-6 md:space-x-4">
+            <Link
+              href="https://github.com/garygause"
+              target="_blank"
+              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
+            >
+              <Image
+                className="max-w-6 dark:invert"
+                priority
+                src={githubIcon}
+                alt="github"
+              />
+            </Link>
+            <Link
+              href="https://linkedin.com/in/garygause"
+              target="_blank"
+              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
+            >
+              <Image
+                className="max-w-6 rounded dark:invert"
+                priority
+                src={linkedinIcon}
+                alt="linkedin"
+              />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
