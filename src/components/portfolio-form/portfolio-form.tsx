@@ -8,7 +8,9 @@ function PortfolioForm() {
   const [error, setError] = useState([]);
   const [success, setSuccess] = useState(false);
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (
+    e
+  ) => {
     e.preventDefault();
     const res = await fetch('/api/portfolio', {
       method: 'POST',

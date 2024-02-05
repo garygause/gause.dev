@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ msg: ['Message sent.'], success: true });
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
-      let errorList = [];
+      let errorList: string[] = [];
       for (let e in error.errors) {
         console.log(e);
         errorList.push(error.errors[e].message);
