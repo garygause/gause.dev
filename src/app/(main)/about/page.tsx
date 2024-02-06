@@ -7,7 +7,7 @@ export default function AboutHomePage() {
       <div className="container mx-auto max-w-3xl">
         <div className="p-4">
           <h1 className="text-4xl py-10">About Me</h1>
-          <p className="mb-3 text-palette-brown first-line:uppercase first-line:tracking-widest first-letter:text-2xl first-letter:font-bold first-letter:text-palette-red ">
+          <p className="mb-3 text-palette-brown first-line:uppercase first-line:tracking-widest first-letter:text-2xl first-letter:font-bold first-letter:text-palette-red">
             Currently a freelancer working on my favorite projects, I have a
             long history in software development.
           </p>
@@ -36,7 +36,7 @@ export default function AboutHomePage() {
               width="300"
               height="300"
               alt="gary coffee"
-              className="shadow-lg shadow-palette-red/50 rounded-full max-w-full h-auto align-middle "
+              className="shadow-lg shadow-palette-red/50  dark:shadow-palette-white/50 rounded-full max-w-full h-auto align-middle "
             />
           </div>
         </div>

@@ -49,7 +49,7 @@ export function Hero() {
               alt="Photo Gary Gause"
               height="380"
               width="380"
-              className="shadow-lg rounded-full max-w-full  h-auto align-middle border-none"
+              className="shadow-lg shadow-palette-red/50  dark:shadow-palette-white/50 rounded-full max-w-full  h-auto align-middle border-none"
             />
           </div>
         </div>

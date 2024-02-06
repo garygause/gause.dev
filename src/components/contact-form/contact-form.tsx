@@ -49,6 +49,7 @@ function ContactForm() {
             id="fullName"
             value={fullName}
             placeholder="Your Name"
+            className="rounded"
             onChange={(e) => setFullname(e.target.value)}
           />
         </div>
@@ -57,6 +58,7 @@ function ContactForm() {
             Email: <span className="text-palette-red-500">*</span>
           </label>
           <input
+            className="rounded"
             type="text"
             id="email"
             value={email}
@@ -69,26 +71,30 @@ function ContactForm() {
             Message: <span className="text-palette-red-500">*</span>
           </label>
           <textarea
-            className="h-32"
+            className="h-52 rounded"
             id="message"
             value={message}
-            placeholder="Message and Project Details"
+            placeholder="Message or Project Details"
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
         </div>
         <button
-          className="bg-palette-red font-bold py-3 text-white"
+          className="bg-palette-red font-bold py-3 text-white rounded-lg hover:bg-palette-brown"
           type="submit"
         >
           Send
         </button>
       </form>
-      <div className="flex flex-col">
-        {error &&
+      <div
+        className={`${
+          error.length === 0 ? 'hidden' : ''
+        } border border-palette-brown dark:bg-palette-white/70 mt-10 rounded`}
+      >
+        {error.length > 0 &&
           error.map((e) => (
             <div
-              className={`px-5 py-2 mt-5 ${
-                success ? 'text-white' : 'text-palette-red-700'
+              className={`px-5 py-2  ${
+                success ? 'text-black' : 'text-palette-red-700'
               }`}
               key={e}
             >
