@@ -34,4 +34,4 @@ npm run dev
 
 ## Screenshots
 
-![NextEvents Home](public/images/site-preview.png) |
+![NextEvents Home](public/images/site-preview.png)
