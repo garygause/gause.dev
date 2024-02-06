@@ -22,22 +22,17 @@ export function Portfolio() {
             <div className="w-full">
               <div className="container mx-auto space-y-10">
                 <PortfolioItem
-                  imageSrc="/projects/pflag.png"
+                  imageSrc="/projects/powerline-1.png"
                   imageHeight={600}
-                  imageWidth={550}
-                  imageAlt="pflag project"
-                  title="Project:PFLAG Website"
-                  stack="HTML, CSS, Git, Apache, Linode."
-                  description="For this project, I developed a website for the Stanwood-Camano chapter of PFLAG, an LGBTQIA+ support organization. I also host and maintain the site on an ongoing basis."
-                />
-                <PortfolioItem
-                  imageSrc="/projects/freedompark.png"
-                  imageHeight={600}
-                  imageWidth={550}
-                  imageAlt="freedompark project"
-                  title="Project: Freedom Park Website"
-                  stack="Wordpress, HTML, CSS, Git, Apache, Linode."
-                  description="For this project, I developed a website for the Freedom Park Assocation, a group that supports and maintains the privately funded Freedom Park on Camano Island. I also host and maintain the site on an ongoing basis."
+                  imageWidth={800}
+                  imageAlt="powerline project"
+                  title="Project: Powerline Analytics"
+                  stack="AWS ECS, Docker, AWS PostgreSQL RDS, Python/Flask API, Python ETL, React Web, Jupyter, Pandas, Matplotlib, Numpy"
+                  description="Advanced data science, data engineering, hardware and
+                    software engineering project. Powerline brought smart sensor
+                    technology to utilities and power line segments on a massive
+                    scale with the goal of detecting line failure before it
+                    happens in order to prevent forest fires."
                 />
                 <MultiImagePortfolioItem
                   imageSrc="/projects/tvsupplier-1.png"
@@ -54,19 +49,6 @@ export function Portfolio() {
                 >
                   <p>Winner of the Gold Innovation Award.</p>
                 </MultiImagePortfolioItem>
-                <PortfolioItem
-                  imageSrc="/projects/powerline-1.png"
-                  imageHeight={600}
-                  imageWidth={800}
-                  imageAlt="powerline project"
-                  title="Project: Powerline Analytics"
-                  stack="AWS ECS, Docker, AWS PostgreSQL RDS, Python/Flask API, Python ETL, React Web, Jupyter, Pandas, Matplotlib, Numpy"
-                  description="Advanced data science, data engineering, hardware and
-                    software engineering project. Powerline brought smart sensor
-                    technology to utilities and power line segments on a massive
-                    scale with the goal of detecting line failure before it
-                    happens in order to prevent forest fires."
-                />
                 <MultiImagePortfolioItem
                   imageSrc="/projects/jennylife-android.png"
                   imageHeight={500}
@@ -114,6 +96,24 @@ export function Portfolio() {
                 >
                   <p>Winner of the Gold Innovation Award.</p>
                 </MultiImagePortfolioItem>
+                <PortfolioItem
+                  imageSrc="/projects/pflag.png"
+                  imageHeight={600}
+                  imageWidth={550}
+                  imageAlt="pflag project"
+                  title="Project: PFLAG Website"
+                  stack="HTML, CSS, Git, Apache, Linode."
+                  description="For this project, I developed a website for the Stanwood-Camano chapter of PFLAG, an LGBTQIA+ support organization. I also host and maintain the site on an ongoing basis."
+                />
+                <PortfolioItem
+                  imageSrc="/projects/freedompark.png"
+                  imageHeight={600}
+                  imageWidth={550}
+                  imageAlt="freedompark project"
+                  title="Project: Freedom Park Website"
+                  stack="Wordpress, HTML, CSS, Git, Apache, Linode."
+                  description="For this project, I developed a website for the Freedom Park Assocation, a group that supports and maintains the privately funded Freedom Park on Camano Island. I also host and maintain the site on an ongoing basis."
+                />
               </div>
             </div>
           </div>
