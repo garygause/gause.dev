@@ -13,6 +13,11 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'gause.dev',
   description: 'Freelance software development services offered by Gary Gause.',
+  keywords:
+    'freelance, web, mobile, development, next.js, react.js, javascript, typescript, tailwind css, css, html, react native, wordpress, enterprise, aws, architecture',
+  creator: 'Gary Gause',
+  robots: 'index follow',
+  alternates: { canonical: 'https://gause.dev' },
   openGraph: {
     title: 'gause.dev',
     description:
