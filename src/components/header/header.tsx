@@ -136,6 +136,9 @@ export default function Header() {
                       About
                     </div>
                   </Link>
+                  <span className="pt-1 w-16">
+                    <ThemeSwitcher />
+                  </span>
                 </nav>
               </div>
             </div>
