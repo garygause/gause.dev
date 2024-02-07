@@ -46,9 +46,7 @@ export function Portfolio() {
                   title="Project: TVSupplier App"
                   stack="React Native, Android, Java, Python/Django, API"
                   description="Written in React Native, this Android app allows a supplier to scan a QR code on an asset tracking tag and enter information about the asset being delivered to the job site. The asset tracking tag then communicates with remote boxes on the job site and notifies users when the asset has arrived on site and what dock it is at."
-                >
-                  <p>Winner of the Gold Innovation Award.</p>
-                </MultiImagePortfolioItem>
+                />
                 <MultiImagePortfolioItem
                   imageSrc="/projects/jennylife-android.png"
                   imageHeight={500}
