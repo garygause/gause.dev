@@ -58,9 +58,9 @@ const config: Config = {
         'Segoe UI Emoji',
         'Segoe UI Symbol',
         'Noto Color Emoji',
+        'Inter',
       ],
       sans: [
-        'Inter',
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
@@ -75,6 +75,7 @@ const config: Config = {
         'Segoe UI Emoji',
         'Segoe UI Symbol',
         'Noto Color Emoji',
+        'Inter',
       ],
     },
   },

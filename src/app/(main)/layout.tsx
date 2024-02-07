@@ -37,6 +37,9 @@ export const metadata: Metadata = {
   },
 };
 
+// if using inter font
+//         className={`${inter.className} bg-palette-white dark:bg-palette-gray`}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,9 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.className} bg-palette-white dark:bg-palette-gray`}
-      >
+      <body className="bg-palette-white dark:bg-palette-gray">
         <ThemeProvider>
           <div className="mx-auto max-w-full min-h-screen flex flex-col">
             <Header />
