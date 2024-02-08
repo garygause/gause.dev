@@ -1,18 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from 'auth';
 
 import mongoose from 'mongoose';
 
 import { connectDB } from '../../lib/mongodb';
-import Portfolio from '@/app/models/portfolio';
+import Project from '@/app/models/project';
 
 export async function POST(req: NextRequest) {
-  const { title, description } = await req.json();
+  const { _id, title, stack, description } = await req.json();
   try {
     await connectDB();
-    await Portfolio.create({ title, description });
-
-    return NextResponse.json({ msg: ['Portfolio saved.'], success: true });
+    await Project.create({ title, stack, description });
+    return NextResponse.json({ msg: ['Project saved.'], success: true });
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       let errorList: string[] = [];
@@ -22,10 +20,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ msg: errorList, success: false });
     } else {
       return NextResponse.json({
-        msg: 'Unable to save Portfolio.',
+        msg: 'Unable to save Project.',
         success: false,
       });
     }
+  }
+}
+
+export async function GET(req: NextRequest) {
+  //const { _id, title, stack, description } = await req.json();
+  try {
+    await connectDB();
+    const projects = await Project.find();
+    return NextResponse.json(projects);
+  } catch (error) {
+    return NextResponse.json({
+      msg: 'Unable to retrieve Projects.',
+      success: false,
+    });
   }
 }
 

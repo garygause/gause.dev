@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="bg-palette-white dark:bg-palette-gray">
         <ThemeProvider>
           <div className="w-full h-screen items-center justify-center">

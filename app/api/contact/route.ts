@@ -7,11 +7,7 @@ import mongoose from 'mongoose';
 export async function POST(req: NextRequest) {
   const { fullName, email, message } = await req.json();
   try {
-    console.log('connecting to db');
-
     await connectDB();
-    console.log('connecting to db');
-    console.log('creating contact');
     await Contact.create({ fullName, email, message });
 
     return NextResponse.json({ msg: ['Message sent.'], success: true });

@@ -11,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://gause.dev'),
   title: 'gause.dev',
   description: 'Freelance software development services offered by Gary Gause.',
   keywords:

@@ -1,12 +1,19 @@
 import mongoose, { Schema } from 'mongoose';
 
-const portfolioSchema = new Schema({
+const projectSchema = new Schema({
   title: {
     type: String,
     required: [true, 'Title is required.'],
     trim: true,
     minLength: [2, 'Title must be greater than 2 characters.'],
     maxLength: [100, 'Title must be less than 100 characters'],
+  },
+  stack: {
+    type: String,
+    required: [true, 'Stack is required.'],
+    trim: true,
+    minLength: [2, 'Stack must be greater than 2 characters.'],
+    maxLength: [500, 'Stack must be less than 500 characters'],
   },
   description: {
     type: String,
@@ -19,7 +26,7 @@ const portfolioSchema = new Schema({
   },
 });
 
-const Portfolio =
-  mongoose.models.Portfolio || mongoose.model('Portfolio', portfolioSchema);
+const Project =
+  mongoose.models.Project || mongoose.model('Project', projectSchema);
 
-export default Portfolio;
+export default Project;

@@ -1,32 +1,37 @@
 'use client';
 
 import React, { useState } from 'react';
+import { saveProject } from '@/app/lib/api-client';
 
-function PortfolioForm() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+export function ProjectForm(props) {
+  const [title, setTitle] = useState(props.project?.title || '');
+  const [stack, setStack] = useState(props.project?.stack || '');
+  const [description, setDescription] = useState(
+    props.project?.description || ''
+  );
   const [error, setError] = useState([]);
   const [success, setSuccess] = useState(false);
+
+  const _id = props._id;
+  const date = props.date;
 
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e
   ) => {
     e.preventDefault();
-    const res = await fetch('/api/portfolio', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        title,
-        description,
-      }),
-    });
-    const { msg, success } = await res.json();
+    const project = {
+      _id,
+      title,
+      stack,
+      description,
+      date,
+    };
+    const { msg, success } = await saveProject(project);
     setError(msg);
     setSuccess(success);
     if (success) {
       setTitle('');
+      setStack('');
       setDescription('');
     }
   };
@@ -50,6 +55,18 @@ function PortfolioForm() {
           />
         </div>
         <div>
+          <label htmlFor="title">
+            Stack: <span className="text-palette-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="stack"
+            value={stack}
+            placeholder="Stack"
+            onChange={(e) => setStack(e.target.value)}
+          />
+        </div>
+        <div>
           <label htmlFor="description">
             Description: <span className="text-palette-red-500">*</span>
           </label>
@@ -65,7 +82,7 @@ function PortfolioForm() {
           className="bg-palette-red font-bold py-3 text-white"
           type="submit"
         >
-          Send
+          Save
         </button>
       </form>
       <div className="flex flex-col">
@@ -85,4 +102,4 @@ function PortfolioForm() {
   );
 }
 
-export default PortfolioForm;
+export default ProjectForm;

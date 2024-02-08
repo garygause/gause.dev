@@ -48,7 +48,7 @@ function ContactForm() {
             type="text"
             id="fullName"
             value={fullName}
-            placeholder="Your Name"
+            placeholder="Enter your name"
             className="rounded w-full"
             onChange={(e) => setFullname(e.target.value)}
           />
@@ -62,7 +62,7 @@ function ContactForm() {
             type="text"
             id="email"
             value={email}
-            placeholder="Your Email Address"
+            placeholder="Enter your email address"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -74,7 +74,7 @@ function ContactForm() {
             className="h-52 rounded w-full"
             id="message"
             value={message}
-            placeholder="Message or Project Details"
+            placeholder="Enter your message or project details"
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
         </div>
