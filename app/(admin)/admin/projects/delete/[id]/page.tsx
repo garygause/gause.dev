@@ -16,7 +16,7 @@ export default async function DeleteProjectPage({
     'use server';
     const result = await deleteProject(params.id);
     revalidatePath('/admin/projects');
-    redirect('/admin/projects');
+    //redirect('/admin/projects');
   }
   return (
     <>

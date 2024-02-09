@@ -16,7 +16,7 @@ export default async function DeleteUserPage({
     'use server';
     const result = await deleteUser(params.id);
     revalidatePath('/admin/users');
-    redirect('/admin/users');
+    //redirect('/admin/users');
   }
   return (
     <>
