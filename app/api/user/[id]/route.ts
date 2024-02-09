@@ -29,11 +29,17 @@ export async function POST(
 ) {
   const id = params.id;
   try {
-    const { name, email, password } = await req.json();
-    let update = { name, email };
+    const {
+      name,
+      email,
+      password,
+    }: { name: string; email: string; password?: string } = await req.json();
+    let update = { name, email, password };
     if (password) {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      update['password'] = hashedPassword;
+      const hashedPassword: string = await bcrypt.hash(password, 10);
+      update.password = hashedPassword;
+    } else {
+      delete update.password;
     }
     await connectDB();
     await User.findOneAndUpdate({ _id: id }, update);
