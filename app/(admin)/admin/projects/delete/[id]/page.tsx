@@ -1,11 +1,10 @@
-'use server';
-
 import React from 'react';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 
 import { deleteProject } from '@/app/lib/api-client';
 import DeleteButton from '@/app/components/ui/delete-button';
+import { updateCacheAndRedirect } from '@/app/lib/actions';
 
 export default async function DeleteProjectPage({
   params,
@@ -14,9 +13,8 @@ export default async function DeleteProjectPage({
 }) {
   async function deleteHandler() {
     'use server';
-    const result = await deleteProject(params.id);
-    revalidatePath('/admin/projects');
-    //redirect('/admin/projects');
+    await deleteProject(params.id);
+    updateCacheAndRedirect(['/admin/projects'], '/admin/projects');
   }
   return (
     <>

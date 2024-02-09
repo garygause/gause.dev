@@ -1,11 +1,10 @@
-'use server';
-
 import React from 'react';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 
 import { deleteUser } from '@/app/lib/api-client';
 import DeleteButton from '@/app/components/ui/delete-button';
+import { updateCacheAndRedirect } from '@/app/lib/actions';
 
 export default async function DeleteUserPage({
   params,
@@ -14,9 +13,8 @@ export default async function DeleteUserPage({
 }) {
   async function deleteHandler() {
     'use server';
-    const result = await deleteUser(params.id);
-    revalidatePath('/admin/users');
-    //redirect('/admin/users');
+    await deleteUser(params.id);
+    updateCacheAndRedirect(['/admin/users'], '/admin/users');
   }
   return (
     <>
