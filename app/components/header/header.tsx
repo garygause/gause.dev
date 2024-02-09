@@ -4,11 +4,17 @@ import React from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 
 import ThemeSwitcher from '@/app/components/ui/theme-switcher';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const { data: session, status } = useSession();
+
+  console.log('session: ' + session);
+  console.log('status');
+
   return (
     <header className="w-full mx-auto bg-palette-gray dark:bg-palette-matte px-8 sticky top-0 z-30 backdrop-blur-md text-stone-50 dark:text-stone-200">
       <div className="container mx-auto">
@@ -63,12 +69,22 @@ export default function Header() {
             >
               About
             </Link>
-            <Link
-              href="/login"
-              className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
-            >
-              Login
-            </Link>
+            {status === 'authenticated' && (
+              <Link
+                href="/admin"
+                className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
+              >
+                Admin - {session.user?.name}
+              </Link>
+            )}
+            {status !== 'authenticated' && (
+              <Link
+                href="/login"
+                className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
+              >
+                Login
+              </Link>
+            )}
             <span className="pt-1 w-16">
               <ThemeSwitcher />
             </span>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import ThemeProvider from '@/app/components/ui/theme-provider';
 import SideNav from '@ui/sidenav';
+import ClientSessionProvider from '@app/components/client-session-provider';
 
 import '@/app/globals.css';
 
@@ -48,16 +49,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-palette-white dark:bg-palette-gray">
-        <ThemeProvider>
-          <div className="md:flex-row md:overflow-hidden min-h-screen flex flex-col">
-            <div className="w-full flex-none md:w-60">
-              <SideNav />
+        <ClientSessionProvider>
+          <ThemeProvider>
+            <div className="md:flex-row md:overflow-hidden min-h-screen flex flex-col">
+              <div className="w-full flex-none md:w-60">
+                <SideNav />
+              </div>
+              <main className="flex-grow p-6 md:overflow-y-auto md:p-12">
+                {children}
+              </main>
             </div>
-            <main className="flex-grow p-6 md:overflow-y-auto md:p-12">
-              {children}
-            </main>
-          </div>
-        </ThemeProvider>
+          </ThemeProvider>
+        </ClientSessionProvider>
       </body>
     </html>
   );

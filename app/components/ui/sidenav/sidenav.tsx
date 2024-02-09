@@ -1,12 +1,18 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 
-import NavLinks from './nav-links';
+import NavLinks from '@/app/components/ui/nav-links';
 import ThemeSwitcher from '@/app/components/ui/theme-switcher';
-import { signOut } from '@/auth';
+import SignOutButton from '@/app/components/signout-button/signout-button';
 
 export default function SideNav() {
+  const { data: session, status } = useSession();
+  console.log(status);
+  console.log(session);
   return (
     <div className="flex h-full flex-col  bg-palette-matte text-white dark:text-white">
       <div className="bg-palette-matte">
@@ -29,16 +35,7 @@ export default function SideNav() {
 
         <div className="hidden h-auto w-full flex-1 md:block"></div>
         <div className="border-b border-t border-palette-brown">
-          <form
-            action={async () => {
-              'use server';
-              await signOut();
-            }}
-          >
-            <button className="pl-4 flex h-[48px] w-full grow items-center justify-center gap-2 font-medium hover:bg-palette-brown hover:text-white md:flex-none md:justify-start">
-              <div className="hidden md:block">Sign Out</div>
-            </button>
-          </form>
+          <SignOutButton />
         </div>
       </div>
       <div>

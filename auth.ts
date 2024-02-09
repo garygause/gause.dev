@@ -1,27 +1,12 @@
-'use server';
-
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
 
-import { connectDB } from '@/app/lib/mongodb';
-import User from '@/app/models/user';
+import { connectDB, getUserByEmail } from '@/app/lib/mongodb';
 import { authConfig } from './auth.config';
 
-async function getUser(email: string) {
-  try {
-    console.log('connecting to db');
-    await connectDB();
-    const user = await User.findOne({ email: email });
-    return user;
-  } catch (error) {
-    console.log('Failed to get user: ', error);
-    throw new Error('Failed to get user.');
-  }
-}
-
-export const { auth, signIn, signOut } = NextAuth({
+export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
@@ -32,7 +17,9 @@ export const { auth, signIn, signOut } = NextAuth({
 
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
-          const user = await getUser(email);
+          const user = await getUserByEmail(email);
+          console.log('auth.ts user: ');
+          console.log(user);
           if (!user) return null;
           const passwordsMatch = await bcrypt.compare(password, user.password);
           if (passwordsMatch) return user;

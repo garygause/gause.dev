@@ -20,6 +20,18 @@ export async function getUser(id) {
   return await User.findById(id);
 }
 
+export async function getUserByEmail(email) {
+  try {
+    console.log('connecting to db');
+    await connectDB();
+    const user = await User.findOne({ email: email });
+    return user;
+  } catch (error) {
+    console.log('Failed to get user: ', error);
+    throw new Error('Failed to get user.');
+  }
+}
+
 export async function getUsers() {
   await connectDB();
   return await User.find();

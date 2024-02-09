@@ -1,12 +1,23 @@
-import { signIn } from '@/auth';
+'use server';
+
+import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
+import { getSession } from 'next-auth/react';
 
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData
 ) {
   try {
-    await signIn('credentials', formData);
+    //await signIn('credentials', formData);
+    const result = await signIn('credentials', {
+      redirect: false,
+      password: formData.get('password'),
+      email: formData.get('email'),
+    });
+    console.log(result);
+    console.log('actions: ');
+    console.log(formData);
   } catch (error) {
     console.log(error);
     if (error instanceof AuthError) {
@@ -20,4 +31,8 @@ export async function authenticate(
     console.log(error);
     //throw error;
   }
+}
+
+export async function signOutUser() {
+  await signOut();
 }

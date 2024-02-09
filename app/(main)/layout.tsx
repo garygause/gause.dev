@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import Header from '@/app/components/header/header';
 import Footer from '@/app/components/footer/footer';
 import ThemeProvider from '@/app/components/ui/theme-provider';
+import ClientSessionProvider from '@app/components/client-session-provider';
 
 import '@/app/globals.css';
 
@@ -49,13 +50,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-palette-white dark:bg-palette-gray">
-        <ThemeProvider>
-          <div className="mx-auto max-w-full min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <ClientSessionProvider>
+          <ThemeProvider>
+            <div className="mx-auto max-w-full min-h-screen flex flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </ThemeProvider>
+        </ClientSessionProvider>
       </body>
     </html>
   );
