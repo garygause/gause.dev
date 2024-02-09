@@ -1,3 +1,5 @@
+'use server';
+
 import React from 'react';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
@@ -5,7 +7,11 @@ import { revalidatePath } from 'next/cache';
 import { deleteUser } from '@/app/lib/api-client';
 import DeleteButton from '@/app/components/ui/delete-button';
 
-export default function DeleteUserPage({ params }: { params: { id: string } }) {
+export default async function DeleteUserPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   async function deleteHandler() {
     'use server';
     const result = await deleteUser(params.id);

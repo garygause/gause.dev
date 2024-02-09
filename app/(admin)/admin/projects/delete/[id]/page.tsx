@@ -1,3 +1,5 @@
+'use server';
+
 import React from 'react';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
@@ -5,7 +7,7 @@ import { revalidatePath } from 'next/cache';
 import { deleteProject } from '@/app/lib/api-client';
 import DeleteButton from '@/app/components/ui/delete-button';
 
-export default function DeleteProjectPage({
+export default async function DeleteProjectPage({
   params,
 }: {
   params: { id: string };
