@@ -22,13 +22,28 @@ export async function getUsers() {
   return await res.json();
 }
 
-export async function saveUser(user: User) {
-  const res = await fetch(`${BASE_URL}/api/user`, {
+export async function saveUser(user: User, id?: string) {
+  let url = `${BASE_URL}/api/user`;
+  if (id) {
+    url = url + '/' + id;
+  }
+  const res = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
     },
     body: JSON.stringify(user),
+  });
+  return await res.json();
+}
+
+export async function deleteUser(id: string) {
+  let url = `${BASE_URL}/api/user/${id}`;
+  const res = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+    },
   });
   return await res.json();
 }
@@ -53,13 +68,28 @@ export async function getProjects() {
   return await res.json();
 }
 
-export async function saveProject(project: Project) {
-  const res = await fetch(`${BASE_URL}/api/project`, {
+export async function saveProject(project: Project, id?: string) {
+  let url = `${BASE_URL}/api/project`;
+  if (id) {
+    url = url + '/' + id;
+  }
+  const res = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
     },
     body: JSON.stringify(project),
+  });
+  return await res.json();
+}
+
+export async function deleteProject(id: string) {
+  let url = `${BASE_URL}/api/project/${id}`;
+  const res = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+    },
   });
   return await res.json();
 }

@@ -2,31 +2,49 @@
 
 import React, { useState } from 'react';
 import { saveUser } from '@/app/lib/api-client';
+import { updateCacheAndRedirect } from '@/app/lib/actions';
 
-export function UserForm(props) {
+type UserProps = {
+  user?: {
+    _id: string;
+    name: string;
+    email: string;
+    password: string;
+  };
+};
+
+export function UserForm(props: UserProps) {
   const [name, setName] = useState(props.user?.name || '');
   const [email, setEmail] = useState(props.user?.email || '');
   const [password, setPassword] = useState('');
   const [error, setError] = useState([]);
   const [success, setSuccess] = useState(false);
 
-  const _id = props._id;
+  const _id = props.user?._id || '';
 
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e
   ) => {
     e.preventDefault();
-    const { msg, success } = await saveUser({
-      name: name,
-      email: email,
-      password: password,
-    });
+    const { msg, success } = await saveUser(
+      {
+        name: name,
+        email: email,
+        password: password,
+      },
+      _id
+    );
+
     setError(msg);
     setSuccess(success);
     if (success) {
       setName('');
       setEmail('');
       setPassword('');
+      updateCacheAndRedirect(
+        ['/admin/users', '/admin/users/edit/[id]'],
+        '/admin/users'
+      );
     }
   };
 
@@ -62,7 +80,8 @@ export function UserForm(props) {
         </div>
         <div>
           <label htmlFor="password">
-            Password: <span className="text-palette-red-500">*</span>
+            Password:{' '}
+            {_id ? '' : <span className="text-palette-red-500">*</span>}
           </label>
           <input
             type="text"

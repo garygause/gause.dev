@@ -1,9 +1,20 @@
 'use client';
 
 import React, { useState } from 'react';
+import { updateCacheAndRedirect } from '@/app/lib/actions';
+
 import { saveProject } from '@/app/lib/api-client';
 
-export function ProjectForm(props) {
+type ProjectProps = {
+  project?: {
+    _id: string;
+    title: string;
+    stack: string;
+    description: string;
+  };
+};
+
+export function ProjectForm(props: ProjectProps) {
   const [title, setTitle] = useState(props.project?.title || '');
   const [stack, setStack] = useState(props.project?.stack || '');
   const [description, setDescription] = useState(
@@ -12,27 +23,28 @@ export function ProjectForm(props) {
   const [error, setError] = useState([]);
   const [success, setSuccess] = useState(false);
 
-  const _id = props._id;
-  const date = props.date;
+  const _id = props.project?._id;
 
   const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = async (
     e
   ) => {
     e.preventDefault();
     const project = {
-      _id,
       title,
       stack,
       description,
-      date,
     };
-    const { msg, success } = await saveProject(project);
+    const { msg, success } = await saveProject(project, _id);
     setError(msg);
     setSuccess(success);
     if (success) {
       setTitle('');
       setStack('');
       setDescription('');
+      updateCacheAndRedirect(
+        ['/admin/projects', '/admin/projects/edit/[id]'],
+        '/admin/projects'
+      );
     }
   };
 

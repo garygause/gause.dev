@@ -57,8 +57,9 @@ export async function UsersTable({ users }: { users: FormattedUsersTable[] }) {
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {user.password}
                       </td>
-                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm space-x-5">
                         <Link href={`users/edit/${user._id}`}>Edit</Link>
+                        <Link href={`users/delete/${user._id}`}>Delete</Link>
                       </td>
                     </tr>
                   ))}

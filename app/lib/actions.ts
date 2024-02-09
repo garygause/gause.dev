@@ -3,6 +3,8 @@
 import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
 import { getSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 export async function authenticate(
   prevState: string | undefined,
@@ -35,4 +37,14 @@ export async function authenticate(
 
 export async function signOutUser() {
   await signOut();
+}
+
+export async function updateCacheAndRedirect(
+  paths: string[],
+  redirectPath: string
+) {
+  for (let path of paths) {
+    revalidatePath(path);
+  }
+  redirect(redirectPath);
 }

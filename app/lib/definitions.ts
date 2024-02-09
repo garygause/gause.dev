@@ -8,7 +8,6 @@ export type Project = {
   title: string;
   stack: string;
   description: string;
-  date: Date;
 };
 
 export type Contact = {

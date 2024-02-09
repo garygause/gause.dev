@@ -59,8 +59,11 @@ export async function ProjectsTable({
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {project.stack}
                       </td>
-                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm space-x-5">
                         <Link href={`projects/edit/${project._id}`}>Edit</Link>
+                        <Link href={`projects/delete/${project._id}`}>
+                          Delete
+                        </Link>
                       </td>
                     </tr>
                   ))}

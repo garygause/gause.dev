@@ -28,7 +28,6 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
-  //const { _id, title, stack, description } = await req.json();
   try {
     await connectDB();
     const projects = await Project.find();
