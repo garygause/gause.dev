@@ -13,7 +13,6 @@ export default function DeleteProjectPage({
   async function deleteHandler() {
     'use server';
     const result = await deleteProject(params.id);
-    console.log(result);
     revalidatePath('/admin/projects');
     redirect('/admin/projects');
   }
