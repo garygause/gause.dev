@@ -1,6 +1,4 @@
 import React from 'react';
-import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
 
 import { deleteUser } from '@/app/lib/api-client';
 import DeleteButton from '@/app/components/ui/delete-button';
