@@ -1,6 +1,13 @@
 import React from 'react';
+import { FormEventHandler } from 'react';
 
-export default function DeleteButton({ deleteHandler, buttonText }) {
+export default function DeleteButton({
+  deleteHandler,
+  buttonText,
+}: {
+  deleteHandler: any;
+  buttonText: string;
+}) {
   return (
     <form action={deleteHandler}>
       <button className="pl-4 flex h-[48px] w-full grow items-center justify-center gap-2 font-medium hover:bg-palette-brown hover:text-white md:flex-none md:justify-start">
