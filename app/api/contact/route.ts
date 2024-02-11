@@ -1,16 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-import { connectDB } from '@/app/lib/mongodb';
-import Contact from '@/app/models/contact';
 import mongoose from 'mongoose';
+
+import { createContact, getContacts } from '@/app/lib/mongodb';
+import { ApiResponse } from '@/app/lib/definitions';
 
 export async function POST(req: NextRequest) {
   const { fullName, email, message } = await req.json();
   try {
-    await connectDB();
-    await Contact.create({ fullName, email, message });
-
-    return NextResponse.json({ msg: ['Message sent.'], success: true });
+    const contact = await createContact({ fullName, email, message });
+    const response: ApiResponse = {
+      msg: ['Contact created.'],
+      success: true,
+      data: contact,
+    };
+    return NextResponse.json(response);
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       let errorList: string[] = [];
@@ -18,12 +21,38 @@ export async function POST(req: NextRequest) {
         console.log(e);
         errorList.push(error.errors[e].message);
       }
-      return NextResponse.json({ msg: errorList, success: false });
-    } else {
-      return NextResponse.json({
-        msg: 'Unable to send message.',
+      const response: ApiResponse = {
+        msg: errorList,
         success: false,
-      });
+        data: null,
+      };
+      return NextResponse.json(response);
+    } else {
+      const response: ApiResponse = {
+        msg: ['Unable to create Contact.'],
+        success: false,
+        data: null,
+      };
+      return NextResponse.json(response);
     }
+  }
+}
+
+export async function GET(req: NextRequest) {
+  try {
+    const contacts = await getContacts();
+    const response: ApiResponse = {
+      msg: ['Success.'],
+      success: true,
+      data: contacts,
+    };
+    return NextResponse.json(response);
+  } catch (error) {
+    const response: ApiResponse = {
+      msg: ['Unable to retrieve Contacts.'],
+      success: false,
+      data: null,
+    };
+    return NextResponse.json(response);
   }
 }

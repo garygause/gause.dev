@@ -2,9 +2,10 @@
 
 import { signIn, signOut } from '@/auth';
 import { AuthError } from 'next-auth';
-import { getSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
+import { User } from '@/app/lib/definitions';
+import { saveUser } from './api-client';
 
 export async function authenticate(
   prevState: string | undefined,
@@ -27,7 +28,7 @@ export async function authenticate(
         case 'CredentialsSignin':
           return 'Invalid credentials.';
         default:
-          return 'Something went wrong.';
+          return 'An error occurred during authentication.';
       }
     }
     console.log(error);
@@ -39,12 +40,22 @@ export async function signOutUser() {
   await signOut();
 }
 
-export async function updateCacheAndRedirect(
-  paths: string[],
-  redirectPath: string
-) {
-  for (let path of paths) {
-    revalidatePath(path);
+export async function saveUserForm(_id: string, formData: FormData) {
+  const name = formData.get('name') as string;
+  const email = formData.get('email') as string;
+  const password = formData.get('password') as string;
+  const role = formData.get('role') as string;
+
+  const user: User = {
+    name: name,
+    email: email,
+    password: password,
+    role: role,
+  };
+
+  const { msg, success } = await saveUser(user, _id);
+  if (success) {
+    revalidatePath('/admin/users');
+    redirect('/admin/users');
   }
-  redirect(redirectPath);
 }

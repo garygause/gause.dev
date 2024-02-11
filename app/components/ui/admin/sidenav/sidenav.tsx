@@ -7,12 +7,11 @@ import { useSession } from 'next-auth/react';
 
 import NavLinks from '@/app/components/ui/nav-links';
 import ThemeSwitcher from '@/app/components/ui/theme-switcher';
-import SignOutButton from '@/app/components/signout-button/signout-button';
+import SignOutButton from '@/app/components/ui/signout-button/signout-button';
 
 export default function SideNav() {
   const { data: session, status } = useSession();
-  console.log(status);
-  console.log(session);
+
   return (
     <div className="flex h-full flex-col  bg-palette-matte text-white dark:text-white">
       <div className="bg-palette-matte">
@@ -34,6 +33,9 @@ export default function SideNav() {
         <NavLinks />
 
         <div className="hidden h-auto w-full flex-1 md:block"></div>
+        <div className="border-t border-palette-brown p-4">
+          <div>{session?.user?.name}</div>
+        </div>
         <div className="border-b border-t border-palette-brown">
           <SignOutButton />
         </div>

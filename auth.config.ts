@@ -64,7 +64,8 @@ import type { NextAuthConfig } from 'next-auth';
 // import Zoom from "next-auth/providers/zoom"
 
 export const authConfig = {
-  secret: process.env.AUTH_SECRET,
+  //secret: process.env.NEXTAUTH_SECRET,
+  debug: false,
   pages: {
     signIn: '/login',
   },

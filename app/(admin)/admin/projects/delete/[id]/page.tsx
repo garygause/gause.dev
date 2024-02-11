@@ -1,8 +1,9 @@
 import React from 'react';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 import { deleteProject } from '@/app/lib/api-client';
 import DeleteButton from '@/app/components/ui/delete-button';
-import { updateCacheAndRedirect } from '@/app/lib/actions';
 
 export default async function DeleteProjectPage({
   params,
@@ -11,19 +12,20 @@ export default async function DeleteProjectPage({
 }) {
   async function deleteHandler() {
     'use server';
-    await deleteProject(params.id);
-    updateCacheAndRedirect(['/admin/projects'], '/admin/projects');
+    const { msg, success, data } = await deleteProject(params.id);
+    if (success) {
+      revalidatePath('/admin/projects');
+      redirect('/admin/projects');
+    }
   }
   return (
-    <>
-      <div>
-        <h1>Delete Project</h1>
-        <div>Really delete project?</div>
-        <DeleteButton
-          deleteHandler={deleteHandler}
-          buttonText="Yes, Delete Project"
-        />
-      </div>
-    </>
+    <div className="space-y-8">
+      <h1 className="text-xl mb-8">Delete Project</h1>
+      <div>Really delete project?</div>
+      <DeleteButton
+        deleteHandler={deleteHandler}
+        buttonText="Yes, Delete Project"
+      />
+    </div>
   );
 }

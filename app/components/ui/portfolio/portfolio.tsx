@@ -3,7 +3,7 @@ import React from 'react';
 import {
   PortfolioItem,
   MultiImagePortfolioItem,
-} from '@/app/components/portfolio-item';
+} from '@/app/components/ui/portfolio-item';
 
 export function Portfolio() {
   return (

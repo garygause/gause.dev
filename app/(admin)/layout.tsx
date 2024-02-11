@@ -1,14 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import ThemeProvider from '@/app/components/ui/theme-provider';
-import SideNav from '@ui/sidenav';
+import ThemeProvider from '@ui/theme-provider';
+import SideNav from '@ui/admin/sidenav';
 import ClientSessionProvider from '@app/components/client-session-provider';
 
 import '@/app/globals.css';
-
-const inter = Inter({
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://gause.dev'),
@@ -37,9 +32,6 @@ export const metadata: Metadata = {
     ],
   },
 };
-
-// if using inter font
-//         className={`${inter.className} bg-palette-white dark:bg-palette-gray`}
 
 export default function RootLayout({
   children,

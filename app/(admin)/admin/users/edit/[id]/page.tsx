@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import UserForm from '@/app/components/user-form';
+import UserForm from '@/app/components/ui/admin/user-form';
 import { getUser } from '@/app/lib/api-client';
 
 export default async function UserEditPage({
@@ -10,13 +10,13 @@ export default async function UserEditPage({
 }: {
   params: { id: string };
 }) {
-  const user = await getUser(params.id);
+  const { msg, success, data } = await getUser(params.id);
   return (
     <div className="mx-auto w-full">
       <div className="container mx-auto max-w-3xl">
         <div className="p-4">
           <h1 className="text-3xl font-bold py-5">Edit User</h1>
-          <UserForm user={user} />
+          <UserForm user={data} />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import UserForm from '@/app/components/user-form';
+import UserForm from '@/app/components/ui/admin/user-form';
 
 export default function UserEditPage() {
   return (

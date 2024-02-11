@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import ContactForm from '@/app/components/contact-form';
+import ContactForm from '@/app/components/ui/contact-form';
 
 export default function ContactPage() {
   return (

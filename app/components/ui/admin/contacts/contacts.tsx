@@ -1,19 +1,26 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { UsersTableType, FormattedUsersTable } from '@/app/lib/definitions';
+import {
+  ContactsTableType,
+  FormattedContactsTable,
+} from '@/app/lib/definitions';
 
-export async function UsersTable({ users }: { users: FormattedUsersTable[] }) {
+export async function ContactsTable({
+  contacts,
+}: {
+  contacts: FormattedContactsTable[];
+}) {
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <div className="mb-8 flex justify-start items-center md:space-x-5">
-        <h1 className=" text-xl md:text-2xl">Users</h1>
+        <h1 className=" text-xl md:text-2xl">Contacts</h1>
         <div className="flex">
-          <Link className="text-lg" href="users/edit">
+          <Link className="text-lg" href="contacts/edit">
             [+]
           </Link>
         </div>
-      </div>
+      </div>{' '}
       <div className="mt-6 flow-root">
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
@@ -31,35 +38,32 @@ export async function UsersTable({ users }: { users: FormattedUsersTable[] }) {
                       Email
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      PasswordHash
-                    </th>
-                    <th scope="col" className="px-3 py-5 font-medium">
                       &nbsp;
                     </th>
                   </tr>
                 </thead>
+
                 <tbody className="divide-y divide-gray-200 text-gray-900">
-                  {users.map((user) => (
-                    <tr key={user._id} className="group">
+                  {contacts?.map((contact) => (
+                    <tr key={contact._id} className="group">
                       <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
                         <div className="flex items-center gap-3">
-                          <p>{user._id}</p>
+                          <p>{contact._id}</p>
                         </div>
                       </td>
                       <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
                         <div className="flex items-center gap-3">
-                          <p>{user.name}</p>
+                          <p>{contact.fullName}</p>
                         </div>
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {user.email}
-                      </td>
-                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {user.password}
+                        {contact.email}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm space-x-5">
-                        <Link href={`users/edit/${user._id}`}>Edit</Link>
-                        <Link href={`users/delete/${user._id}`}>Delete</Link>
+                        <Link href={`contacts/edit/${contact._id}`}>Edit</Link>
+                        <Link href={`contacts/delete/${contact._id}`}>
+                          Delete
+                        </Link>
                       </td>
                     </tr>
                   ))}
@@ -73,4 +77,4 @@ export async function UsersTable({ users }: { users: FormattedUsersTable[] }) {
   );
 }
 
-export default UsersTable;
+export default ContactsTable;

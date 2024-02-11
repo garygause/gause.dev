@@ -1,16 +1,9 @@
-'use server';
-
 import React from 'react';
 
-import { UsersTable } from '@/app/components/users';
+import { UsersTable } from '@ui/admin/users';
 import { getUsers } from '@/app/lib/api-client';
 
 export default async function UsersPage() {
-  const users = await getUsers();
-
-  return (
-    <div>
-      <UsersTable users={users} />
-    </div>
-  );
+  const { msg, success, data } = await getUsers();
+  return <UsersTable users={data} />;
 }

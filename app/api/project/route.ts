@@ -2,48 +2,57 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import mongoose from 'mongoose';
 
-import { connectDB } from '../../lib/mongodb';
-import Project from '@/app/models/project';
+import { createProject, getProjects } from '@/app/lib/mongodb';
+import { ApiResponse } from '@/app/lib/definitions';
 
 export async function POST(req: NextRequest) {
-  const { _id, title, stack, description } = await req.json();
+  const { title, stack, description } = await req.json();
   try {
-    await connectDB();
-    await Project.create({ title, stack, description });
-    return NextResponse.json({ msg: ['Project saved.'], success: true });
+    const project = await createProject({ title, stack, description });
+    const response: ApiResponse = {
+      msg: ['Project created.'],
+      success: true,
+      data: project,
+    };
+    return NextResponse.json(response);
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       let errorList: string[] = [];
       for (let e in error.errors) {
         errorList.push(error.errors[e].message);
       }
-      return NextResponse.json({ msg: errorList, success: false });
-    } else {
-      return NextResponse.json({
-        msg: 'Unable to save Project.',
+      const response: ApiResponse = {
+        msg: errorList,
         success: false,
-      });
+        data: null,
+      };
+      return NextResponse.json(response);
+    } else {
+      const response: ApiResponse = {
+        msg: ['Unable to create Project.'],
+        success: false,
+        data: null,
+      };
+      return NextResponse.json(response);
     }
   }
 }
 
 export async function GET(req: NextRequest) {
   try {
-    await connectDB();
-    const projects = await Project.find();
-    return NextResponse.json(projects);
+    const projects = await getProjects();
+    const response: ApiResponse = {
+      msg: ['Success'],
+      success: true,
+      data: projects,
+    };
+    return NextResponse.json(response);
   } catch (error) {
-    return NextResponse.json({
-      msg: 'Unable to retrieve Projects.',
+    const response: ApiResponse = {
+      msg: ['Unable to retrieve Projects.'],
       success: false,
-    });
+      data: null,
+    };
+    return NextResponse.json(response);
   }
 }
-
-// export const GET = auth((req) => {
-//   if (req.auth) {
-//     return Response.json({ data: 'Protected data' });
-//   }
-
-//   return Response.json({ message: 'Not authenticated' }, { status: 401 });
-// }) as any; // TODO: Fix `auth()` return type

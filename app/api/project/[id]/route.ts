@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 
-import { connectDB } from '@/app/lib/mongodb';
-import Project from '@/app/models/project';
+import { deleteProject, getProject, updateProject } from '@/app/lib/mongodb';
+import { ApiResponse } from '@/app/lib/definitions';
 
 export async function GET(
   req: NextRequest,
@@ -10,14 +10,20 @@ export async function GET(
 ) {
   const id = params.id;
   try {
-    await connectDB();
-    const project = await Project.findById(id);
-    return NextResponse.json(project);
+    const project = await getProject(id);
+    const response: ApiResponse = {
+      msg: ['Success.'],
+      success: true,
+      data: project,
+    };
+    return NextResponse.json(response);
   } catch (error) {
-    return NextResponse.json({
-      msg: 'Unable to retrieve Project.',
+    const response: ApiResponse = {
+      msg: ['Unable to retrieve project.'],
       success: false,
-    });
+      data: null,
+    };
+    return NextResponse.json(response);
   }
 }
 
@@ -29,27 +35,32 @@ export async function POST(
   try {
     const { title, stack, description } = await req.json();
     let update = { title, stack, description };
-    await connectDB();
-    await Project.findOneAndUpdate({ _id: id }, update);
-    const updatedProject = await Project.findById(id);
-    return NextResponse.json({
+    const updatedProject = updateProject({ _id: id }, update);
+    const response: ApiResponse = {
       msg: ['Project updated.'],
       success: true,
-      project: updatedProject,
-    });
+      data: updateProject,
+    };
+    return NextResponse.json(response);
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       let errorList: string[] = [];
       for (let e in error.errors) {
         errorList.push(error.errors[e].message);
       }
-      return NextResponse.json({ msg: errorList, success: false, user: null });
+      const response: ApiResponse = {
+        msg: errorList,
+        success: false,
+        data: null,
+      };
+      return NextResponse.json(response);
     } else {
-      return NextResponse.json({
+      const response: ApiResponse = {
         msg: ['Unable to save Project.'],
         success: false,
-        project: null,
-      });
+        data: null,
+      };
+      return NextResponse.json(response);
     }
   }
 }
@@ -59,16 +70,19 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    await connectDB();
-    await Project.findOneAndDelete({ _id: params.id });
-    return NextResponse.json({
+    await deleteProject(params.id);
+    const response: ApiResponse = {
       msg: ['Project deleted.'],
       success: true,
-    });
+      data: null,
+    };
+    return NextResponse.json(response);
   } catch (error) {
-    return NextResponse.json({
+    const response: ApiResponse = {
       msg: ['Unable to delete Project.'],
       success: false,
-    });
+      data: null,
+    };
+    return NextResponse.json(response);
   }
 }

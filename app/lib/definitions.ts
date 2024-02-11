@@ -1,20 +1,43 @@
+export type ApiResponse = {
+  msg: string[];
+  success: boolean;
+  data: Object | null;
+};
+
 export type User = {
+  _id?: string;
   name: string;
   email: string;
-  password: string;
+  password?: string;
+  role: string;
 };
 
 export type Project = {
+  _id?: string;
   title: string;
   stack: string;
   description: string;
 };
 
 export type Contact = {
+  _id?: string;
   fullName: string;
   email: string;
   message: string;
-  date: Date;
+};
+
+export type ContactsTableType = {
+  _id: string;
+  fullName: string;
+  email: string;
+  message: string;
+};
+
+export type FormattedContactsTable = {
+  _id: string;
+  fullName: string;
+  email: string;
+  message: string;
 };
 
 export type UsersTableType = {
@@ -22,6 +45,7 @@ export type UsersTableType = {
   name: string;
   email: string;
   password: string;
+  role: string;
 };
 
 export type FormattedUsersTable = {
@@ -29,6 +53,7 @@ export type FormattedUsersTable = {
   name: string;
   email: string;
   password: string;
+  role: string;
 };
 
 export type ProjectsTableType = {
