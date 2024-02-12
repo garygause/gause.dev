@@ -1,4 +1,10 @@
-import { ApiResponse, User, Project, Contact } from '@app/lib/definitions';
+import {
+  ApiResponse,
+  User,
+  Post,
+  Project,
+  Contact,
+} from '@app/lib/definitions';
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -8,6 +14,7 @@ export async function getUser(id: string) {
     headers: {
       'Content-type': 'application/json',
     },
+    next: { tags: ['user'] },
   });
   return await res.json();
 }
@@ -18,6 +25,7 @@ export async function getUsers() {
     headers: {
       'Content-type': 'application/json',
     },
+    next: { tags: ['users'] },
   });
   return await res.json();
 }
@@ -48,12 +56,15 @@ export async function deleteUser(id: string) {
   return await res.json();
 }
 
+// Projects
+
 export async function getProject(id: string) {
   const res = await fetch(`${BASE_URL}/api/project/${id}`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
     },
+    next: { tags: ['project'] },
   });
   return await res.json();
 }
@@ -64,6 +75,7 @@ export async function getProjects() {
     headers: {
       'Content-type': 'application/json',
     },
+    next: { tags: ['projects'] },
   });
   return await res.json();
 }
@@ -94,12 +106,65 @@ export async function deleteProject(id: string) {
   return await res.json();
 }
 
+// Posts
+
+export async function getPost(id: string) {
+  const res = await fetch(`${BASE_URL}/api/post/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    next: { tags: ['post'] },
+  });
+  return await res.json();
+}
+
+export async function getPosts() {
+  const res = await fetch(`${BASE_URL}/api/post/`, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    next: { tags: ['posts'] },
+  });
+  return await res.json();
+}
+
+export async function savePost(post: Post, id?: string) {
+  let url = `${BASE_URL}/api/post`;
+  if (id) {
+    url = url + '/' + id;
+  }
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(post),
+  });
+  return await res.json();
+}
+
+export async function deletePost(id: string) {
+  let url = `${BASE_URL}/api/post/${id}`;
+  const res = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
+  return await res.json();
+}
+
+// Contacts
+
 export async function getContacts() {
   const res = await fetch(`${BASE_URL}/api/contact/`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
     },
+    next: { tags: ['contacts'] },
   });
   return await res.json();
 }
@@ -110,6 +175,7 @@ export async function getContact(id: string) {
     headers: {
       'Content-type': 'application/json',
     },
+    next: { tags: ['contact'] },
   });
   return await res.json();
 }

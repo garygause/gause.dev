@@ -71,6 +71,7 @@ export const authConfig = {
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
+      console.log('authorized: ');
       console.log(auth?.user);
       const isLoggedIn = !!auth?.user;
       const isOnAdmin = nextUrl.pathname.startsWith('/admin');

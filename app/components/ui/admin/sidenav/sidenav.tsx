@@ -5,9 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 
-import NavLinks from '@/app/components/ui/nav-links';
-import ThemeSwitcher from '@/app/components/ui/theme-switcher';
-import SignOutButton from '@/app/components/ui/signout-button/signout-button';
+import NavLinks from '@ui/admin/nav-links';
+import ThemeSwitcher from '@ui/theme-switcher';
+import SignOutButton from '@ui/signout-button';
 
 export default function SideNav() {
   const { data: session, status } = useSession();
@@ -33,8 +33,13 @@ export default function SideNav() {
         <NavLinks />
 
         <div className="hidden h-auto w-full flex-1 md:block"></div>
-        <div className="border-t border-palette-brown p-4">
-          <div>{session?.user?.name}</div>
+        <div className="border-t border-palette-brown hover:bg-palette-brown">
+          <Link
+            href="/profile"
+            className="pl-4 flex h-[48px] w-full grow items-center justify-center gap-2 font-medium hover:bg-palette-brown hover:text-white md:flex-none md:justify-start"
+          >
+            <div>{session?.user?.name}</div>
+          </Link>
         </div>
         <div className="border-b border-t border-palette-brown">
           <SignOutButton />

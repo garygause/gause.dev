@@ -7,29 +7,29 @@ import { z } from 'zod';
 import { getUserByEmail } from '@/app/lib/mongodb';
 import { authConfig } from './auth.config';
 import { verifyPassword } from './app/lib/password';
-import clientPromise from '@/app/lib/mdb';
+//import clientPromise from '@/app/lib/mdb';
 
 // import { Session } from 'next-auth';
 // import { JWT } from 'next-auth/jwt';
 
-// declare module 'next-auth' {
-//   interface Session {
-//     id: string;
-//     role: number;
-//   }
+declare module 'next-auth' {
+  interface Session {
+    id: string;
+    role: string;
+  }
 
-//   interface User {
-//     id: string;
-//     role: number;
-//   }
-// }
+  interface User {
+    id?: string | undefined;
+    role: string;
+  }
+}
 
-// declare module 'next-auth/jwt' {
-//   interface JWT {
-//     id: string;
-//     role: number;
-//   }
-// }
+//  declare module 'next-auth/jwt' {
+//    interface JWT {
+//      id: string;
+//      role: number;
+//    }
+//  }
 
 // declare module 'next-auth' {
 //   interface User {
@@ -77,13 +77,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    // jwt({ token, user }) {
-    //   if (user) token.role = user.role;
-    //   return token;
-    // },
-    // session({ session, user }) {
-    //   session.user.role = user.role;
-    //   return session;
-    // },
+    async jwt({ token }) {
+      const userRecord = await getUserByEmail(token.email);
+      console.log('jwt callback:');
+      console.log(userRecord);
+      token.role = userRecord.role;
+      console.log(token);
+      return token;
+    },
+    async session({ session }) {
+      if (!session.user.role) {
+        const userRecord = await getUserByEmail(session.user.email);
+        console.log('session callback:');
+        console.log(userRecord);
+        session.user.role = userRecord.role;
+        console.log(session);
+      }
+      return session;
+    },
   },
 });

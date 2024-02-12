@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
+import { revalidateTag } from 'next/cache';
 
 import { getUser, updateUser, deleteUser } from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
@@ -38,8 +39,10 @@ export async function POST(
       name,
       email,
       password,
-    }: { name: string; email: string; password?: string } = await req.json();
-    let update = { name, email, password };
+      role,
+    }: { name: string; email: string; password?: string; role?: string } =
+      await req.json();
+    let update = { name, email, password, role };
     if (password) {
       const hashedPassword: string = await hashPassword(password);
       update.password = hashedPassword;
@@ -47,6 +50,9 @@ export async function POST(
       delete update.password;
     }
     const updatedUser = await updateUser(id, update);
+    revalidateTag('user');
+    revalidateTag('users');
+
     const response: ApiResponse = {
       msg: ['User updated.'],
       success: true,
@@ -82,6 +88,8 @@ export async function DELETE(
 ) {
   try {
     await deleteUser(params.id);
+    revalidateTag('users');
+
     const response: ApiResponse = {
       msg: ['User deleted.'],
       success: true,

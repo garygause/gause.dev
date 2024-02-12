@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
+import { revalidateTag } from 'next/cache';
 
 import { createContact, getContacts } from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
@@ -8,6 +9,8 @@ export async function POST(req: NextRequest) {
   const { fullName, email, message } = await req.json();
   try {
     const contact = await createContact({ fullName, email, message });
+    revalidateTag('contacts');
+
     const response: ApiResponse = {
       msg: ['Contact created.'],
       success: true,

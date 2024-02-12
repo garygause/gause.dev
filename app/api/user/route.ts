@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidateTag } from 'next/cache';
 import mongoose from 'mongoose';
 
 import { createUser, getUsers } from '../../lib/mongodb';
@@ -6,7 +7,7 @@ import { ApiResponse } from '@/app/lib/definitions';
 import { hashPassword } from '@/app/lib/password';
 
 export async function POST(req: NextRequest) {
-  const { name, email, password } = await req.json();
+  const { name, email, password, role } = await req.json();
   try {
     // TODO: validation is not working
     if (!password || !email || !name) {
@@ -18,7 +19,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(response);
     }
     const hashedPassword = await hashPassword(password);
-    const user = await createUser({ name, email, password: hashedPassword });
+    const user = await createUser({
+      name,
+      email,
+      password: hashedPassword,
+      role,
+    });
+    revalidateTag('users');
+
     const response: ApiResponse = {
       msg: ['User saved.'],
       success: true,

@@ -2,19 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidateTag } from 'next/cache';
 import mongoose from 'mongoose';
 
-import { createProject, getProjects } from '@/app/lib/mongodb';
+import { createPost, getPosts } from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
 
 export async function POST(req: NextRequest) {
-  const { title, stack, description } = await req.json();
+  const { title, author, keywords, content } = await req.json();
   try {
-    const project = await createProject({ title, stack, description });
-    revalidateTag('projects');
+    const post = await createPost({ title, author, keywords, content });
+    revalidateTag('posts');
 
     const response: ApiResponse = {
-      msg: ['Project created.'],
+      msg: ['Post created.'],
       success: true,
-      data: project,
+      data: post,
     };
     return NextResponse.json(response);
   } catch (error) {
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(response);
     } else {
       const response: ApiResponse = {
-        msg: ['Unable to create Project.'],
+        msg: ['Unable to create Post.'],
         success: false,
         data: null,
       };
@@ -42,16 +42,16 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
-    const projects = await getProjects();
+    const posts = await getPosts();
     const response: ApiResponse = {
       msg: ['Success'],
       success: true,
-      data: projects,
+      data: posts,
     };
     return NextResponse.json(response);
   } catch (error) {
     const response: ApiResponse = {
-      msg: ['Unable to retrieve Projects.'],
+      msg: ['Unable to retrieve Posts.'],
       success: false,
       data: null,
     };

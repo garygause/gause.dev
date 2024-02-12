@@ -1,6 +1,6 @@
 import React from 'react';
 import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 import { User } from '@/app/lib/definitions';
 import { saveUser } from '@/app/lib/api-client';
@@ -28,8 +28,10 @@ function UserForm(props: UserProps) {
     console.log(user);
     const { msg, success } = await saveUser(user, _id);
     if (success) {
-      revalidatePath('/admin/users');
+      //revalidatePath('/admin/users');
       revalidatePath('/admin/users/edit/[id]', 'page');
+      revalidateTag('users');
+      revalidateTag('user)');
       redirect('/admin/users');
     }
   }
@@ -80,7 +82,13 @@ function UserForm(props: UserProps) {
           <label htmlFor="Role">
             Role: <span className="text-palette-red-500">*</span>
           </label>
-          <select id="role" name="role" defaultValue={props.user?.role}>
+          <select
+            id="role"
+            name="role"
+            defaultValue={props.user?.role}
+            className="p-3 bg-white"
+          >
+            <option value="">Select a role</option>
             <option value="user">User</option>
             <option value="admin">Admin</option>
           </select>

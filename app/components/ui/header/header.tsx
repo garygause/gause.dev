@@ -66,15 +66,22 @@ export default function Header() {
             >
               About
             </Link>
-            {status === 'authenticated' && (
+            {status === 'authenticated' && session?.user?.role === 'admin' && (
               <Link
                 href="/admin"
                 className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
               >
-                Admin ({session.user?.name})
+                Admin
               </Link>
             )}
-            {status !== 'authenticated' && status !== 'loading' && (
+            {status === 'authenticated' ? (
+              <Link
+                href="/profile"
+                className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
+              >
+                {session?.user?.name}
+              </Link>
+            ) : (
               <Link
                 href="/login"
                 className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
@@ -82,6 +89,7 @@ export default function Header() {
                 Login
               </Link>
             )}
+
             <span className="pt-1 w-16">
               <ThemeSwitcher />
             </span>

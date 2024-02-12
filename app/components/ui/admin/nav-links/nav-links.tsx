@@ -13,6 +13,10 @@ const links = [
     href: '/admin/contacts',
   },
   {
+    name: 'Posts',
+    href: '/admin/posts',
+  },
+  {
     name: 'Projects',
     href: '/admin/projects',
   },

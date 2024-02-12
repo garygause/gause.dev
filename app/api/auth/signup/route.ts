@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import mongoose from 'mongoose';
+import { revalidateTag } from 'next/cache';
 
 import { getUserByEmail, createUser } from '@/app/lib/mongodb';
 import { hashPassword } from '@/app/lib/password';
@@ -40,6 +40,8 @@ export async function POST(req: NextRequest) {
       password: hashedPassword,
       role: role,
     });
+    revalidateTag('users');
+
     const response: ApiResponse = {
       msg: ['Created User.'],
       success: true,

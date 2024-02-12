@@ -2,7 +2,7 @@
 
 import mongoose from 'mongoose';
 
-import { User, Project, Contact } from '@/app/models';
+import { User, Post, Project, Contact } from '@/app/models';
 import { DatabaseError } from './exceptions';
 
 export const connectDB = async () => {
@@ -55,6 +55,7 @@ export async function deleteUser(id) {
   return await User.findOneAndDelete({ _id: id });
 }
 
+// Project
 export async function createProject(project) {
   await connectDB();
   return await Project.create(project);
@@ -80,6 +81,33 @@ export async function deleteProject(id) {
   return await Project.findOneAndDelete({ _id: id });
 }
 
+// Posts
+export async function createPost(post) {
+  await connectDB();
+  return await Post.create(post);
+}
+
+export async function updatePost(id, post) {
+  await connectDB();
+  return await Post.findOneAndUpdate({ _id: id }, post, { new: true });
+}
+
+export async function getPost(id) {
+  await connectDB();
+  return await Post.findById(id);
+}
+
+export async function getPosts() {
+  await connectDB();
+  return await Post.find();
+}
+
+export async function deletePost(id) {
+  await connectDB();
+  return await Post.findOneAndDelete({ _id: id });
+}
+
+// Contact
 export async function createContact(contact) {
   await connectDB();
   return await Contact.create(contact);

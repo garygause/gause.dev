@@ -12,6 +12,15 @@ export type User = {
   role: string;
 };
 
+export type Post = {
+  _id?: string;
+  title: string;
+  author: string;
+  keywords: string;
+  content: string;
+  date?: Date;
+};
+
 export type Project = {
   _id?: string;
   title: string;
@@ -54,6 +63,14 @@ export type FormattedUsersTable = {
   email: string;
   password: string;
   role: string;
+};
+
+export type FormattedPostsTable = {
+  _id: string;
+  title: string;
+  author: string;
+  keywords: string;
+  content: string;
 };
 
 export type ProjectsTableType = {

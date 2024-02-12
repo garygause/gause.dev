@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
+import { revalidateTag } from 'next/cache';
 
 import { deleteContact, getContact, updateContact } from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
@@ -36,6 +37,9 @@ export async function POST(
     const { fullName, email, message } = await req.json();
     let update = { fullName, email, message };
     const updatedContact = updateContact({ _id: id }, update);
+    revalidateTag('contact');
+    revalidateTag('contacts');
+
     const response: ApiResponse = {
       msg: ['Contact updated.'],
       success: true,
@@ -71,6 +75,8 @@ export async function DELETE(
 ) {
   try {
     await deleteContact(params.id);
+    revalidateTag('contacts');
+
     const response: ApiResponse = {
       msg: ['Contact deleted.'],
       success: true,
