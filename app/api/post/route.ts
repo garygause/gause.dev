@@ -6,9 +6,31 @@ import { createPost, getPosts } from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
 
 export async function POST(req: NextRequest) {
-  const { title, author, keywords, content } = await req.json();
+  const {
+    title,
+    author,
+    keywords,
+    summary,
+    content,
+    image,
+    imageAlt,
+    slug,
+    featured,
+    status,
+  } = await req.json();
   try {
-    const post = await createPost({ title, author, keywords, content });
+    const post = await createPost({
+      title,
+      author,
+      keywords,
+      summary,
+      content,
+      image,
+      imageAlt,
+      slug,
+      featured,
+      status,
+    });
     revalidateTag('posts');
 
     const response: ApiResponse = {

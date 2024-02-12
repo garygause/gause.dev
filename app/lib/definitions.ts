@@ -17,7 +17,13 @@ export type Post = {
   title: string;
   author: string;
   keywords: string;
+  summary: string;
   content: string;
+  image: string;
+  imageAlt: string;
+  slug: string;
+  featured: string;
+  status: string;
   date?: Date;
 };
 
@@ -71,6 +77,11 @@ export type FormattedPostsTable = {
   author: string;
   keywords: string;
   content: string;
+  image: string;
+  imageAlt: string;
+  slug: string;
+  featured: string;
+  status: string;
 };
 
 export type ProjectsTableType = {

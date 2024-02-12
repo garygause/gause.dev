@@ -28,7 +28,16 @@ async function PostsTable({ posts }: { posts: FormattedPostsTable[] }) {
                       Title
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      Author
+                      Summary
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      Slug
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      Featured
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      Status
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
                       &nbsp;
@@ -49,8 +58,19 @@ async function PostsTable({ posts }: { posts: FormattedPostsTable[] }) {
                           <p>{post.title}</p>
                         </div>
                       </td>
+                      <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
+                        <div className="flex items-center gap-3">
+                          <p>{post.summary}</p>
+                        </div>
+                      </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {post.author}
+                        {post.slug}
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                        {post.featured}
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                        {post.status}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm space-x-5">
                         <Link href={`posts/edit/${post._id}`}>Edit</Link>

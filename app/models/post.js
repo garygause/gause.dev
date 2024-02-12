@@ -17,10 +17,39 @@ const postSchema = new Schema({
     type: String,
     trim: true,
   },
+  summary: {
+    type: String,
+    required: [true, 'Summary is required.'],
+    trim: true,
+  },
   content: {
     type: String,
     required: [true, 'Content is required.'],
     trim: true,
+  },
+  slug: {
+    type: String,
+    required: [true, 'Slug is required.'],
+    trim: true,
+  },
+  image: {
+    type: String,
+    required: [true, 'Image is required.'],
+    trim: true,
+  },
+  imageAlt: {
+    type: String,
+    required: [true, 'Image Alt is required.'],
+    trim: true,
+  },
+  featured: {
+    type: String,
+    default: false,
+  },
+  status: {
+    type: String,
+    required: [true, 'Published is required.'],
+    default: false,
   },
   date: {
     type: Date,

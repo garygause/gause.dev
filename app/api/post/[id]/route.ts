@@ -34,8 +34,30 @@ export async function POST(
 ) {
   const id = params.id;
   try {
-    const { title, author, keywords, content } = await req.json();
-    let update = { title, author, keywords, content };
+    const {
+      title,
+      author,
+      keywords,
+      summary,
+      content,
+      image,
+      imageAlt,
+      slug,
+      featured,
+      status,
+    } = await req.json();
+    let update = {
+      title,
+      author,
+      keywords,
+      summary,
+      content,
+      image,
+      imageAlt,
+      slug,
+      featured,
+      status,
+    };
     const updatedPost = updatePost({ _id: id }, update);
     revalidateTag('post');
     revalidateTag('posts');
