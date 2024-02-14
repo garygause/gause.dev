@@ -6,78 +6,42 @@ import { Post } from '@/app/lib/definitions';
 
 type Props = {
   post: Post;
-  imageLeft: boolean;
   variant?: 'small' | 'medium' | 'large';
 };
 
 function BlogListItem(props: Props) {
   const { _id, title, author, summary, image, imageAlt, slug } = props.post;
-  const imageLeft = props.imageLeft;
-  let w = 'w-full ';
-  if (props.variant === 'medium') {
-    w = ' grow basis-1 h-full';
-  }
-  if (imageLeft) {
-    return (
-      <Link href={`/blog/${slug}/${_id}`}>
-        <div
-          className={`flex ${w} grow h-full flex-wrap flex-col lg:flex-row lg:flex-nowrap lg:gap-2 gap-6 justify-center rounded-lg border-2 border-palette-red`}
-        >
-          <div className="lg:w-1/2 flex items-center justify-start">
-            <Image
-              src={image}
-              width={500}
-              height={500}
-              alt={imageAlt}
-              className="border-palette-red border-r-2 rounded-l-md grow"
-            />
-          </div>
-          <div className="lg:w-1/2 py-6 px-4 space-y-4">
-            <h3 className="text-l hover:text-palette-brown ">{title}</h3>
-            <div className="space-y-6">
-              <p>
-                Author:{' '}
-                <span className="text-palette-red dark:text-palette-brown">
-                  {author}
-                </span>
-              </p>
-              <p>{summary}</p>
+
+  return (
+    <Link
+      href={`/blog/${slug}/${_id}`}
+      className="border border-transparent rounded-md hover:border-palette-red"
+    >
+      <div className="p-0 w-full list-container-transtion">
+        <div className="h-full flex flex-col justify-start overflow-hidden mx-auto max-w-6xl relative">
+          <div className="mb-5 pt-70p relative w-full h-full basis-0 grow-0 flex shrink justify-center overflow-hidden items-center">
+            <div>
+              <div className="overflow-hidden">
+                <div className="img-container">
+                  <Image
+                    src={image}
+                    width={500}
+                    height={500}
+                    alt={imageAlt}
+                    className="rounded-t-md"
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </Link>
-    );
-  } else {
-    return (
-      <Link href={`/blog/${slug}/${_id}`}>
-        <div
-          className={`flex ${w} flex-wrap flex-col lg:flex-row lg:flex-nowrap lg:gap-2 gap-6 justify-center rounded-lg border-2 border-palette-red`}
-        >
-          <div className="lg:w-1/2 py-10 pl-8 space-y-4">
-            <h3 className="text-2xl hover:text-palette-brown ">{title}</h3>
-            <div className="space-y-6">
-              <p>
-                Author:{' '}
-                <span className="text-palette-red dark:text-palette-brown">
-                  {author}
-                </span>
-              </p>
-              <p>{summary}</p>
-            </div>
-          </div>
-          <div className="lg:w-1/2 flex items-center justify-end">
-            <Image
-              src={image}
-              width={500}
-              height={500}
-              alt={imageAlt}
-              className="border-palette-red border-l-2 rounded-r-md "
-            />
+          <div className="px-4 pb-4">
+            <h3 className="relative m-0 p-0 font-medium">{title}</h3>
+            <p className="mt-4 relative text-palette-brown">{summary}</p>
           </div>
         </div>
-      </Link>
-    );
-  }
+      </div>
+    </Link>
+  );
 }
 
 export default BlogListItem;

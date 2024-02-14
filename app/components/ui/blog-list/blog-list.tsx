@@ -1,31 +1,20 @@
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import BlogListItem from '@ui/blog-list-item';
 import { Post } from '@/app/lib/definitions';
 
 function BlogList({ posts }: { posts: Post[] }) {
-  let imageLeft = true;
-
   return (
     <section>
-      <div className="max-w-screen-xl  py-4 mx-auto flex">
-        <div className="mr-auto place-self-center lg:col-span-7 ">
-          <div className="w-full space-y-10 flex flex-col">
-            <div className="flex flex-row flex-wrap container mx-auto space-x-10">
-              {posts &&
-                posts.map((post) => {
-                  imageLeft = !imageLeft;
-                  return (
-                    <div className="w-1/2" key={post._id}>
-                      <BlogListItem
-                        post={post}
-                        imageLeft={true}
-                        variant="medium"
-                      />
-                    </div>
-                  );
-                })}
-            </div>
+      <div className="flex flex-col mx-auto mt-0 mb-10 items-center">
+        <div className="mx-auto mt-0 mb-10 overflow-visible max-w-7xl">
+          <div className="gap-x-12 gap-10 list-container-grid pt-0 pl-0 overflow-visible w-full">
+            {posts &&
+              posts.map((post) => {
+                return <BlogListItem key={post._id} post={post} />;
+              })}
           </div>
         </div>
       </div>

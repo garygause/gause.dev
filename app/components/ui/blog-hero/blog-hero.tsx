@@ -1,34 +1,36 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-function BlogHero({ post }) {
+import { Post } from '@/app/lib/definitions';
+function BlogHero({ post }: { post: Post }) {
   const { _id, title, author, summary, image, imageAlt, slug } = post;
   return (
-    <Link href={`/blog/${slug}/${_id}`}>
-      <div
-        className={`flex w-full flex-wrap flex-col lg:flex-row lg:flex-nowrap lg:gap-2 gap-6 justify-center rounded-lg border-2 border-palette-red`}
-      >
-        <div className="lg:w-1/2 py-10 pl-8 space-y-4">
-          <h3 className="text-2xl hover:text-palette-brown ">{title}</h3>
-          <div className="space-y-6">
-            <p>
-              Author:{' '}
-              <span className="text-palette-red dark:text-palette-brown">
-                {author}
-              </span>
-            </p>
-            <p>{summary}</p>
+    <Link
+      href={`/blog/${slug}/${_id}`}
+      className="border border-transparent rounded-md hover:border-palette-red"
+    >
+      <div className="mb-10 p-6">
+        <h1 className="text-6xl text-palette-red/10 md:pl-10">Featured</h1>
+        <div className="flex w-full flex-wrap-reverse flex-col md:flex-row md:flex-nowrap md:gap-2 gap-6 md:justify-center rounded-lg">
+          <div className="lg:w-1/3 py-10 space-y-4">
+            <h3 className="text-2xl">{title}</h3>
+            <p className="text-palette-brown">{summary}</p>
           </div>
-        </div>
-        <div className="lg:w-1/2 flex items-center justify-end">
-          <Image
-            src={image}
-            width={500}
-            height={500}
-            alt={imageAlt}
-            className="border-palette-red border-l-2 rounded-r-md "
-          />
+          <div className="lg:w-2/3 flex items-center">
+            <div className=" pl-100p pt-70p relative w-full h-full basis-0 grow-0 flex shrink justify-center overflow-hidden items-center">
+              <div className="overflow-hidden">
+                <div className="img-container">
+                  <Image
+                    src={image}
+                    width={500}
+                    height={500}
+                    alt={imageAlt}
+                    className="rounded-md "
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Link>

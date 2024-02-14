@@ -6,6 +6,17 @@ import ClientSessionProvider from '@app/components/client-session-provider';
 
 import '@/app/globals.css';
 
+/*
+TODO: check whether we need ios specific meta tag to prevent hydration mismatch
+
+This occurs because iphone attempts to render phone numbers, etc as links.
+
+<meta
+  name="format-detection"
+  content="telephone=no, date=no, email=no, address=no"
+/>
+*/
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://gause.dev'),
   title: 'gause.dev',

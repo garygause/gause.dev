@@ -10,3 +10,40 @@ input,
 textarea {
   @apply shadow-md px-6 py-2 border border-palette-brown;
 }
+
+.img-container img {
+  @apply w-full h-full m-0 top-0 left-0 absolute object-cover;
+  display: block;
+  transform: scale(1);
+  object-position: center center;
+}
+
+.pt-70p {
+  padding-top: 70%;
+}
+
+.pl-100p {
+  padding-left: 100%;
+}
+.pt-100p {
+  padding-top: 100%;
+}
+
+.list-container-grid {
+  grid-template-columns: 1fr;
+  gap: 40px 20px;
+  display: grid;
+}
+
+@media (min-width: 768px) {
+  .list-container-grid {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px 20px;
+    display: grid;
+  }
+}
+
+.list-container-transition {
+  transition: all 100ms ease 0s;
+}
