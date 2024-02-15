@@ -29,8 +29,8 @@ export function PortfolioItem(props: Props) {
       <div className="lg:w-1/2 flex items-center justify-center">
         <Image
           src={imageSrc}
-          width={imageWidth}
-          height={imageHeight}
+          width={+imageWidth}
+          height={+imageHeight}
           alt={imageAlt}
           className="border-palette-red border-2 rounded-xl shadow-lg shadow-palette-red/50  dark:shadow-palette-white/50"
         />

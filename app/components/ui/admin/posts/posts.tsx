@@ -28,9 +28,6 @@ async function PostsTable({ posts }: { posts: FormattedPostsTable[] }) {
                       Title
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      Summary
-                    </th>
-                    <th scope="col" className="px-3 py-5 font-medium">
                       Slug
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
@@ -56,11 +53,6 @@ async function PostsTable({ posts }: { posts: FormattedPostsTable[] }) {
                       <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
                         <div className="flex items-center gap-3">
                           <p>{post.title}</p>
-                        </div>
-                      </td>
-                      <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
-                        <div className="flex items-center gap-3">
-                          <p>{post.summary}</p>
                         </div>
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">

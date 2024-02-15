@@ -6,18 +6,22 @@ import { createPost, getPosts } from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
 
 export async function POST(req: NextRequest) {
-  const {
+  let {
     title,
     author,
     keywords,
     summary,
     content,
-    image,
+    imageSrc,
+    imageHeight,
+    imageWidth,
     imageAlt,
     slug,
     featured,
     status,
   } = await req.json();
+  slug = slug.toLowerCase();
+
   try {
     const post = await createPost({
       title,
@@ -25,7 +29,9 @@ export async function POST(req: NextRequest) {
       keywords,
       summary,
       content,
-      image,
+      imageSrc,
+      imageHeight,
+      imageWidth,
       imageAlt,
       slug,
       featured,

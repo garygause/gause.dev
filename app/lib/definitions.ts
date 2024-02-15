@@ -19,7 +19,9 @@ export type Post = {
   keywords: string;
   summary: string;
   content: string;
-  image: string;
+  imageSrc: string;
+  imageWidth: string;
+  imageHeight: string;
   imageAlt: string;
   slug: string;
   featured: string;
@@ -31,7 +33,17 @@ export type Project = {
   _id?: string;
   title: string;
   stack: string;
+  summary: string;
   description: string;
+  keywords: string;
+  imageSrc: string;
+  imageWidth: string;
+  imageHeight: string;
+  imageAlt: string;
+  slug: string;
+  featured: string;
+  status: string;
+  date?: Date;
 };
 
 export type Contact = {

@@ -19,7 +19,9 @@ function PostForm(props: PostProps) {
     const keywords = formData.get('keywords') as string;
     const summary = formData.get('summary') as string;
     const content = formData.get('content') as string;
-    const image = formData.get('image') as string;
+    const imageSrc = formData.get('imageSrc') as string;
+    const imageHeight = formData.get('imageHeight') as string;
+    const imageWidth = formData.get('imageWidth') as string;
     const imageAlt = formData.get('imageAlt') as string;
     const slug = formData.get('slug') as string;
     const featured = formData.get('featured') as string;
@@ -31,20 +33,21 @@ function PostForm(props: PostProps) {
       keywords: keywords,
       summary: summary,
       content: content,
-      image: image,
+      imageSrc: imageSrc,
+      imageHeight: imageHeight,
+      imageWidth: imageWidth,
       imageAlt: imageAlt,
-      slug: slug,
+      slug: slug.toLocaleLowerCase(),
       featured: featured,
       status: status,
     };
-    console.log(post);
     const { msg, success, data } = await savePost(post, _id);
-    console.log(msg);
-    console.log(success);
     if (success) {
       revalidatePath('/admin/posts');
       revalidatePath('/admin/posts/edit/[id]', 'page');
       redirect('/admin/posts');
+    } else {
+      console.log(msg);
     }
   }
 
@@ -99,25 +102,33 @@ function PostForm(props: PostProps) {
           />
         </div>
         <div>
-          <label htmlFor="content">
-            Content: <span className="text-palette-red-500">*</span>
-          </label>
-          <textarea
-            className="h-32"
-            id="content"
-            name="content"
-            defaultValue={props.post?.content}
-            placeholder="Content"
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="image">Image:</label>
+          <label htmlFor="imageSrc">Image:</label>
           <input
             type="text"
-            id="image"
-            name="image"
-            defaultValue={props.post?.image}
-            placeholder="Image"
+            id="imageSrc"
+            name="imageSrc"
+            defaultValue={props.post?.imageSrc}
+            placeholder="Image Src"
+          />
+        </div>
+        <div>
+          <label htmlFor="imageHeight">Image Height:</label>
+          <input
+            type="text"
+            id="imageHeight"
+            name="imageHeight"
+            defaultValue={props.post?.imageHeight}
+            placeholder="Image Height"
+          />
+        </div>
+        <div>
+          <label htmlFor="imagWidth">Image Width:</label>
+          <input
+            type="text"
+            id="imageWidth"
+            name="imageWidth"
+            defaultValue={props.post?.imageWidth}
+            placeholder="Image Width"
           />
         </div>
         <div>
@@ -165,6 +176,18 @@ function PostForm(props: PostProps) {
             <option value="draft">Draft</option>
             <option value="published">Published</option>
           </select>
+        </div>
+        <div>
+          <label htmlFor="content">
+            Content: <span className="text-palette-red-500">*</span>
+          </label>
+          <textarea
+            className="h-96"
+            id="content"
+            name="content"
+            defaultValue={props.post?.content}
+            placeholder="Content"
+          ></textarea>
         </div>
         <button
           className="bg-palette-red font-bold py-3 text-white"

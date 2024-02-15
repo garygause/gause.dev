@@ -69,6 +69,17 @@ export async function getProject(id: string) {
   return await res.json();
 }
 
+export async function getProjectBySlug(slug: string) {
+  const res = await fetch(`${BASE_URL}/api/project/slug/${slug}`, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    next: { tags: ['project'] },
+  });
+  return await res.json();
+}
+
 export async function getProjects() {
   const res = await fetch(`${BASE_URL}/api/project/`, {
     method: 'GET',
@@ -110,6 +121,17 @@ export async function deleteProject(id: string) {
 
 export async function getPost(id: string) {
   const res = await fetch(`${BASE_URL}/api/post/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    next: { tags: ['post'] },
+  });
+  return await res.json();
+}
+
+export async function getPostBySlug(slug: string) {
+  const res = await fetch(`${BASE_URL}/api/post/slug/${slug}`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',

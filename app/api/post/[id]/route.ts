@@ -40,7 +40,9 @@ export async function POST(
       keywords,
       summary,
       content,
-      image,
+      imageSrc,
+      imageWidth,
+      imageHeight,
       imageAlt,
       slug,
       featured,
@@ -52,12 +54,15 @@ export async function POST(
       keywords,
       summary,
       content,
-      image,
+      imageSrc,
+      imageHeight,
+      imageWidth,
       imageAlt,
       slug,
       featured,
       status,
     };
+    update.slug = slug.toLowerCase();
     const updatedPost = updatePost({ _id: id }, update);
     revalidateTag('post');
     revalidateTag('posts');

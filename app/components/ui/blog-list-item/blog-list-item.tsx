@@ -10,11 +10,21 @@ type Props = {
 };
 
 function BlogListItem(props: Props) {
-  const { _id, title, author, summary, image, imageAlt, slug } = props.post;
+  const {
+    _id,
+    title,
+    author,
+    summary,
+    imageSrc,
+    imageHeight,
+    imageWidth,
+    imageAlt,
+    slug,
+  } = props.post;
 
   return (
     <Link
-      href={`/blog/${slug}/${_id}`}
+      href={`/blog/${slug}`}
       className="border border-transparent rounded-md hover:border-palette-red"
     >
       <div className="p-0 w-full list-container-transtion">
@@ -24,9 +34,9 @@ function BlogListItem(props: Props) {
               <div className="overflow-hidden">
                 <div className="img-container">
                   <Image
-                    src={image}
-                    width={500}
-                    height={500}
+                    src={imageSrc}
+                    width={+imageWidth}
+                    height={+imageHeight}
                     alt={imageAlt}
                     className="rounded-t-md"
                   />

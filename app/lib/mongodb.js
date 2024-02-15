@@ -35,7 +35,6 @@ export async function getUser(id) {
 
 export async function getUserByEmail(email) {
   try {
-    console.log('connecting to db');
     await connectDB();
     const user = await User.findOne({ email: email });
     return user;
@@ -71,6 +70,17 @@ export async function getProject(id) {
   return await Project.findById(id);
 }
 
+export async function getProjectBySlug(slug) {
+  try {
+    await connectDB();
+    const post = await Project.findOne({ slug: slug });
+    return post;
+  } catch (error) {
+    console.log('Failed to get Project: ', error);
+    throw new Error('Failed to get Project.');
+  }
+}
+
 export async function getProjects() {
   await connectDB();
   return await Project.find();
@@ -95,6 +105,17 @@ export async function updatePost(id, post) {
 export async function getPost(id) {
   await connectDB();
   return await Post.findById(id);
+}
+
+export async function getPostBySlug(slug) {
+  try {
+    await connectDB();
+    const post = await Post.findOne({ slug: slug });
+    return post;
+  } catch (error) {
+    console.log('Failed to get Post: ', error);
+    throw new Error('Failed to get Post.');
+  }
 }
 
 export async function getPosts() {

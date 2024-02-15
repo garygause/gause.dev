@@ -32,9 +32,19 @@ const postSchema = new Schema({
     required: [true, 'Slug is required.'],
     trim: true,
   },
-  image: {
+  imageSrc: {
     type: String,
-    required: [true, 'Image is required.'],
+    required: [true, 'Image Src is required.'],
+    trim: true,
+  },
+  imageWidth: {
+    type: String,
+    required: [true, 'Image Width is required.'],
+    trim: true,
+  },
+  imageHeight: {
+    type: String,
+    required: [true, 'Image Height is required.'],
     trim: true,
   },
   imageAlt: {

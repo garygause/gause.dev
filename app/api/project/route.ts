@@ -6,9 +6,36 @@ import { createProject, getProjects } from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
 
 export async function POST(req: NextRequest) {
-  const { title, stack, description } = await req.json();
+  let {
+    title,
+    stack,
+    keywords,
+    imageSrc,
+    imageHeight,
+    imageWidth,
+    imageAlt,
+    summary,
+    description,
+    slug,
+    featured,
+    status,
+  } = await req.json();
+  slug = slug.toLowerCase();
   try {
-    const project = await createProject({ title, stack, description });
+    const project = await createProject({
+      title,
+      stack,
+      keywords,
+      imageSrc,
+      imageHeight,
+      imageWidth,
+      imageAlt,
+      summary,
+      description,
+      slug,
+      featured,
+      status,
+    });
     revalidateTag('projects');
 
     const response: ApiResponse = {

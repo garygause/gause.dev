@@ -3,17 +3,16 @@ import Image from 'next/image';
 
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
-import { getPostBySlug } from '@/app/lib/api-client';
+import { getProjectBySlug } from '@/app/lib/api-client';
 import facebookIcon from '@/public/facebook.svg';
 import twitterIcon from '@/public/twitter.svg';
 
-export default async function BlogPostPage({
+export default async function ProjectPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  console.log(params.slug.slice(-1));
-  const { msg, success, data } = await getPostBySlug(params.slug.slice(-1));
+  const { msg, success, data } = await getProjectBySlug(params.slug.slice(-1));
   const {
     _id,
     title,
@@ -22,7 +21,8 @@ export default async function BlogPostPage({
     imageWidth,
     imageAlt,
     keywords,
-    content,
+    summary,
+    description,
     date,
   } = data;
 
@@ -85,7 +85,7 @@ export default async function BlogPostPage({
             <div className="text-palette-brown mb-4 md:mb-8">
               Last updated: <span className="px-2">{dateString}</span>
             </div>
-            <MDXRemote source={content} />
+            <MDXRemote source={description} />
           </div>
         </div>
       </div>

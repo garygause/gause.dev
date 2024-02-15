@@ -34,8 +34,35 @@ export async function POST(
 ) {
   const id = params.id;
   try {
-    const { title, stack, description } = await req.json();
-    let update = { title, stack, description };
+    const {
+      title,
+      stack,
+      keywords,
+      imageSrc,
+      imageHeight,
+      imageWidth,
+      imageAlt,
+      summary,
+      description,
+      featured,
+      status,
+      slug,
+    } = await req.json();
+    let update = {
+      title,
+      stack,
+      keywords,
+      imageSrc,
+      imageHeight,
+      imageWidth,
+      imageAlt,
+      summary,
+      description,
+      featured,
+      status,
+      slug,
+    };
+    update.slug = slug.toLowerCase();
     const updatedProject = updateProject({ _id: id }, update);
     revalidateTag('project');
     revalidateTag('projects');
