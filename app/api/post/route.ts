@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
     slug,
     featured,
     status,
+    shares,
   } = await req.json();
   slug = slug.toLowerCase();
 
@@ -36,6 +37,7 @@ export async function POST(req: NextRequest) {
       slug,
       featured,
       status,
+      shares,
     });
     revalidateTag('posts');
 

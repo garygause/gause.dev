@@ -47,6 +47,7 @@ export async function POST(
       featured,
       status,
       slug,
+      shares,
     } = await req.json();
     let update = {
       title,
@@ -61,6 +62,7 @@ export async function POST(
       featured,
       status,
       slug,
+      shares,
     };
     update.slug = slug.toLowerCase();
     const updatedProject = updateProject({ _id: id }, update);

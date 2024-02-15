@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
     slug,
     featured,
     status,
+    shares,
   } = await req.json();
   slug = slug.toLowerCase();
   try {
@@ -35,6 +36,7 @@ export async function POST(req: NextRequest) {
       slug,
       featured,
       status,
+      shares,
     });
     revalidateTag('projects');
 

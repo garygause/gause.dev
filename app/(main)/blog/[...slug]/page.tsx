@@ -24,6 +24,7 @@ export default async function BlogPostPage({
     keywords,
     content,
     date,
+    shares,
   } = data;
 
   const dateString = new Date(date).toLocaleDateString('en-us', {
@@ -53,7 +54,7 @@ export default async function BlogPostPage({
             <div className="flex md:flex-col-reverse p-0 mr-0 mt-1">
               <div className="md:h-32 mt-5 flex-col w-14 justify-center items-center">
                 <div className="flex flex-col justify-center items-center text-xs mb-5">
-                  <h5 className="font-medium">13</h5>
+                  <h5 className="font-medium">{shares}</h5>
                   <h6>Shares</h6>
                 </div>
                 <div className="flex flex-col justify-center items-center">

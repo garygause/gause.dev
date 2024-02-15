@@ -65,6 +65,15 @@ export async function updateProject(id, project) {
   return await Project.findOneAndUpdate({ _id: id }, project, { new: true });
 }
 
+export async function incrementProjectShares(id) {
+  await connectDB();
+  return await Project.findOneAndUpdate(
+    { _id: id },
+    { $inc: { shares: 1 } },
+    { new: true }
+  );
+}
+
 export async function getProject(id) {
   await connectDB();
   return await Project.findById(id);
@@ -100,6 +109,15 @@ export async function createPost(post) {
 export async function updatePost(id, post) {
   await connectDB();
   return await Post.findOneAndUpdate({ _id: id }, post, { new: true });
+}
+
+export async function incrementPostShares(id) {
+  await connectDB();
+  return await Post.findOneAndUpdate(
+    { _id: id },
+    { $inc: { shares: 1 } },
+    { new: true }
+  );
 }
 
 export async function getPost(id) {

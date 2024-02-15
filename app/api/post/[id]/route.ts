@@ -47,6 +47,7 @@ export async function POST(
       slug,
       featured,
       status,
+      shares,
     } = await req.json();
     let update = {
       title,
@@ -61,6 +62,7 @@ export async function POST(
       slug,
       featured,
       status,
+      shares,
     };
     update.slug = slug.toLowerCase();
     const updatedPost = updatePost({ _id: id }, update);

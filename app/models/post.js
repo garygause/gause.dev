@@ -54,12 +54,15 @@ const postSchema = new Schema({
   },
   featured: {
     type: String,
-    default: false,
   },
   status: {
     type: String,
     required: [true, 'Published is required.'],
-    default: false,
+    default: 'draft',
+  },
+  shares: {
+    type: Number,
+    default: 0,
   },
   date: {
     type: Date,

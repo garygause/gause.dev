@@ -35,7 +35,7 @@ export async function ProjectsTable({
                       Title
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      Stack
+                      Shares
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
                       &nbsp;
@@ -57,7 +57,7 @@ export async function ProjectsTable({
                         </div>
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {project.stack}
+                        {project.shares}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm space-x-5">
                         <Link href={`projects/edit/${project._id}`}>Edit</Link>

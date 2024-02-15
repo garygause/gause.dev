@@ -26,6 +26,7 @@ export type Post = {
   slug: string;
   featured: string;
   status: string;
+  shares?: number;
   date?: Date;
 };
 
@@ -43,6 +44,7 @@ export type Project = {
   slug: string;
   featured: string;
   status: string;
+  shares?: number;
   date?: Date;
 };
 
@@ -94,6 +96,7 @@ export type FormattedPostsTable = {
   slug: string;
   featured: string;
   status: string;
+  shares: number;
 };
 
 export type ProjectsTableType = {
@@ -101,6 +104,8 @@ export type ProjectsTableType = {
   title: string;
   stack: string;
   description: string;
+  slug: string;
+  shares: number;
 };
 
 export type FormattedProjectsTable = {
@@ -108,4 +113,6 @@ export type FormattedProjectsTable = {
   title: string;
   stack: string;
   description: string;
+  slug: string;
+  shares: number;
 };

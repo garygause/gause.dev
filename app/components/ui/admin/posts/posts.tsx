@@ -28,7 +28,7 @@ async function PostsTable({ posts }: { posts: FormattedPostsTable[] }) {
                       Title
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
-                      Slug
+                      Shares
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
                       Featured
@@ -56,7 +56,7 @@ async function PostsTable({ posts }: { posts: FormattedPostsTable[] }) {
                         </div>
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
-                        {post.slug}
+                        {post.shares}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {post.featured}
