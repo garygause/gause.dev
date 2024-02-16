@@ -21,7 +21,7 @@ export default async function BlogHomePage() {
           Musings, lessons, on technology and my love of software development.
         </div>
         {(!data || data.length === 0) && <div>No results found.</div>}
-        {data && (
+        {data && data.length > 0 && (
           <div className="flex flex-col space-y-6">
             <BlogHero post={featuredPost} />
             <BlogList posts={posts} />

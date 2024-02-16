@@ -20,7 +20,7 @@ export default async function ProjectsPage() {
           Some of the projects I have done over the last 25+ years.
         </div>
         {(!data || data.length === 0) && <div>No results found.</div>}
-        {data && (
+        {data && data.length > 0 && (
           <div className="flex flex-col space-y-10">
             <ProjectHero project={featuredProject} />
             <ProjectList projects={data} />
