@@ -82,7 +82,7 @@ export async function GET(req: NextRequest) {
       };
       return NextResponse.json(response);
     } else if (params.get('featured')) {
-      const projects = await searchedProjects({ featured: 'yes' });
+      const projects = await searchProjects({ featured: 'yes' });
       const response: ApiResponse = {
         msg: ['Success'],
         success: true,
