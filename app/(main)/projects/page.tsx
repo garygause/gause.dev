@@ -3,11 +3,11 @@ import React from 'react';
 import ProjectList from '@ui/project-list';
 import ProjectHero from '@ui/project-hero';
 
-import { getPublishedProjects } from '@/app/lib/api-client';
+import { searchProjects } from '@/app/lib/mongodb';
 import { Project } from '@/app/lib/definitions';
 
 export default async function ProjectsPage() {
-  const { msg, success, data } = await getPublishedProjects();
+  const data = await searchProjects({ status: 'published' });
   const featuredProject: Project = data?.shift();
 
   return (

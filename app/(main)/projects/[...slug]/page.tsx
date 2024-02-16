@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
-import { getProjectBySlug } from '@/app/lib/api-client';
+import { getProjectBySlug } from '@/app/lib/mongodb';
 import ShareList from '@ui/share-list';
 
 export default async function ProjectPage({
@@ -11,7 +11,7 @@ export default async function ProjectPage({
 }: {
   params: { slug: string };
 }) {
-  const { msg, success, data } = await getProjectBySlug(params.slug.slice(-1));
+  const data = await getProjectBySlug(params.slug.slice(-1));
   const {
     _id,
     title,

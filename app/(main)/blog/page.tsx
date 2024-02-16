@@ -3,19 +3,11 @@ import React from 'react';
 import BlogList from '@ui/blog-list';
 import BlogHero from '@ui/blog-hero';
 
-import { getPublishedPosts } from '@/app/lib/api-client';
+import { searchPosts } from '@/app/lib/mongodb';
 import { Post } from '@/app/lib/definitions';
 
 export default async function BlogHomePage() {
-  /*
-   TODO: consider using db method instead of api call
-   using api call because I want to flesh out the api
-
-   using db:
-   import { getPosts } from '@/app/lib/mongodb';
-   const data = await getPosts();
-   */
-  const { msg, success, data } = await getPublishedPosts();
+  const data = await searchPosts({ status: 'published' });
   const featuredPost: Post = data?.shift();
   const posts = data?.slice(0, 3);
   const morePosts = data?.slice(2); // 3

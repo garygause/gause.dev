@@ -10,7 +10,7 @@ import Link from 'next/link';
 import rehypeHighlight from 'rehype-highlight';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
-import { getPostBySlug, getPublishedPosts } from '@/app/lib/api-client';
+import { getPostBySlug, searchPosts } from '@/app/lib/mongodb';
 import ShareList from '@ui/share-list';
 import MDXImage from '@ui/mdx-image';
 import BlogList from '@ui/blog-list';
@@ -33,7 +33,7 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  const allPosts = await getPublishedPosts();
+  const allPosts = await searchPosts({ status: 'published' });
   const morePosts = allPosts.data?.slice(0, 3);
   const post = await getPostBySlug(params.slug.slice(-1));
   const {
