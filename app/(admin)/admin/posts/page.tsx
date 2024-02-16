@@ -6,5 +6,9 @@ import { getPosts } from '@/app/lib/api-client';
 export default async function PostsPage() {
   const { msg, success, data } = await getPosts();
 
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   return <PostsTable posts={data} />;
 }
