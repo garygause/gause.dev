@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { ContactsTable } from '@ui/admin/contacts';
-import { getContacts } from '@/app/lib/api-client';
+//import { getContacts } from '@/app/lib/api-client';
+import { getContacts } from '@/app/lib/mongodb';
 
 export default async function ContactsPage() {
-  const { msg, success, data } = await getContacts();
+  const data = await getContacts();
 
   if (!data) {
     return <div>Loading...</div>;

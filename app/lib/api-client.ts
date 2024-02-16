@@ -1,7 +1,7 @@
 import { User, Post, Project, Contact } from '@app/lib/definitions';
 
-//const BASE_URL = 'http://localhost:3000';
-const BASE_URL = 'https://dev.gause.dev';
+const BASE_URL = 'http://localhost:3000';
+//const BASE_URL = 'https://dev.gause.dev';
 
 export async function getUser(id: string) {
   const res = await fetch(`${BASE_URL}/api/user/${id}/`, {
