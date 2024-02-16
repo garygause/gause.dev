@@ -2,7 +2,7 @@ import React from 'react';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { deletePost } from '@/app/lib/api-client';
+import { deletePost } from '@/app/lib/mongodb';
 import DeleteButton from '@ui/delete-button';
 
 async function DeletePostPage({ params }: { params: { id: string } }) {
@@ -11,8 +11,11 @@ async function DeletePostPage({ params }: { params: { id: string } }) {
   }
   async function deleteHandler() {
     'use server';
-    const { msg, success, data } = await deletePost(params.id);
-    if (success) {
+    try {
+      await deletePost(params.id);
+    } catch (error) {
+      console.log(error);
+    } finally {
       revalidatePath('/admin/posts');
       redirect('/admin/posts');
     }

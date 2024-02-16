@@ -2,7 +2,7 @@ import React from 'react';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { deleteUser } from '@/app/lib/api-client';
+import { deleteUser } from '@/app/lib/mongodb';
 import DeleteButton from '@ui/delete-button';
 
 export default async function DeleteUserPage({
@@ -16,8 +16,11 @@ export default async function DeleteUserPage({
 
   async function deleteHandler() {
     'use server';
-    const { msg, success, data } = await deleteUser(params.id);
-    if (success) {
+    try {
+      await deleteUser(params.id);
+    } catch (error) {
+      console.log(error);
+    } finally {
       revalidatePath('/admin/users');
       redirect('/admin/users');
     }

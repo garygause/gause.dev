@@ -2,7 +2,7 @@ import React from 'react';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { deleteContact } from '@/app/lib/api-client';
+import { deleteContact } from '@/app/lib/mongodb';
 import DeleteButton from '@ui/delete-button';
 
 export default async function DeleteContactPage({
@@ -16,8 +16,11 @@ export default async function DeleteContactPage({
 
   async function deleteHandler() {
     'use server';
-    const { msg, success, data } = await deleteContact(params.id);
-    if (success) {
+    try {
+      await deleteContact(params.id);
+    } catch (error) {
+      console.log(error);
+    } finally {
       revalidatePath('/admin/contacts');
       redirect('/admin/contacts');
     }

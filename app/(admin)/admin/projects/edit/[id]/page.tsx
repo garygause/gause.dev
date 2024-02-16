@@ -1,14 +1,14 @@
 import React from 'react';
 
 import ProjectForm from '@ui/admin/project-form';
-import { getProject } from '@/app/lib/api-client';
+import { getProject } from '@/app/lib/mongodb';
 
 export default async function ProjectEditPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const { msg, success, data } = await getProject(params.id);
+  const data = await getProject(params.id);
   return (
     <div className="mx-auto w-full">
       <div className="container mx-auto max-w-3xl">

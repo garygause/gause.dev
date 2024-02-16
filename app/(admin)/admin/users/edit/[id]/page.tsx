@@ -3,14 +3,14 @@
 import React from 'react';
 
 import UserForm from '@/app/components/ui/admin/user-form';
-import { getUser } from '@/app/lib/api-client';
+import { getUser } from '@/app/lib/mongodb';
 
 export default async function UserEditPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const { msg, success, data } = await getUser(params.id);
+  const data = await getUser(params.id);
   return (
     <div className="mx-auto w-full">
       <div className="container mx-auto max-w-3xl">

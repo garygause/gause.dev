@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { UsersTable } from '@ui/admin/users';
-import { getUsers } from '@/app/lib/api-client';
+import { getUsers } from '@/app/lib/mongodb';
 
 export default async function UsersPage() {
-  const { msg, success, data } = await getUsers();
+  const data = await getUsers();
 
   if (!data) {
     return <div>Loading...</div>;
