@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidateTag } from 'next/cache';
 import mongoose from 'mongoose';
 
-import { createProject, getProjects } from '@/app/lib/mongodb';
+import { createProject, getProjects, searchProjects } from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
 
 export async function POST(req: NextRequest) {
@@ -70,7 +70,26 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  const params = req.nextUrl.searchParams;
+
   try {
+    if (params.get('published')) {
+      const projects = await searchProjects({ status: 'published' });
+      const response: ApiResponse = {
+        msg: ['Success'],
+        success: true,
+        data: projects,
+      };
+      return NextResponse.json(response);
+    } else if (params.get('featured')) {
+      const projects = await searchedProjects({ featured: 'yes' });
+      const response: ApiResponse = {
+        msg: ['Success'],
+        success: true,
+        data: projects,
+      };
+      return NextResponse.json(response);
+    }
     const projects = await getProjects();
     const response: ApiResponse = {
       msg: ['Success'],

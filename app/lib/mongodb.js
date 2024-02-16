@@ -92,7 +92,12 @@ export async function getProjectBySlug(slug) {
 
 export async function getProjects() {
   await connectDB();
-  return await Project.find();
+  return await Project.find().sort({ date: 'desc' });
+}
+
+export async function searchProjects(filter) {
+  await connectDB();
+  return await Project.find(filter).sort({ date: 'desc' });
 }
 
 export async function deleteProject(id) {
@@ -138,7 +143,12 @@ export async function getPostBySlug(slug) {
 
 export async function getPosts() {
   await connectDB();
-  return await Post.find();
+  return await Post.find().sort({ date: 'desc' });
+}
+
+export async function searchPosts(filter) {
+  await connectDB();
+  return await Post.find(filter).sort({ date: 'desc' });
 }
 
 export async function deletePost(id) {
@@ -164,7 +174,7 @@ export async function getContact(id) {
 
 export async function getContacts() {
   await connectDB();
-  return await Contact.find();
+  return await Contact.find().sort({ date: 'desc' });
 }
 
 export async function deleteContact(id) {

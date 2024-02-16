@@ -57,6 +57,20 @@ export function Expertise() {
           <h3 className="text-3xl mb-6 font-light">Backend</h3>
           <div className="flex flex-col space-y-5 lg:flex-row lg:space-y-0 lg:space-x-8 mb-10">
             <Link
+              href="https://nodejs.org/en"
+              target="_blank"
+              className="border rounded px-6 py-2 border-palette-brown hover:bg-palette-brown hover:text-white"
+            >
+              Node
+            </Link>
+            <Link
+              href="https://go.dev/"
+              target="_blank"
+              className="border rounded px-6 py-2 border-palette-brown hover:bg-palette-brown hover:text-white"
+            >
+              Go
+            </Link>
+            <Link
               href="https://www.python.org/"
               target="_blank"
               className="border rounded px-6 py-2 border-palette-brown hover:bg-palette-brown hover:text-white"
@@ -120,7 +134,7 @@ export function Expertise() {
               target="_blank"
               className="border rounded px-6 py-2 border-palette-brown  hover:bg-palette-brown hover:text-white"
             >
-              Iac
+              IaC
             </Link>
             <Link
               href="https://www.pulumi.com/"

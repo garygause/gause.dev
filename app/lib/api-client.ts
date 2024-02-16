@@ -75,6 +75,22 @@ export async function getProjects() {
   return await res.json();
 }
 
+export async function getPublishedProjects() {
+  const res = await fetch(`${BASE_URL}/api/project?published=true`, {
+    method: 'GET',
+    next: { tags: ['projects'] },
+  });
+  return await res.json();
+}
+
+export async function getFeaturedProjects() {
+  const res = await fetch(`${BASE_URL}/api/project?featured=true`, {
+    method: 'GET',
+    next: { tags: ['projects'] },
+  });
+  return await res.json();
+}
+
 export async function saveProject(project: Project, id?: string) {
   let url = `${BASE_URL}/api/project`;
   if (id) {
@@ -126,6 +142,22 @@ export async function getPostBySlug(slug: string) {
 
 export async function getPosts() {
   const res = await fetch(`${BASE_URL}/api/post/`, {
+    method: 'GET',
+    next: { tags: ['posts'] },
+  });
+  return await res.json();
+}
+
+export async function getPublishedPosts() {
+  const res = await fetch(`${BASE_URL}/api/post?published=true`, {
+    method: 'GET',
+    next: { tags: ['posts'] },
+  });
+  return await res.json();
+}
+
+export async function getFeaturedPosts() {
+  const res = await fetch(`${BASE_URL}/api/post?featured=true`, {
     method: 'GET',
     next: { tags: ['posts'] },
   });

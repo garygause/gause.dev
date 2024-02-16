@@ -3,7 +3,7 @@ import React from 'react';
 import BlogList from '@ui/blog-list';
 import BlogHero from '@ui/blog-hero';
 
-import { getPosts } from '@/app/lib/api-client';
+import { getPublishedPosts } from '@/app/lib/api-client';
 import { Post } from '@/app/lib/definitions';
 
 export default async function BlogHomePage() {
@@ -15,8 +15,8 @@ export default async function BlogHomePage() {
    import { getPosts } from '@/app/lib/mongodb';
    const data = await getPosts();
    */
-  const { msg, success, data } = await getPosts();
-  const featuredPost: Post = data.shift();
+  const { msg, success, data } = await getPublishedPosts();
+  const featuredPost: Post = data?.shift();
 
   return (
     <div className="max-w-screen-xl px-6 py-10 mx-auto flex">
@@ -27,10 +27,13 @@ export default async function BlogHomePage() {
         <div className="mb-10">
           Musings, lessons, on technology and my love of software development.
         </div>
-        <div className="flex flex-col space-y-10">
-          <BlogHero post={featuredPost} />
-          <BlogList posts={data} />
-        </div>
+        {(!data || data.length === 0) && <div>No results found.</div>}
+        {data && (
+          <div className="flex flex-col space-y-10">
+            <BlogHero post={featuredPost} />
+            <BlogList posts={data} />
+          </div>
+        )}
       </div>
     </div>
   );

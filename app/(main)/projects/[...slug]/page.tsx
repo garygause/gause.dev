@@ -4,8 +4,7 @@ import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import { getProjectBySlug } from '@/app/lib/api-client';
-import facebookIcon from '@/public/facebook.svg';
-import twitterIcon from '@/public/twitter.svg';
+import ShareList from '@ui/share-list';
 
 export default async function ProjectPage({
   params,
@@ -26,6 +25,8 @@ export default async function ProjectPage({
     date,
     shares,
   } = data;
+
+  const pageUrl = 'https://gause.dev';
 
   const dateString = new Date(date).toLocaleDateString('en-us', {
     year: 'numeric',
@@ -50,37 +51,7 @@ export default async function ProjectPage({
           </div>
         </div>
         <div className="py-4 flex flex-row items-start">
-          <div>
-            <div className="flex md:flex-col-reverse p-0 mr-0 mt-1">
-              <div className="md:h-32 mt-5 flex-col w-14 justify-center items-center">
-                <div className="flex flex-col justify-center items-center text-xs mb-5">
-                  <h5 className="font-medium">{shares}</h5>
-                  <h6>Shares</h6>
-                </div>
-                <div className="flex flex-col justify-center items-center">
-                  <button className="mr-0 mb-5">
-                    <Image
-                      className=""
-                      priority
-                      src={facebookIcon}
-                      alt="facebook"
-                    />
-                  </button>
-                </div>
-                <div className="flex flex-col justify-center items-center">
-                  <button className="mr-0 mb-5">
-                    <Image
-                      className=""
-                      priority
-                      src={twitterIcon}
-                      alt="twitter"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          <ShareList shares={shares} url={pageUrl} />
           <div className="ml-4 md:ml-8 relative max-w-2xl">
             <h1 className="text-4xl pb-4 md:pb-10 pt-4">{title}</h1>
             <div className="text-palette-brown mb-4 md:mb-8">
