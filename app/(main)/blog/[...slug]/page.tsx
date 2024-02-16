@@ -1,3 +1,8 @@
+// @ts-nocheck
+
+/*
+ TODO: remove ts-nocheck when type issue with rehype plugin is resolved
+*/
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
