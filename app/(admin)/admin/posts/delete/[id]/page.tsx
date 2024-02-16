@@ -5,11 +5,7 @@ import { redirect } from 'next/navigation';
 import { deletePost } from '@/app/lib/api-client';
 import DeleteButton from '@ui/delete-button';
 
-export default async function DeletePostPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+async function DeletePostPage({ params }: { params: { id: string } }) {
   if (!params || !params.id) {
     return <div>Invalid input.</div>;
   }
@@ -32,3 +28,5 @@ export default async function DeletePostPage({
     </div>
   );
 }
+
+export default DeletePostPage;
