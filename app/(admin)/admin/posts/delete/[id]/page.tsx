@@ -10,6 +10,9 @@ export default async function DeletePostPage({
 }: {
   params: { id: string };
 }) {
+  if (!params || !params.id) {
+    return <div>Invalid input.</div>;
+  }
   async function deleteHandler() {
     'use server';
     const { msg, success, data } = await deletePost(params.id);

@@ -10,6 +10,10 @@ export default async function DeleteProjectPage({
 }: {
   params: { id: string };
 }) {
+  if (!params || !params.id) {
+    return <div>Invalid input.</div>;
+  }
+
   async function deleteHandler() {
     'use server';
     const { msg, success, data } = await deleteProject(params.id);
