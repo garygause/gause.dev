@@ -22,6 +22,8 @@ function BlogListItem(props: Props) {
     slug,
   } = props.post;
 
+  const small = props.variant && props.variant === 'small';
+
   return (
     <Link
       href={`/blog/${slug}`}
@@ -46,7 +48,9 @@ function BlogListItem(props: Props) {
           </div>
           <div className="px-4 pb-4">
             <h3 className="relative m-0 p-0 font-medium">{title}</h3>
-            <p className="mt-4 relative text-palette-brown">{summary}</p>
+            {!small && (
+              <p className="mt-4 relative text-palette-brown">{summary}</p>
+            )}
           </div>
         </div>
       </div>

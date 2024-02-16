@@ -44,18 +44,14 @@ textarea {
 }
 
 .list-container-grid {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px 20px;
   display: grid;
 }
-
-@media (min-width: 768px) {
-  .list-container-grid {
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 40px 20px;
-    display: grid;
-  }
+.list-container-grid-small {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px 20px;
+  display: grid;
 }
 
 .list-container-transition {

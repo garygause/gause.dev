@@ -17,21 +17,23 @@ export default async function BlogHomePage() {
    */
   const { msg, success, data } = await getPublishedPosts();
   const featuredPost: Post = data?.shift();
-
+  const posts = data?.slice(0, 3);
+  const morePosts = data?.slice(2); // 3
   return (
     <div className="max-w-screen-xl px-6 py-10 mx-auto flex">
-      <div className="mr-auto place-self-center ">
+      <div className="mr-auto place-self-center w-full">
         <h1 className="max-w-2xl md:mb-10 mb-8 text-4xl tracking-tight md:text-5xl dark:text-white">
           Blog
         </h1>
-        <div className="mb-10">
+        <div className="mb-4">
           Musings, lessons, on technology and my love of software development.
         </div>
         {(!data || data.length === 0) && <div>No results found.</div>}
         {data && (
-          <div className="flex flex-col space-y-10">
+          <div className="flex flex-col space-y-6">
             <BlogHero post={featuredPost} />
-            <BlogList posts={data} />
+            <BlogList posts={posts} />
+            <BlogList posts={morePosts} variant="small" />
           </div>
         )}
       </div>
