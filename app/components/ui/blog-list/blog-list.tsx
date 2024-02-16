@@ -15,10 +15,12 @@ function BlogList({
   let listClass = 'list-container-grid';
   if (variant && variant === 'small') {
     listClass = 'list-container-grid-small';
+  } else if (variant && variant === 'medium') {
+    listClass = 'list-container-grid-medium';
   }
 
   return (
-    <section>
+    <div>
       <div className="flex flex-col mx-auto mt-0 mb-10 items-center">
         <div className="mx-auto mt-0  overflow-visible max-w-7xl w-full">
           <div
@@ -33,7 +35,7 @@ function BlogList({
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

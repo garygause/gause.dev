@@ -28,10 +28,8 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  console.log(params.slug.slice(-1));
-
   const allPosts = await getPublishedPosts();
-  const morePosts = allPosts.data?.slice(0, 4);
+  const morePosts = allPosts.data?.slice(0, 3);
   const post = await getPostBySlug(params.slug.slice(-1));
   const {
     _id,
@@ -72,9 +70,9 @@ export default async function BlogPostPage({
               </div>
             </div>
           </div>
-          <div className="py-4 mr-6 flex flex-row items-start">
+          <div className="p-6 flex flex-col md:flex-row items-start">
             <ShareList shares={shares} url={pageUrl} />
-            <div className="ml-4 md:ml-8 relative max-w-2xl">
+            <div className="md:ml-8 relative max-w-2xl">
               <h1 className="text-4xl pb-4 md:pb-10 pt-4">{title}</h1>
               <div className="text-palette-brown/60 mb-4 md:mb-8">
                 Last updated: <span className="px-2">{dateString}</span>

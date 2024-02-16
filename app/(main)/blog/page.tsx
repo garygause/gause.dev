@@ -33,7 +33,7 @@ export default async function BlogHomePage() {
           <div className="flex flex-col space-y-6">
             <BlogHero post={featuredPost} />
             <BlogList posts={posts} />
-            <BlogList posts={morePosts} variant="small" />
+            <BlogList posts={morePosts} variant="medium" />
           </div>
         )}
       </div>
