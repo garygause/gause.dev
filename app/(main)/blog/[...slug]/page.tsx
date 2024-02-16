@@ -36,6 +36,7 @@ export default async function BlogPostPage({
     imageWidth,
     imageAlt,
     keywords,
+    summary,
     content,
     date,
     shares,
@@ -69,8 +70,13 @@ export default async function BlogPostPage({
           <ShareList shares={shares} url={pageUrl} />
           <div className="ml-4 md:ml-8 relative max-w-2xl">
             <h1 className="text-4xl pb-4 md:pb-10 pt-4">{title}</h1>
-            <div className="text-palette-brown mb-4 md:mb-8">
+            <div className="text-palette-brown/60 mb-4 md:mb-8">
               Last updated: <span className="px-2">{dateString}</span>
+            </div>
+            <div>
+              <p className="mb-3 text-palette-brown first-line:uppercase first-line:tracking-widest first-letter:text-2xl first-letter:font-bold first-letter:text-palette-red">
+                {summary}
+              </p>
             </div>
             <div className="mdx-container">
               <MDXRemote

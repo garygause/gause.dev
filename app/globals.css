@@ -18,6 +18,10 @@ textarea {
   @apply bg-palette-gray text-palette-white block p-6 text-wrap;
 }
 
+.dark .mdx-container code {
+  @apply bg-palette-matte  block p-6 text-wrap;
+}
+
 .img-container img {
   @apply w-full h-full m-0 top-0 left-0 absolute object-cover;
   display: block;
