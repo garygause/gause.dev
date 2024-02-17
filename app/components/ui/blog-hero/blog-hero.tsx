@@ -17,7 +17,7 @@ function BlogHero({ post }: { post: Post }) {
   return (
     <Link
       href={`/blog/${slug}`}
-      className="border border-transparent rounded-md hover:border-palette-red mb-10"
+      className="border hidden md:block border-transparent rounded-md hover:border-palette-red mb-10"
     >
       <div className="mb-6 p-6">
         <h1 className="text-6xl text-palette-red/10 dark:text-palette-white/10 md:pl-10">
