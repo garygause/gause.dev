@@ -5,8 +5,8 @@ export default function AboutHomePage() {
   return (
     <div className="mx-auto w-full">
       <div className="container mx-auto max-w-3xl">
-        <div className="p-4">
-          <h1 className="text-4xl py-10">About Me</h1>
+        <div className="py-10 px-4">
+          <h1 className="text-4xl md:text-5xl pb-10">About Me</h1>
           <p className="mb-3 text-palette-brown first-line:uppercase first-line:tracking-widest first-letter:text-2xl first-letter:font-bold first-letter:text-palette-red">
             Currently a freelancer working on my favorite projects, I have a
             long history in software development.

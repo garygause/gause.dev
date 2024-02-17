@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+h1,
+h2,
+h3,
+h4 {
+  @apply dark:text-palette-white;
+}
 form > div {
   @apply flex flex-col gap-2;
 }

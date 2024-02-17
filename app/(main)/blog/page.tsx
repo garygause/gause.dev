@@ -14,7 +14,7 @@ export default async function BlogHomePage() {
   return (
     <div className="max-w-screen-xl px-6 py-10 mx-auto flex">
       <div className="mr-auto place-self-center w-full">
-        <h1 className="max-w-2xl md:mb-10 mb-8 text-4xl tracking-tight md:text-5xl dark:text-white">
+        <h1 className="max-w-2xl md:mb-10 mb-8 text-4xl tracking-tight md:text-5xl">
           Blog
         </h1>
         <div className="mb-4">

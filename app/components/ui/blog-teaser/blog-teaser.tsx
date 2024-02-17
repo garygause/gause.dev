@@ -12,7 +12,7 @@ export default async function BlogTeaser() {
   return (
     <div className="max-w-screen-xl px-4 mx-auto">
       <div>
-        <h1 className="md:mb-10 mb-8 text-4xl tracking-tight md:text-5xl dark:text-white">
+        <h1 className="md:mb-10 mb-8 text-4xl tracking-tight md:text-5xl">
           Articles
         </h1>
         <BlogList posts={posts} />

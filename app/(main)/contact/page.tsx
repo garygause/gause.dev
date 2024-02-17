@@ -7,8 +7,8 @@ export default function ContactPage() {
   return (
     <div className="mx-auto w-full">
       <div className="container mx-auto max-w-3xl">
-        <div className="p-4">
-          <h1 className="text-4xl py-10">Contact Me</h1>
+        <div className="py-10 px-4">
+          <h1 className="text-4xl md:text-5xl pb-10">Contact Me</h1>
           <p>
             Please fill in the form below and I will get back to you right away!
           </p>
