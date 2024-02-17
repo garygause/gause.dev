@@ -34,7 +34,7 @@ export default async function BlogPostPage({
   params: { slug: string };
 }) {
   const allPosts = await searchPosts({ status: 'published' });
-  const morePosts = allPosts.data?.slice(0, 3);
+  const morePosts = allPosts?.slice(0, 3);
   const post = await getPostBySlug(params.slug.slice(-1));
   const {
     _id,
@@ -48,7 +48,7 @@ export default async function BlogPostPage({
     content,
     date,
     shares,
-  } = post.data;
+  } = post;
 
   const pageUrl = 'https://gause.dev';
 
