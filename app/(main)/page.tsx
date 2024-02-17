@@ -1,6 +1,6 @@
-import Hero from '@/app/components/hero';
-import Expertise from '@/app/components/expertise';
-import Portfolio from '@/app/components/portfolio';
+import Hero from '@/app/components/ui/hero';
+import Expertise from '@/app/components/ui/expertise';
+import Portfolio from '@/app/components/ui/portfolio';
 
 export default function Home() {
   return (

@@ -1,4 +1,5 @@
 import ThemeProvider from '@/app/components/ui/theme-provider';
+import ClientSessionProvider from '@app/components/client-session-provider';
 
 import '@/app/globals.css';
 
@@ -15,11 +16,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-palette-white dark:bg-palette-gray">
-        <ThemeProvider>
-          <div className="w-full h-screen items-center justify-center">
-            {children}
-          </div>
-        </ThemeProvider>
+        <ClientSessionProvider>
+          <ThemeProvider>
+            <div className="w-full h-screen items-center justify-center">
+              {children}
+            </div>
+          </ThemeProvider>
+        </ClientSessionProvider>
       </body>
     </html>
   );

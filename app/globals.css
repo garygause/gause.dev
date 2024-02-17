@@ -10,3 +10,55 @@ input,
 textarea {
   @apply shadow-md px-6 py-2 border border-palette-brown;
 }
+
+.mdx-container {
+  @apply flex flex-col space-y-6;
+}
+.mdx-container code {
+  @apply bg-palette-gray text-palette-white block p-6 text-wrap;
+}
+
+.dark .mdx-container code {
+  @apply bg-palette-matte  block p-6 text-wrap;
+}
+
+.img-container img {
+  @apply w-full h-full m-0 top-0 left-0 absolute object-cover;
+  display: block;
+  transform: scale(1);
+  object-position: center center;
+}
+
+.pt-70p {
+  padding-top: 70%;
+}
+
+.pb-70p {
+  padding-bottom: 70%;
+}
+.pl-100p {
+  padding-left: 100%;
+}
+.pt-100p {
+  padding-top: 100%;
+}
+
+.list-container-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px 20px;
+  display: grid;
+}
+.list-container-grid-small {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px 20px;
+  display: grid;
+}
+
+.list-container-grid-medium {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px 20px;
+  display: grid;
+}
+.list-container-transition {
+  transition: all 100ms ease 0s;
+}

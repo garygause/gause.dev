@@ -1,16 +1,13 @@
-'use server';
-
 import React from 'react';
 
-import { ProjectsTable } from '@/app/components/projects';
-import { getProjects } from '@/app/lib/api-client';
+import { ProjectsTable } from '@ui/admin/projects';
+import { getProjects } from '@/app/lib/mongodb';
 
 export default async function ProjectsPage() {
-  const projects = await getProjects();
+  const data = await getProjects();
 
-  return (
-    <div>
-      <ProjectsTable projects={projects} />
-    </div>
-  );
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+  return <ProjectsTable projects={data} />;
 }

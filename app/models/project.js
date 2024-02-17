@@ -15,10 +15,56 @@ const projectSchema = new Schema({
     minLength: [2, 'Stack must be greater than 2 characters.'],
     maxLength: [500, 'Stack must be less than 500 characters'],
   },
+  imageSrc: {
+    type: String,
+    required: [true, 'Image Src is required.'],
+    trim: true,
+  },
+  imageWidth: {
+    type: String,
+    required: [true, 'Image Width is required.'],
+    trim: true,
+  },
+  imageHeight: {
+    type: String,
+    required: [true, 'Image Height is required.'],
+    trim: true,
+  },
+  imageAlt: {
+    type: String,
+    required: [true, 'Image Alt is required.'],
+    trim: true,
+  },
+  keywords: {
+    type: String,
+    trim: true,
+  },
+  summary: {
+    type: String,
+    required: [true, 'Summary is required.'],
+    trim: true,
+  },
   description: {
     type: String,
     required: [true, 'Description is required.'],
     trim: true,
+  },
+  slug: {
+    type: String,
+    required: [true, 'Slug is required.'],
+    trim: true,
+  },
+  featured: {
+    type: String,
+  },
+  status: {
+    type: String,
+    required: [true, 'Published is required.'],
+    default: 'draft',
+  },
+  shares: {
+    type: Number,
+    default: 0,
   },
   date: {
     type: Date,
@@ -27,6 +73,6 @@ const projectSchema = new Schema({
 });
 
 const Project =
-  mongoose.models.Project || mongoose.model('Project', projectSchema);
+  mongoose.models?.Project || mongoose.model('Project', projectSchema);
 
 export default Project;

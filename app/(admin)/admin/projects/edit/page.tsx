@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProjectForm from '@/app/components/project-form';
+import ProjectForm from '@ui/admin/project-form';
 
 export default function ProjectEditPage() {
   return (

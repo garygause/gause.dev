@@ -1,49 +1,108 @@
 import { NextRequest, NextResponse } from 'next/server';
-
+import { revalidateTag } from 'next/cache';
 import mongoose from 'mongoose';
 
-import { connectDB } from '../../lib/mongodb';
-import Project from '@/app/models/project';
+import { createProject, getProjects, searchProjects } from '@/app/lib/mongodb';
+import { ApiResponse } from '@/app/lib/definitions';
 
 export async function POST(req: NextRequest) {
-  const { _id, title, stack, description } = await req.json();
+  let {
+    title,
+    stack,
+    keywords,
+    imageSrc,
+    imageHeight,
+    imageWidth,
+    imageAlt,
+    summary,
+    description,
+    slug,
+    featured,
+    status,
+    shares,
+  } = await req.json();
+  slug = slug.toLowerCase();
   try {
-    await connectDB();
-    await Project.create({ title, stack, description });
-    return NextResponse.json({ msg: ['Project saved.'], success: true });
+    const project = await createProject({
+      title,
+      stack,
+      keywords,
+      imageSrc,
+      imageHeight,
+      imageWidth,
+      imageAlt,
+      summary,
+      description,
+      slug,
+      featured,
+      status,
+      shares,
+    });
+    revalidateTag('projects');
+
+    const response: ApiResponse = {
+      msg: ['Project created.'],
+      success: true,
+      data: project,
+    };
+    return NextResponse.json(response);
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       let errorList: string[] = [];
       for (let e in error.errors) {
         errorList.push(error.errors[e].message);
       }
-      return NextResponse.json({ msg: errorList, success: false });
-    } else {
-      return NextResponse.json({
-        msg: 'Unable to save Project.',
+      const response: ApiResponse = {
+        msg: errorList,
         success: false,
-      });
+        data: null,
+      };
+      return NextResponse.json(response);
+    } else {
+      const response: ApiResponse = {
+        msg: ['Unable to create Project.'],
+        success: false,
+        data: null,
+      };
+      return NextResponse.json(response);
     }
   }
 }
 
 export async function GET(req: NextRequest) {
+  const params = req.nextUrl.searchParams;
+
   try {
-    await connectDB();
-    const projects = await Project.find();
-    return NextResponse.json(projects);
+    if (params.get('published')) {
+      const projects = await searchProjects({ status: 'published' });
+      const response: ApiResponse = {
+        msg: ['Success'],
+        success: true,
+        data: projects,
+      };
+      return NextResponse.json(response);
+    } else if (params.get('featured')) {
+      const projects = await searchProjects({ featured: 'yes' });
+      const response: ApiResponse = {
+        msg: ['Success'],
+        success: true,
+        data: projects,
+      };
+      return NextResponse.json(response);
+    }
+    const projects = await getProjects();
+    const response: ApiResponse = {
+      msg: ['Success'],
+      success: true,
+      data: projects,
+    };
+    return NextResponse.json(response);
   } catch (error) {
-    return NextResponse.json({
-      msg: 'Unable to retrieve Projects.',
+    const response: ApiResponse = {
+      msg: ['Unable to retrieve Projects.'],
       success: false,
-    });
+      data: null,
+    };
+    return NextResponse.json(response);
   }
 }
-
-// export const GET = auth((req) => {
-//   if (req.auth) {
-//     return Response.json({ data: 'Protected data' });
-//   }
-
-//   return Response.json({ message: 'Not authenticated' }, { status: 401 });
-// }) as any; // TODO: Fix `auth()` return type

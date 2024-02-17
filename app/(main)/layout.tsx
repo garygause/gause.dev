@@ -1,15 +1,21 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import Header from '@/app/components/header/header';
-import Footer from '@/app/components/footer/footer';
+import Header from '@/app/components/ui/header/header';
+import Footer from '@/app/components/ui/footer/footer';
 import ThemeProvider from '@/app/components/ui/theme-provider';
 import ClientSessionProvider from '@app/components/client-session-provider';
 
 import '@/app/globals.css';
 
-const inter = Inter({
-  subsets: ['latin'],
-});
+/*
+TODO: check whether we need ios specific meta tag to prevent hydration mismatch
+
+This occurs because iphone attempts to render phone numbers, etc as links.
+
+<meta
+  name="format-detection"
+  content="telephone=no, date=no, email=no, address=no"
+/>
+*/
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://gause.dev'),
@@ -38,9 +44,6 @@ export const metadata: Metadata = {
     ],
   },
 };
-
-// if using inter font
-//         className={`${inter.className} bg-palette-white dark:bg-palette-gray`}
 
 export default function RootLayout({
   children,
