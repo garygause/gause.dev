@@ -1,13 +1,15 @@
-import Hero from '@/app/components/ui/hero';
-import Expertise from '@/app/components/ui/expertise';
-import Portfolio from '@/app/components/ui/portfolio';
+import Hero from '@ui/hero';
+import Expertise from '@ui/expertise';
+import PortfolioTeaser from '@ui/portfolio-teaser';
+import BlogTeaser from '@ui/blog-teaser';
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <Hero />
+      <BlogTeaser />
       <Expertise />
-      <Portfolio />
+      <PortfolioTeaser />
     </>
   );
 }

@@ -7,7 +7,7 @@ import linkedinIcon from '@/public/linkedin.svg';
 
 export function Hero() {
   return (
-    <section className="border-b-2 border-palette-red">
+    <div className="border-b-2 border-palette-red mb-10">
       <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:pt-20 lg:pb-32 lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
@@ -103,7 +103,7 @@ export function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
