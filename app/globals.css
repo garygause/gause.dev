@@ -14,10 +14,28 @@ textarea {
 .mdx-container {
   @apply flex flex-col space-y-6;
 }
+.mdx-container h1,
+.mdx-container h2,
+.mdx-container h3 {
+  @apply py-4;
+}
+
+.mdx-container h1 {
+  @apply text-4xl;
+}
+.mdx-container h2 {
+  @apply text-3xl;
+}
+.mdx-container h3 {
+  @apply text-2xl;
+}
+.mdx-container h4 {
+  @apply text-xl;
+}
+
 .mdx-container code {
   @apply bg-palette-gray text-palette-white block p-6 text-wrap;
 }
-
 .dark .mdx-container code {
   @apply bg-palette-matte  block p-6 text-wrap;
 }
