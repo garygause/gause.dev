@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="w-full text-palette-white bg-palette-gray dark:bg-palette-matte py-6 px-8">
+    <footer className="w-full font-medium text-white dark:text-white bg-palette-gray dark:bg-palette-matte py-6 px-8">
       <div className="container mx-auto flex flex-col justify-center items-center space-y-4 md:space-y-0 md:flex-row md:justify-start">
         <div className="">&copy; Gary Gause 2024</div>
         <div className="grow flex items-center justify-center">

@@ -13,7 +13,7 @@ export default function Header() {
   const { data: session, status } = useSession();
 
   return (
-    <header className="w-full mx-auto bg-palette-gray dark:bg-palette-matte px-8 sticky top-0 z-30 backdrop-blur-md text-stone-50 dark:text-stone-200">
+    <header className="w-full mx-auto bg-palette-gray dark:bg-palette-matte px-8 sticky top-0 z-30 backdrop-blur-md text-white dark:text-white">
       <div className="container mx-auto">
         <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
           <div className="lg:w-0 lg:flex-1">
