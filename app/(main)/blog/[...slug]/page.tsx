@@ -19,6 +19,7 @@ import './page.css';
 
 const components = {
   MDXImage,
+  Link,
 };
 
 const options = {
