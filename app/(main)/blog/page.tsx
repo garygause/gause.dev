@@ -10,7 +10,7 @@ export default async function BlogHomePage() {
   const { data } = await getPublishedPosts(); //searchPosts({ status: 'published' });
   const featuredPost: Post = data?.shift();
   const posts = data?.slice(0, 3);
-  const morePosts = data?.slice(2); // 3
+  const morePosts = data?.slice(3);
   return (
     <div className="max-w-screen-xl px-6 py-10 mx-auto flex">
       <div className="mr-auto place-self-center w-full">

@@ -9,6 +9,10 @@
   Current colors taken from GitHub's CSS
 */
 
+/* custom css */
+
+/* end custom css */
+
 pre:has(.hljs),
 .hljs {
   color: #c9d1d9;
