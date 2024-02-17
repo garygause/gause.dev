@@ -14,6 +14,7 @@
     "dev": "next dev",
     "build": "next build",
     "deploy": "next build;",
+    "reload": "pm2 reload gause.dev",
     "start": "next start",
     "lint": "next lint"
   },
