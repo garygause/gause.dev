@@ -3,11 +3,11 @@ import React from 'react';
 import BlogList from '@ui/blog-list';
 import BlogHero from '@ui/blog-hero';
 
-import { getPosts } from '@/app/lib/api-client';
+import { getPublishedPosts } from '@/app/lib/api-client';
 import { Post } from '@/app/lib/definitions';
 
 export default async function BlogHomePage() {
-  const { data } = await getPosts(); //searchPosts({ status: 'published' });
+  const { data } = await getPublishedPosts(); //searchPosts({ status: 'published' });
   const featuredPost: Post = data?.shift();
   const posts = data?.slice(0, 3);
   const morePosts = data?.slice(2); // 3
