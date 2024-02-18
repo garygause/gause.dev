@@ -6,6 +6,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata, ResolvingMetadata } from 'next';
 
 import rehypeHighlight from 'rehype-highlight';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -16,6 +17,56 @@ import MDXImage from '@ui/mdx-image';
 import BlogList from '@ui/blog-list';
 
 import './page.css';
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const slug = params.slug.slice(-1);
+  const post = await getPostBySlug(slug);
+  const {
+    _id,
+    title,
+    imageSrc,
+    imageHeight,
+    imageWidth,
+    imageAlt,
+    keywords,
+    summary,
+    content,
+    date,
+    shares,
+  } = post;
+
+  // optionally access and extend (rather than replace) parent metadata
+  //const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    metadataBase: new URL('https://gause.dev'),
+    title: 'gause.dev - ' + title,
+    description: summary,
+    keywords: keywords,
+    creator: 'Gary Gause',
+    robots: 'index follow',
+    alternates: { canonical: 'https://gause.dev/blog/' + slug },
+    openGraph: {
+      title: 'gause.dev - ' + title,
+      description: summary,
+      url: 'https://gause.dev/blog/' + slug,
+      siteName: 'gause.dev',
+      type: 'website',
+      images: [
+        {
+          url: 'https://gause.dev' + imageSrc,
+          secureUrl: 'https://gause.dev' + imageSrc,
+          width: imageWidth,
+          height: imageHeight,
+          alt: imageAlt,
+        },
+      ],
+    },
+  };
+}
 
 const components = {
   MDXImage,

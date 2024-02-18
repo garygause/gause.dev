@@ -49,6 +49,8 @@ function ContactForm() {
             id="fullName"
             value={fullName}
             placeholder="Enter your name"
+            data-lpignore="true"
+            autoComplete="off"
             className="rounded w-full"
             onChange={(e) => setFullname(e.target.value)}
           />

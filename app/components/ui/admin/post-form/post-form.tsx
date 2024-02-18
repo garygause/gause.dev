@@ -37,7 +37,7 @@ function PostForm(props: PostProps) {
       imageHeight: imageHeight,
       imageWidth: imageWidth,
       imageAlt: imageAlt,
-      slug: slug.toLocaleLowerCase(),
+      slug: slug.toLowerCase(),
       featured: featured,
       status: status,
     };
@@ -87,6 +87,7 @@ function PostForm(props: PostProps) {
             type="text"
             id="summary"
             name="summary"
+            maxLength={200}
             defaultValue={props.post?.summary}
             placeholder="Summary"
           />
@@ -112,16 +113,6 @@ function PostForm(props: PostProps) {
           />
         </div>
         <div>
-          <label htmlFor="imageHeight">Image Height:</label>
-          <input
-            type="text"
-            id="imageHeight"
-            name="imageHeight"
-            defaultValue={props.post?.imageHeight}
-            placeholder="Image Height"
-          />
-        </div>
-        <div>
           <label htmlFor="imagWidth">Image Width:</label>
           <input
             type="text"
@@ -129,6 +120,16 @@ function PostForm(props: PostProps) {
             name="imageWidth"
             defaultValue={props.post?.imageWidth}
             placeholder="Image Width"
+          />
+        </div>
+        <div>
+          <label htmlFor="imageHeight">Image Height:</label>
+          <input
+            type="text"
+            id="imageHeight"
+            name="imageHeight"
+            defaultValue={props.post?.imageHeight}
+            placeholder="Image Height"
           />
         </div>
         <div>

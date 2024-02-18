@@ -102,16 +102,6 @@ export function ProjectForm(props: ProjectProps) {
           />
         </div>
         <div>
-          <label htmlFor="imageHeight">Image Height:</label>
-          <input
-            type="text"
-            id="imageHeight"
-            name="imageHeight"
-            defaultValue={props.project?.imageHeight}
-            placeholder="Image Height"
-          />
-        </div>
-        <div>
           <label htmlFor="imagWidth">Image Width:</label>
           <input
             type="text"
@@ -119,6 +109,16 @@ export function ProjectForm(props: ProjectProps) {
             name="imageWidth"
             defaultValue={props.project?.imageWidth}
             placeholder="Image Width"
+          />
+        </div>
+        <div>
+          <label htmlFor="imageHeight">Image Height:</label>
+          <input
+            type="text"
+            id="imageHeight"
+            name="imageHeight"
+            defaultValue={props.project?.imageHeight}
+            placeholder="Image Height"
           />
         </div>
         <div>
@@ -175,6 +175,7 @@ export function ProjectForm(props: ProjectProps) {
             type="text"
             id="summary"
             name="summary"
+            maxLength={200}
             defaultValue={props.project?.summary}
             placeholder="Summary"
           />
