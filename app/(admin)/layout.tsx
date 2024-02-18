@@ -6,31 +6,9 @@ import ClientSessionProvider from '@app/components/client-session-provider';
 import '@/app/globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://gause.dev'),
-  title: 'gause.dev',
-  description: 'Freelance software development services offered by Gary Gause.',
-  keywords:
-    'freelance, web, mobile, development, next.js, react.js, javascript, typescript, tailwind css, css, html, react native, wordpress, enterprise, aws, architecture',
-  creator: 'Gary Gause',
-  robots: 'index follow',
-  alternates: { canonical: 'https://gause.dev' },
-  openGraph: {
-    title: 'gause.dev',
-    description:
-      'Freelance software development services offered by Gary Gause.',
-    url: 'https://gause.dev/',
-    siteName: 'gause.dev',
-    type: 'website',
-    images: [
-      {
-        url: 'https://gause.dev/images/site-preview.png',
-        secureUrl: 'https://gause.dev/images/site-preview.png',
-        width: 1200,
-        height: 630,
-        alt: 'Preview image for gause.dev',
-      },
-    ],
-  },
+  title: 'gause.dev - Admin',
+  robots: 'noindex nofollow',
+  alternates: { canonical: 'https://gause.dev/admin' },
 };
 
 export default function RootLayout({
