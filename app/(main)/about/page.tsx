@@ -1,5 +1,35 @@
 import React from 'react';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://gause.dev'),
+  title: 'gause.dev - About',
+  description:
+    'Currently a freelancer working on my favorite projects, I have a long history in software development.',
+  keywords:
+    'freelance, web, mobile, development, next.js, react.js, javascript, typescript, tailwind css, css, html, react native, wordpress, enterprise, aws, architecture',
+  creator: 'Gary Gause',
+  robots: 'index follow',
+  alternates: { canonical: 'https://gause.dev/about' },
+  openGraph: {
+    title: 'gause.dev - About',
+    description:
+      'Currently a freelancer working on my favorite projects, I have a long history in software development.',
+    url: 'https://gause.dev/about',
+    siteName: 'gause.dev',
+    type: 'website',
+    images: [
+      {
+        url: 'https://gause.dev/images/site-preview.png',
+        secureUrl: 'https://gause.dev/images/site-preview.png',
+        width: 1200,
+        height: 630,
+        alt: 'Preview image for gause.dev',
+      },
+    ],
+  },
+};
 
 export default function AboutHomePage() {
   return (

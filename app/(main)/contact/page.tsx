@@ -1,7 +1,35 @@
 import React from 'react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
 import ContactForm from '@/app/components/ui/contact-form';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://gause.dev'),
+  title: 'gause.dev - Contact Me',
+  description: 'Contact me for all your web and mobile development needs.',
+  keywords:
+    'freelance, web, mobile, development, next.js, react.js, javascript, typescript, tailwind css, css, html, react native, wordpress, enterprise, aws, architecture',
+  creator: 'Gary Gause',
+  robots: 'index follow',
+  alternates: { canonical: 'https://gause.dev/blog' },
+  openGraph: {
+    title: 'gause.dev - Contact Me',
+    description: 'Contact me for all your web and mobile development needs.',
+    url: 'https://gause.dev/contact',
+    siteName: 'gause.dev',
+    type: 'website',
+    images: [
+      {
+        url: 'https://gause.dev/images/site-preview.png',
+        secureUrl: 'https://gause.dev/images/site-preview.png',
+        width: 1200,
+        height: 630,
+        alt: 'Preview image for gause.dev',
+      },
+    ],
+  },
+};
 
 export default function ContactPage() {
   return (
