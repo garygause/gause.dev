@@ -2,7 +2,7 @@ import React from 'react';
 
 import UserForm from '@/app/components/ui/admin/user-form';
 
-export default function UserEditPage() {
+export default function UserCreatePage() {
   return (
     <div className="mx-auto w-full">
       <div className="container mx-auto max-w-3xl">

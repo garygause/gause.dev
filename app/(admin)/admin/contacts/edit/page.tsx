@@ -2,7 +2,7 @@ import React from 'react';
 
 import ContactForm from '@ui/admin/contact-edit-form';
 
-export default function ContactEditPage() {
+export default function ContactCreatePage() {
   return (
     <div className="mx-auto w-full">
       <div className="container mx-auto max-w-3xl">

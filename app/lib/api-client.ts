@@ -1,26 +1,34 @@
-import { User, Post, Project, Contact } from '@app/lib/definitions';
+import {
+  Contact,
+  LibraryImage,
+  Post,
+  Project,
+  User,
+} from '@app/lib/definitions';
 
 const BASE_URL = 'http://127.0.0.1:3000';
 //const BASE_URL = 'https://dev.gause.dev';
 
-export async function getUser(id: string) {
-  const res = await fetch(`${BASE_URL}/api/user/${id}/`, {
+// Contacts
+
+export async function getContacts() {
+  const res = await fetch(`${BASE_URL}/api/contact/`, {
     method: 'GET',
-    next: { tags: ['user'] },
+    next: { tags: ['contacts'] },
   });
   return await res.json();
 }
 
-export async function getUsers() {
-  const res = await fetch(`${BASE_URL}/api/user/`, {
+export async function getContact(id: string) {
+  const res = await fetch(`${BASE_URL}/api/contact/${id}/`, {
     method: 'GET',
-    next: { tags: ['users'] },
+    next: { tags: ['contact'] },
   });
   return await res.json();
 }
 
-export async function saveUser(user: User, id?: string) {
-  let url = `${BASE_URL}/api/user`;
+export async function saveContact(contact: Contact, id?: string) {
+  let url = `${BASE_URL}/api/contact`;
   if (id) {
     url = url + '/' + id;
   }
@@ -29,86 +37,77 @@ export async function saveUser(user: User, id?: string) {
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(user),
+    body: JSON.stringify(contact),
   });
   return await res.json();
 }
 
-export async function deleteUser(id: string) {
-  let url = `${BASE_URL}/api/user/${id}`;
+export async function deleteContact(id: string) {
+  let url = `${BASE_URL}/api/contact/${id}`;
   const res = await fetch(url, {
     method: 'DELETE',
   });
   return await res.json();
 }
 
-// Projects
+// Library Images
 
-export async function incrementProjectShares(id: string) {
-  const res = await fetch(`${BASE_URL}/api/project/${id}/shares`, {
-    method: 'GET',
-    next: { tags: ['project'] },
-  });
-  return await res.json();
-}
-
-export async function getProject(id: string) {
-  const res = await fetch(`${BASE_URL}/api/project/${id}`, {
-    method: 'GET',
-    next: { tags: ['project'] },
-  });
-  return await res.json();
-}
-
-export async function getProjectBySlug(slug: string) {
-  const res = await fetch(`${BASE_URL}/api/project/slug/${slug}`, {
-    method: 'GET',
-    next: { tags: ['project'] },
-  });
-  return await res.json();
-}
-
-export async function getProjects() {
-  const res = await fetch(`${BASE_URL}/api/project/`, {
-    method: 'GET',
-    next: { tags: ['projects'] },
-  });
-  return await res.json();
-}
-
-export async function getPublishedProjects() {
-  const res = await fetch(`${BASE_URL}/api/project?published=true`, {
-    method: 'GET',
-    next: { tags: ['projects'] },
-  });
-  return await res.json();
-}
-
-export async function getFeaturedProjects() {
-  const res = await fetch(`${BASE_URL}/api/project?featured=true`, {
-    method: 'GET',
-    next: { tags: ['projects'] },
-  });
-  return await res.json();
-}
-
-export async function saveProject(project: Project, id?: string) {
-  let url = `${BASE_URL}/api/project`;
+export async function uploadImage(imageFile: any, id?: string) {
+  let url = `${BASE_URL}/api/post/upload`;
   if (id) {
     url = url + '/' + id;
   }
   const res = await fetch(url, {
     method: 'POST',
     headers: {
-      'Content-type': 'application/json',
+      'Content-type': 'multipart/form-data',
     },
-    body: JSON.stringify(project),
+    body: imageFile,
   });
   return await res.json();
 }
 
-export async function deleteProject(id: string) {
-  let url = `${BASE_URL}/api/project/${id}`;
+export async function getLibraryImage(id: string) {
+  const res = await fetch(`${BASE_URL}/api/library/${id}`, {
+    method: 'GET',
+    next: { tags: ['library-image'] },
+  });
+  return await res.json();
+}
+
+export async function getLibraryImages() {
+  const res = await fetch(`${BASE_URL}/api/library/`, {
+    method: 'GET',
+    next: { tags: ['library-images'] },
+  });
+  return await res.json();
+}
+
+export async function getPublishedLibraryImages() {
+  const res = await fetch(`${BASE_URL}/api/library?published=true`, {
+    method: 'GET',
+    next: { tags: ['library-images'] },
+  });
+  return await res.json();
+}
+
+export async function saveLibraryImage(image: LibraryImage, id?: string) {
+  let url = `${BASE_URL}/api/library`;
+  if (id) {
+    url = url + '/' + id;
+  }
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'multipart/form-data',
+    },
+    body: JSON.stringify(image),
+  });
+  return await res.json();
+}
+
+export async function deleteLibraryImage(id: string) {
+  let url = `${BASE_URL}/api/library/${id}`;
   const res = await fetch(url, {
     method: 'DELETE',
   });
@@ -188,26 +187,58 @@ export async function deletePost(id: string) {
   return await res.json();
 }
 
-// Contacts
+// Projects
 
-export async function getContacts() {
-  const res = await fetch(`${BASE_URL}/api/contact/`, {
+export async function incrementProjectShares(id: string) {
+  const res = await fetch(`${BASE_URL}/api/project/${id}/shares`, {
     method: 'GET',
-    next: { tags: ['contacts'] },
+    next: { tags: ['project'] },
   });
   return await res.json();
 }
 
-export async function getContact(id: string) {
-  const res = await fetch(`${BASE_URL}/api/contact/${id}/`, {
+export async function getProject(id: string) {
+  const res = await fetch(`${BASE_URL}/api/project/${id}`, {
     method: 'GET',
-    next: { tags: ['contact'] },
+    next: { tags: ['project'] },
   });
   return await res.json();
 }
 
-export async function saveContact(contact: Contact, id?: string) {
-  let url = `${BASE_URL}/api/contact`;
+export async function getProjectBySlug(slug: string) {
+  const res = await fetch(`${BASE_URL}/api/project/slug/${slug}`, {
+    method: 'GET',
+    next: { tags: ['project'] },
+  });
+  return await res.json();
+}
+
+export async function getProjects() {
+  const res = await fetch(`${BASE_URL}/api/project/`, {
+    method: 'GET',
+    next: { tags: ['projects'] },
+  });
+  return await res.json();
+}
+
+export async function getPublishedProjects() {
+  const res = await fetch(`${BASE_URL}/api/project?published=true`, {
+    method: 'GET',
+    next: { tags: ['projects'] },
+  });
+  return await res.json();
+}
+
+export async function getFeaturedProjects() {
+  const res = await fetch(`${BASE_URL}/api/project?featured=true`, {
+    method: 'GET',
+    next: { tags: ['projects'] },
+  });
+  return await res.json();
+}
+
+export async function saveProject(project: Project, id?: string) {
+  let url = `${BASE_URL}/api/project`;
   if (id) {
     url = url + '/' + id;
   }
@@ -216,13 +247,54 @@ export async function saveContact(contact: Contact, id?: string) {
     headers: {
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(contact),
+    body: JSON.stringify(project),
   });
   return await res.json();
 }
 
-export async function deleteContact(id: string) {
-  let url = `${BASE_URL}/api/contact/${id}`;
+export async function deleteProject(id: string) {
+  let url = `${BASE_URL}/api/project/${id}`;
+  const res = await fetch(url, {
+    method: 'DELETE',
+  });
+  return await res.json();
+}
+
+// Users
+
+export async function getUser(id: string) {
+  const res = await fetch(`${BASE_URL}/api/user/${id}/`, {
+    method: 'GET',
+    next: { tags: ['user'] },
+  });
+  return await res.json();
+}
+
+export async function getUsers() {
+  const res = await fetch(`${BASE_URL}/api/user/`, {
+    method: 'GET',
+    next: { tags: ['users'] },
+  });
+  return await res.json();
+}
+
+export async function saveUser(user: User, id?: string) {
+  let url = `${BASE_URL}/api/user`;
+  if (id) {
+    url = url + '/' + id;
+  }
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  });
+  return await res.json();
+}
+
+export async function deleteUser(id: string) {
+  let url = `${BASE_URL}/api/user/${id}`;
   const res = await fetch(url, {
     method: 'DELETE',
   });
