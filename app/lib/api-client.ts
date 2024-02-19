@@ -99,7 +99,7 @@ export async function saveLibraryImage(image: LibraryImage, id?: string) {
   const res = await fetch(url, {
     method: 'POST',
     headers: {
-      'Content-type': 'application/json',
+      'Content-type': 'multipart/form-data',
     },
     body: JSON.stringify(image),
   });

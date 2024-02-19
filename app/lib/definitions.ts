@@ -16,11 +16,11 @@ export type LibraryImage = {
   title: string;
   credit?: string;
   keywords?: string;
-  alt: string;
-  path: string;
-  width: string;
-  height: string;
-  size: string;
+  alt?: string;
+  path?: string;
+  width?: string;
+  height?: string;
+  size?: string;
   status: string;
   date?: Date;
 };

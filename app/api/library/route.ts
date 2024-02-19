@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidateTag } from 'next/cache';
+
 import mongoose from 'mongoose';
+import { writeFile } from 'fs/promises';
 
 import {
   createLibraryImage,

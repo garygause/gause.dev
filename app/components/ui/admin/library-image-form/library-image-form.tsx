@@ -1,7 +1,8 @@
 import React from 'react';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-
+import { writeFile } from 'fs/promises';
+import sharp from 'sharp';
 import { saveLibraryImage } from '@/app/lib/api-client';
 import { LibraryImage } from '@/app/lib/definitions';
 
@@ -18,10 +19,6 @@ export function LibraryImageForm(props: Props) {
     const credit = formData.get('credit') as string;
     const keywords = formData.get('keywords') as string;
     const alt = formData.get('alt') as string;
-    const path = formData.get('path') as string;
-    const width = formData.get('width') as string;
-    const height = formData.get('height') as string;
-    const size = formData.get('size') as string;
     const status = formData.get('status') as string;
 
     const image: LibraryImage = {
@@ -29,13 +26,46 @@ export function LibraryImageForm(props: Props) {
       credit: credit,
       keywords: keywords,
       alt: alt,
-      path: path,
-      width: width,
-      height: height,
-      size: size,
       status: status,
     };
     const { msg, success, data } = await saveLibraryImage(image, _id);
+    let fileName = `image-${data._id}`;
+    let id = data._id;
+
+    // save file
+    const imageFile: File = formData.get('imageFile') as unknown as File;
+    if (imageFile) {
+      try {
+        const bytes = await imageFile.arrayBuffer();
+        const buffer = Buffer.from(bytes);
+
+        const sharpImage = await sharp(buffer);
+        const metadata = await sharpImage.metadata();
+        console.log(metadata);
+        let fileName = `image-${id}-${metadata.width}x${metadata.height}`;
+        if (metadata.format && metadata.format === 'jpeg') {
+          fileName += '.jpg';
+        } else {
+          fileName += '.png';
+        }
+        const filePath = `public/images/library/${fileName}`;
+
+        await writeFile(filePath, buffer);
+
+        const image: LibraryImage = {
+          title: title,
+          path: `/images/library/${fileName}`,
+          width: metadata.width?.toString() || '500',
+          height: metadata.height?.toString() || '500',
+          size: metadata.size?.toString() || '0',
+          status: status,
+        };
+        const { msg, success, data } = await saveLibraryImage(image, id);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     if (success) {
       revalidatePath('/admin/library');
       revalidatePath('/admin/library/edit/[id]', 'page');
@@ -96,43 +126,12 @@ export function LibraryImageForm(props: Props) {
           />
         </div>
         <div>
-          <label htmlFor="path">Path:</label>
+          <label htmlFor="imageFile">File:</label>
           <input
-            type="text"
-            id="path"
-            name="path"
-            defaultValue={props.image?.path}
-            placeholder="Path"
-          />
-        </div>
-        <div>
-          <label htmlFor="width">Width:</label>
-          <input
-            type="text"
-            id="width"
-            name="width"
-            defaultValue={props.image?.width}
-            placeholder="Width"
-          />
-        </div>
-        <div>
-          <label htmlFor="height">Height:</label>
-          <input
-            type="text"
-            id="height"
-            name="height"
-            defaultValue={props.image?.height}
-            placeholder="Height"
-          />
-        </div>
-        <div>
-          <label htmlFor="size">Size:</label>
-          <input
-            type="text"
-            id="size"
-            name="size"
-            defaultValue={props.image?.size}
-            placeholder="Size"
+            type="file"
+            id="imageFile"
+            name="imageFile"
+            placeholder="File"
           />
         </div>
         <div>
@@ -143,7 +142,6 @@ export function LibraryImageForm(props: Props) {
             defaultValue={props.image?.status}
             className="p-3 "
           >
-            <option value="">Status</option>
             <option value="draft">Draft</option>
             <option value="published">Published</option>
           </select>

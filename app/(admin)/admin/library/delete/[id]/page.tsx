@@ -1,6 +1,7 @@
 import React from 'react';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import fs from 'fs/promises';
 
 import { deleteLibraryImage } from '@/app/lib/mongodb';
 import DeleteButton from '@ui/delete-button';
@@ -12,7 +13,11 @@ async function DeleteLibraryImagePage({ params }: { params: { id: string } }) {
   async function deleteHandler() {
     'use server';
     try {
-      await deleteLibraryImage(params.id);
+      const deletedImage = await deleteLibraryImage(params.id);
+      if (deletedImage.path) {
+        await fs.unlink(`public${deletedImage.path}`);
+        console.log(`File ${deletedImage.path} has been deleted.`);
+      }
     } catch (error) {
       console.log(error);
     } finally {

@@ -18,7 +18,6 @@ const imageSchema = new Schema({
   },
   alt: {
     type: String,
-    required: [true, 'Alt is required.'],
     trim: true,
   },
   path: {
@@ -27,12 +26,10 @@ const imageSchema = new Schema({
   },
   width: {
     type: String,
-    required: [true, 'Width is required.'],
     trim: true,
   },
   height: {
     type: String,
-    required: [true, 'Height is required.'],
     trim: true,
   },
   size: {
