@@ -42,6 +42,7 @@ function PostForm(props: PostProps) {
       status: status,
     };
     const { msg, success, data } = await savePost(post, _id);
+
     if (success) {
       revalidatePath('/admin/posts');
       revalidatePath('/admin/posts/edit/[id]', 'page');
@@ -77,7 +78,7 @@ function PostForm(props: PostProps) {
             type="text"
             id="author"
             name="author"
-            defaultValue={props.post?.author}
+            defaultValue="Gary Gause" // {props.post?.author}
             placeholder="Author"
           />
         </div>

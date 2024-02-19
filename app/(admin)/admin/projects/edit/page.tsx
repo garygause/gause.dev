@@ -2,7 +2,7 @@ import React from 'react';
 
 import ProjectForm from '@ui/admin/project-form';
 
-export default function ProjectEditPage() {
+export default function ProjectCreatePage() {
   return (
     <div className="mx-auto w-full">
       <div className="container mx-auto max-w-3xl">

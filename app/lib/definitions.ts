@@ -4,12 +4,25 @@ export type ApiResponse = {
   data: Object | null;
 };
 
-export type User = {
+export type Contact = {
   _id?: string;
-  name: string;
+  fullName: string;
   email: string;
-  password?: string;
-  role: string;
+  message: string;
+};
+
+export type LibraryImage = {
+  _id?: string;
+  title: string;
+  credit?: string;
+  keywords?: string;
+  alt: string;
+  path: string;
+  width: string;
+  height: string;
+  size: string;
+  status: string;
+  date?: Date;
 };
 
 export type Post = {
@@ -48,12 +61,15 @@ export type Project = {
   date?: Date;
 };
 
-export type Contact = {
+export type User = {
   _id?: string;
-  fullName: string;
+  name: string;
   email: string;
-  message: string;
+  password?: string;
+  role: string;
 };
+
+// Tables
 
 export type ContactsTableType = {
   _id: string;
@@ -67,6 +83,15 @@ export type FormattedContactsTable = {
   fullName: string;
   email: string;
   message: string;
+};
+
+export type FormattedLibraryImagesTable = {
+  _id: string;
+  title: string;
+  alt: string;
+  path: string;
+  size: string;
+  status: string;
 };
 
 export type UsersTableType = {

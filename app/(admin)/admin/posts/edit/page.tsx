@@ -2,7 +2,7 @@ import React from 'react';
 
 import PostForm from '@ui/admin/post-form';
 
-export default function PostEditPage() {
+export default function PostCreatePage() {
   return (
     <div className="mx-auto w-full">
       <div className="container mx-auto max-w-3xl">

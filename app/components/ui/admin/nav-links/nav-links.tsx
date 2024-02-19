@@ -21,6 +21,10 @@ const links = [
     href: '/admin/projects',
   },
   { name: 'Users', href: '/admin/users' },
+  {
+    name: 'Library',
+    href: '/admin/library',
+  },
   { name: 'Main Site', href: '/' },
 ];
 
