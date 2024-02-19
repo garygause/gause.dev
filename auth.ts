@@ -64,8 +64,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
           const user = await getUserByEmail(email);
-          console.log('auth.ts user: ');
-          console.log(user);
+          //console.log('auth.ts user: ');
+          //console.log(user);
           if (!user) return null;
           const passwordsMatch = await verifyPassword(password, user.password);
           if (passwordsMatch)
@@ -79,19 +79,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     async jwt({ token }) {
       const userRecord = await getUserByEmail(token.email);
-      console.log('jwt callback:');
-      console.log(userRecord);
+      //console.log('jwt callback:');
+      //console.log(userRecord);
       token.role = userRecord.role;
-      console.log(token);
+      //console.log(token);
       return token;
     },
     async session({ session }) {
       if (!session.user.role) {
         const userRecord = await getUserByEmail(session.user.email);
-        console.log('session callback:');
-        console.log(userRecord);
+        //console.log('session callback:');
+        //console.log(userRecord);
         session.user.role = userRecord.role;
-        console.log(session);
+        //console.log(session);
       }
       return session;
     },
