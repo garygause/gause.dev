@@ -5,6 +5,7 @@ import { writeFile } from 'fs/promises';
 import sharp from 'sharp';
 import { saveLibraryImage } from '@/app/lib/api-client';
 import { LibraryImage } from '@/app/lib/definitions';
+import { EmptyImageError } from '@/app/lib/exceptions';
 
 type Props = {
   image?: LibraryImage;
@@ -38,7 +39,9 @@ export function LibraryImageForm(props: Props) {
       try {
         const bytes = await imageFile.arrayBuffer();
         const buffer = Buffer.from(bytes);
-
+        if (!buffer) {
+          throw new EmptyImageError('No image data');
+        }
         const sharpImage = await sharp(buffer);
         const metadata = await sharpImage.metadata();
         console.log(metadata);

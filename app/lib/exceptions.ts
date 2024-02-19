@@ -11,3 +11,10 @@ export class DatabaseError extends Error {
     this.name = 'DatabaseError';
   }
 }
+
+export class EmptyImageError extends Error {
+  constructor(message = 'The image file is empty.') {
+    super(message);
+    this.name = 'EmptyImageError';
+  }
+}
