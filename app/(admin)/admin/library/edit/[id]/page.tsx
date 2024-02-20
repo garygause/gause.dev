@@ -1,14 +1,14 @@
 import React from 'react';
 
 import LibraryImageForm from '@ui/admin/library-image-form';
-import { getLibraryImage } from '@/app/lib/mongodb';
+import { getLibraryImage } from '@/app/lib/api-client';
 
 export default async function LibraryImageEditPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const data = await getLibraryImage(params.id);
+  const { data } = await getLibraryImage(params.id);
   return (
     <div className="mx-auto w-full">
       <div className="container mx-auto max-w-3xl">
