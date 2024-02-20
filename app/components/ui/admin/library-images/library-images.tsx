@@ -10,14 +10,6 @@ async function LibraryImagesTable({
 }) {
   return (
     <div className="w-full">
-      <div className="mb-8 flex justify-start items-center md:space-x-5">
-        <h1 className=" text-xl md:text-2xl">Library Images</h1>
-        <div className="flex">
-          <Link className="text-lg" href="library/edit">
-            [+]
-          </Link>
-        </div>
-      </div>{' '}
       <div className="mt-6 flow-root">
         <div className="overflow-x-auto">
           <div className="inline-block min-w-full align-middle">
@@ -36,6 +28,9 @@ async function LibraryImagesTable({
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
                       Path
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      Size
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
                       Status
@@ -64,6 +59,9 @@ async function LibraryImagesTable({
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {image.path}
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                        {image.size}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {image.status}
