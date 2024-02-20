@@ -7,6 +7,9 @@ import LibraryGallery from '@ui/admin/library-gallery';
 //import { getLibraryImages } from '@/app/lib/mongodb';
 import { getLibraryImages } from '@/app/lib/api-client';
 
+// NOTE: prevents build errors from trying to fetch data from api during build
+export const dynamic = 'force-dynamic';
+
 export default async function LibraryImagePage() {
   const { msg, success, data } = await getLibraryImages();
   //const data = await getLibraryImages();
