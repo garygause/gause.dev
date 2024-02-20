@@ -21,6 +21,7 @@ export default async function LibraryImageEditPage({
               width={data.width}
               height={data.height}
               alt={data.alt}
+              className="round-md"
             />
           )}
           <LibraryImageForm image={data} />

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getPostBySlug } from '@/app/lib/mongodb';
+import { getPostBySlug, getLibraryImage } from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
 
 export async function GET(
@@ -9,7 +9,10 @@ export async function GET(
 ) {
   const slug = params.slug;
   try {
-    const post = await getPostBySlug(slug);
+    let post = await getPostBySlug(slug);
+    if (post.libraryImage) {
+      post.libraryImageData = await getLibraryImage(post.libraryImage);
+    }
     const response: ApiResponse = {
       msg: ['Success.'],
       success: true,

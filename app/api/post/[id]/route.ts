@@ -2,7 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import { revalidateTag } from 'next/cache';
 
-import { deletePost, getPost, updatePost } from '@/app/lib/mongodb';
+import {
+  deletePost,
+  getPost,
+  updatePost,
+  getLibraryImage,
+} from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
 
 export async function GET(
@@ -11,7 +16,10 @@ export async function GET(
 ) {
   const id = params.id;
   try {
-    const post = await getPost(id);
+    let post = await getPost(id);
+    if (post.libraryImage) {
+      post.libraryImageData = await getLibraryImage(post.libraryImage);
+    }
     const response: ApiResponse = {
       msg: ['Success.'],
       success: true,
@@ -40,10 +48,7 @@ export async function POST(
       keywords,
       summary,
       content,
-      imageSrc,
-      imageWidth,
-      imageHeight,
-      imageAlt,
+      libraryImage,
       slug,
       featured,
       status,
@@ -55,10 +60,7 @@ export async function POST(
       keywords,
       summary,
       content,
-      imageSrc,
-      imageHeight,
-      imageWidth,
-      imageAlt,
+      libraryImage,
       slug,
       featured,
       status,

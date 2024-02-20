@@ -11,7 +11,11 @@ import type { Metadata, ResolvingMetadata } from 'next';
 import rehypeHighlight from 'rehype-highlight';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
-import { getPostBySlug, searchPosts } from '@/app/lib/mongodb';
+import {
+  getPostBySlug,
+  getPublishedPosts,
+  searchPosts,
+} from '@/app/lib/api-client';
 import ShareList from '@ui/share-list';
 import MDXImage from '@ui/mdx-image';
 import BlogList from '@ui/blog-list';
@@ -27,10 +31,8 @@ export async function generateMetadata(
   const {
     _id,
     title,
-    imageSrc,
-    imageHeight,
-    imageWidth,
-    imageAlt,
+    libraryImage,
+    libraryImageData,
     keywords,
     summary,
     content,
@@ -57,11 +59,15 @@ export async function generateMetadata(
       type: 'website',
       images: [
         {
-          url: 'https://gause.dev' + imageSrc,
-          secureUrl: 'https://gause.dev' + imageSrc,
-          width: imageWidth,
-          height: imageHeight,
-          alt: imageAlt,
+          url:
+            'https://gause.dev' +
+            (libraryImageData?.path || '/images/blog/default.png'),
+          secureUrl:
+            'https://gause.dev' +
+            (libraryImageData?.path || '/images/blog/default.png'),
+          width: Number(libraryImageData?.width) || 500,
+          height: Number(libraryImageData?.height) || 500,
+          alt: libraryImageData?.alt || 'default image',
         },
       ],
     },
@@ -85,24 +91,23 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  const allPosts = await searchPosts({ status: 'published' });
-  const morePosts = allPosts?.slice(0, 3);
-  const post = await getPostBySlug(params.slug.slice(-1));
+  const { data: posts } = await getPublishedPosts();
+  const morePosts = posts?.slice(0, 3);
+  const { data: post } = await getPostBySlug(params.slug.slice(-1));
   const {
     _id,
     title,
-    imageSrc,
-    imageHeight,
-    imageWidth,
-    imageAlt,
+    libraryImage,
+    libraryImageData,
     keywords,
     summary,
     content,
     date,
+    slug,
     shares,
   } = post;
 
-  const pageUrl = 'https://gause.dev';
+  const pageUrl = 'https://gause.dev/blog/' + slug;
 
   const dateString = new Date(date).toLocaleDateString('en-us', {
     year: 'numeric',
@@ -118,10 +123,10 @@ export default async function BlogPostPage({
             <div className="overflow-hidden">
               <div className="img-container">
                 <Image
-                  src={imageSrc}
-                  width={+imageWidth}
-                  height={+imageHeight}
-                  alt={imageAlt}
+                  src={libraryImageData?.path || '/images/blog/default.png'}
+                  width={Number(libraryImageData?.width) || 500}
+                  height={Number(libraryImageData?.height) || 500}
+                  alt={libraryImageData?.alt || 'default image'}
                   className="md:rounded-md "
                 />
               </div>

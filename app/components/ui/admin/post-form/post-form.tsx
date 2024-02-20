@@ -1,7 +1,6 @@
 import React from 'react';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-
 import { savePost } from '@/app/lib/api-client';
 import { Post } from '@/app/lib/definitions';
 
@@ -19,10 +18,8 @@ function PostForm(props: PostProps) {
     const keywords = formData.get('keywords') as string;
     const summary = formData.get('summary') as string;
     const content = formData.get('content') as string;
-    const imageSrc = formData.get('imageSrc') as string;
-    const imageHeight = formData.get('imageHeight') as string;
-    const imageWidth = formData.get('imageWidth') as string;
-    const imageAlt = formData.get('imageAlt') as string;
+    const libraryImage = formData.get('libraryImage') as string;
+
     const slug = formData.get('slug') as string;
     const featured = formData.get('featured') as string;
     const status = formData.get('status') as string;
@@ -33,10 +30,7 @@ function PostForm(props: PostProps) {
       keywords: keywords,
       summary: summary,
       content: content,
-      imageSrc: imageSrc,
-      imageHeight: imageHeight,
-      imageWidth: imageWidth,
-      imageAlt: imageAlt,
+      libraryImage: libraryImage,
       slug: slug.toLowerCase(),
       featured: featured,
       status: status,
@@ -104,43 +98,13 @@ function PostForm(props: PostProps) {
           />
         </div>
         <div>
-          <label htmlFor="imageSrc">Image:</label>
+          <label htmlFor="libraryImage">Image:</label>
           <input
             type="text"
-            id="imageSrc"
-            name="imageSrc"
-            defaultValue={props.post?.imageSrc}
-            placeholder="Image Src"
-          />
-        </div>
-        <div>
-          <label htmlFor="imagWidth">Image Width:</label>
-          <input
-            type="text"
-            id="imageWidth"
-            name="imageWidth"
-            defaultValue={props.post?.imageWidth}
-            placeholder="Image Width"
-          />
-        </div>
-        <div>
-          <label htmlFor="imageHeight">Image Height:</label>
-          <input
-            type="text"
-            id="imageHeight"
-            name="imageHeight"
-            defaultValue={props.post?.imageHeight}
-            placeholder="Image Height"
-          />
-        </div>
-        <div>
-          <label htmlFor="imageAlt">Image Alt:</label>
-          <input
-            type="text"
-            id="imageAlt"
-            name="imageAlt"
-            defaultValue={props.post?.imageAlt}
-            placeholder="Image Alt"
+            id="libraryImage"
+            name="libraryImage"
+            defaultValue={props.post?.libraryImage}
+            placeholder="Library Image"
           />
         </div>
         <div>
