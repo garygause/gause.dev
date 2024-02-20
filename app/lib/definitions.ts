@@ -32,10 +32,8 @@ export type Post = {
   keywords: string;
   summary: string;
   content: string;
-  imageSrc: string;
-  imageWidth: string;
-  imageHeight: string;
-  imageAlt: string;
+  libraryImage: string;
+  libraryImageData?: LibraryImage;
   slug: string;
   featured: string;
   status: string;

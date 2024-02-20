@@ -10,7 +10,6 @@ const postSchema = new Schema({
   },
   author: {
     type: String,
-    required: [true, 'Author is required.'],
     trim: true,
   },
   keywords: {
@@ -20,6 +19,7 @@ const postSchema = new Schema({
   summary: {
     type: String,
     required: [true, 'Summary is required.'],
+    maxLength: [200, 'Summary must be less than 200 characters'],
     trim: true,
   },
   content: {
@@ -32,24 +32,12 @@ const postSchema = new Schema({
     required: [true, 'Slug is required.'],
     trim: true,
   },
-  imageSrc: {
+  libraryImage: {
     type: String,
-    required: [true, 'Image Src is required.'],
     trim: true,
   },
-  imageWidth: {
-    type: String,
-    required: [true, 'Image Width is required.'],
-    trim: true,
-  },
-  imageHeight: {
-    type: String,
-    required: [true, 'Image Height is required.'],
-    trim: true,
-  },
-  imageAlt: {
-    type: String,
-    required: [true, 'Image Alt is required.'],
+  libraryImageData: {
+    type: Object,
     trim: true,
   },
   featured: {

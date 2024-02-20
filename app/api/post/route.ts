@@ -2,7 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidateTag } from 'next/cache';
 import mongoose from 'mongoose';
 
-import { createPost, getPosts, searchPosts } from '@/app/lib/mongodb';
+import {
+  createPost,
+  getLibraryImage,
+  getPosts,
+  searchPosts,
+} from '@/app/lib/mongodb';
 import { ApiResponse } from '@/app/lib/definitions';
 
 export async function POST(req: NextRequest) {
@@ -12,10 +17,7 @@ export async function POST(req: NextRequest) {
     keywords,
     summary,
     content,
-    imageSrc,
-    imageHeight,
-    imageWidth,
-    imageAlt,
+    libraryImage,
     slug,
     featured,
     status,
@@ -30,10 +32,7 @@ export async function POST(req: NextRequest) {
       keywords,
       summary,
       content,
-      imageSrc,
-      imageHeight,
-      imageWidth,
-      imageAlt,
+      libraryImage,
       slug,
       featured,
       status,
@@ -74,7 +73,12 @@ export async function GET(req: NextRequest) {
   const params = req.nextUrl.searchParams;
   try {
     if (params.get('published')) {
-      const posts = await searchPosts({ status: 'published' });
+      let posts = await searchPosts({ status: 'published' });
+      for (let post of posts) {
+        if (post.libraryImage) {
+          post['libraryImageData'] = await getLibraryImage(post.libraryImage);
+        }
+      }
       const response: ApiResponse = {
         msg: ['Success'],
         success: true,

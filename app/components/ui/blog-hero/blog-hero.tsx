@@ -3,17 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Post } from '@/app/lib/definitions';
 function BlogHero({ post }: { post: Post }) {
-  const {
-    _id,
-    title,
-    author,
-    summary,
-    imageSrc,
-    imageHeight,
-    imageWidth,
-    imageAlt,
-    slug,
-  } = post;
+  const { _id, title, author, summary, libraryImage, libraryImageData, slug } =
+    post;
   return (
     <Link
       href={`/blog/${slug}`}
@@ -33,10 +24,10 @@ function BlogHero({ post }: { post: Post }) {
               <div className="overflow-hidden">
                 <div className="img-container">
                   <Image
-                    src={imageSrc}
-                    width={+imageWidth}
-                    height={+imageHeight}
-                    alt={imageAlt}
+                    src={libraryImageData?.path || '/images/blog/default.png'}
+                    width={Number(libraryImageData?.width) || 500}
+                    height={Number(libraryImageData?.height) || 500}
+                    alt={libraryImageData?.alt || 'default image'}
                     className="rounded-md "
                   />
                 </div>

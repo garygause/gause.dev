@@ -1,10 +1,10 @@
 import React from 'react';
 
 import PostsTable from '@ui/admin/posts';
-import { getPosts } from '@/app/lib/mongodb';
+import { getPosts } from '@/app/lib/api-client';
 
 export default async function PostsPage() {
-  const data = await getPosts();
+  const { data } = await getPosts();
 
   if (!data) {
     return <div>Loading...</div>;

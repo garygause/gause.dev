@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogHomePage() {
-  const { data } = await getPublishedPosts(); //searchPosts({ status: 'published' });
+  const { data } = await getPublishedPosts();
   const featuredPost: Post = data?.shift();
   const posts = data?.slice(0, 3);
   const morePosts = data?.slice(3);

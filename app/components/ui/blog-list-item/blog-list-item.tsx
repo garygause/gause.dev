@@ -10,17 +10,8 @@ type Props = {
 };
 
 function BlogListItem(props: Props) {
-  const {
-    _id,
-    title,
-    author,
-    summary,
-    imageSrc,
-    imageHeight,
-    imageWidth,
-    imageAlt,
-    slug,
-  } = props.post;
+  const { _id, title, author, summary, libraryImage, libraryImageData, slug } =
+    props.post;
 
   const small = props.variant && props.variant === 'small';
 
@@ -36,11 +27,11 @@ function BlogListItem(props: Props) {
               <div className="overflow-hidden">
                 <div className="img-container">
                   <Image
-                    src={imageSrc}
-                    width={+imageWidth}
-                    height={+imageHeight}
-                    alt={imageAlt}
-                    className="rounded-t-md"
+                    src={libraryImageData?.path || '/images/blog/default.png'}
+                    width={Number(libraryImageData?.width) || 500}
+                    height={Number(libraryImageData?.height) || 500}
+                    alt={libraryImageData?.alt || 'default image'}
+                    className="rounded-t-md "
                   />
                 </div>
               </div>
