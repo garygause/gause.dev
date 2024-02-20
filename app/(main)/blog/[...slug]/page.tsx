@@ -86,9 +86,6 @@ const options = {
   },
 };
 
-// NOTE: prevents build errors from trying to fetch data from api during build
-export const dynamic = 'force-dynamic';
-
 export default async function BlogPostPage({
   params,
 }: {
