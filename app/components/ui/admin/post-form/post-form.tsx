@@ -27,7 +27,6 @@ async function PostForm(props: PostProps) {
     };
     return imageOption;
   });
-  console.log(imageOptions);
 
   async function savePostForm(_id: string, formData: FormData) {
     'use server';
@@ -92,9 +91,7 @@ async function PostForm(props: PostProps) {
           />
         </div>
         <div>
-          <label htmlFor="author">
-            Author: <span className="text-palette-red-500">*</span>
-          </label>
+          <label htmlFor="author">Author:</label>
           <input
             type="text"
             id="author"
@@ -148,22 +145,21 @@ async function PostForm(props: PostProps) {
           </select>
         </div>
         <div>
-          <label htmlFor="status">Status:</label>
+          <label htmlFor="status">
+            Status: <span className="text-palette-red-500">*</span>
+          </label>
           <select
             id="status"
             name="status"
             defaultValue={props.post?.status}
             className="p-3 "
           >
-            <option value="">Status</option>
             <option value="draft">Draft</option>
             <option value="published">Published</option>
           </select>
         </div>
         <div>
-          <label htmlFor="content">
-            Content: <span className="text-palette-red-500">*</span>
-          </label>
+          <label htmlFor="content">Content:</label>
           <textarea
             className="h-96"
             id="content"
