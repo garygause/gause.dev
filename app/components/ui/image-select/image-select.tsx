@@ -46,6 +46,7 @@ function ImageSelect({ id, name, defaultValue, options }: ImageSelectProps) {
         className="p-3 "
         onChange={(e) => setImageId(e.target.value)}
       >
+        <option value="">Select an Image</option>
         {options.map((item) => (
           <option key={item.id} value={item.value}>
             {item.label}
