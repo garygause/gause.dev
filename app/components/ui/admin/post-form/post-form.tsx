@@ -1,8 +1,6 @@
 import React from 'react';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import ReactSelect from 'react-select';
-import Image from 'next/image';
 
 import { savePost, getLibraryImages } from '@/app/lib/api-client';
 import { Post, LibraryImage } from '@/app/lib/definitions';
