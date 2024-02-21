@@ -17,15 +17,6 @@ export default async function PostEditPage({
       <div className="container mx-auto max-w-3xl">
         <div className="p-4">
           <h1 className="text-3xl font-bold py-5">Edit Post</h1>
-          {image && (
-            <Image
-              src={image.path}
-              width={Number(image.width)}
-              height={Number(image.height)}
-              alt={image.alt}
-              className="round-md"
-            />
-          )}
           <PostForm post={data} />
         </div>
       </div>

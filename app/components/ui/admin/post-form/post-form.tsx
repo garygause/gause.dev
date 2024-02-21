@@ -1,15 +1,35 @@
 import React from 'react';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { savePost } from '@/app/lib/api-client';
-import { Post } from '@/app/lib/definitions';
+import ReactSelect from 'react-select';
+import Image from 'next/image';
+
+import { savePost, getLibraryImages } from '@/app/lib/api-client';
+import { Post, LibraryImage } from '@/app/lib/definitions';
+import ImageSelect, { ImageOption } from '@ui/image-select';
 
 type PostProps = {
   post?: Post;
 };
 
-function PostForm(props: PostProps) {
+async function PostForm(props: PostProps) {
   const _id = props.post?._id || '';
+
+  const { data: images } = await getLibraryImages();
+  const imageOptions: ImageOption[] = images.map((image: LibraryImage) => {
+    const imageOption: ImageOption = {
+      id: image._id,
+      value: image._id,
+      label: image.title,
+      path: image.path,
+      title: image.title,
+      alt: image.alt,
+      width: Number(image.width),
+      height: Number(image.height),
+    };
+    return imageOption;
+  });
+  console.log(imageOptions);
 
   async function savePostForm(_id: string, formData: FormData) {
     'use server';
@@ -53,6 +73,15 @@ function PostForm(props: PostProps) {
         action={savePostForm.bind(null, _id)}
       >
         <div>
+          <label htmlFor="libraryImage">Image:</label>
+          <ImageSelect
+            defaultValue={props.post?.libraryImage}
+            options={imageOptions}
+            id="libraryImage"
+            name="libraryImage"
+          />
+        </div>
+        <div>
           <label htmlFor="title">
             Title: <span className="text-palette-red-500">*</span>
           </label>
@@ -95,16 +124,6 @@ function PostForm(props: PostProps) {
             name="keywords"
             defaultValue={props.post?.keywords}
             placeholder="Keywords"
-          />
-        </div>
-        <div>
-          <label htmlFor="libraryImage">Image:</label>
-          <input
-            type="text"
-            id="libraryImage"
-            name="libraryImage"
-            defaultValue={props.post?.libraryImage}
-            placeholder="Library Image"
           />
         </div>
         <div>
