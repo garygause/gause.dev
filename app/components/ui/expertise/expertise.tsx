@@ -63,13 +63,6 @@ export function Expertise() {
             Node
           </Link>
           <Link
-            href="https://go.dev/"
-            target="_blank"
-            className="border rounded px-6 py-2 border-palette-brown hover:bg-palette-brown hover:text-white"
-          >
-            Go
-          </Link>
-          <Link
             href="https://www.python.org/"
             target="_blank"
             className="border rounded px-6 py-2 border-palette-brown hover:bg-palette-brown hover:text-white"
@@ -172,6 +165,13 @@ export function Expertise() {
             className="border rounded px-6 py-2 border-palette-brown  hover:bg-palette-brown hover:text-white"
           >
             React Native
+          </Link>
+          <Link
+            href="https://kotlinlang.org/"
+            target="_blank"
+            className="border rounded px-6 py-2 border-palette-brown hover:bg-palette-brown hover:text-white"
+          >
+            Kotlin
           </Link>
           <Link
             href="https://en.wikipedia.org/wiki/Java_(programming_language)"
