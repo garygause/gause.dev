@@ -14,18 +14,8 @@ export function Hero() {
             Enterprise Grade Software Development
           </h1>
           <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-            <span className="line-through">
-              Web to mobile, personal to enterprise, professional software
-              development at freelance prices done by me, Gary Gause,
-              personally.
-            </span>
-            <span className="mt-6 block">
-              Now a{' '}
-              <span className="font-medium text-palette-red">
-                Senior Full-Stack Developer
-              </span>{' '}
-              at PayRange.
-            </span>
+            Web to mobile, personal to enterprise, professional software
+            development at freelance prices done by me, Gary Gause, personally.
           </p>
           <a
             href="/contact"
