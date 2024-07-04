@@ -13,13 +13,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "next build;",
+    "deploy": "next build && npm run reload",
+    "pmstart": "pm2 start npm --name \"gause.dev\" -- run start -- -p 3000",
     "reload": "pm2 reload gause.dev",
+    "restart": "pm2 restart gause.dev",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^2.3.3",
+    "@jade-and-lotus/jade-api-client": "^1.2.35",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.1.0",
