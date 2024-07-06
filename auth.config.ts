@@ -1,3 +1,7 @@
+/**
+ * DEPRECATED - DO NOT USE, EDGE RUNTIME ONLY
+ */
+
 import type { NextAuthConfig } from 'next-auth';
 
 // import Apple from "next-auth/providers/apple"

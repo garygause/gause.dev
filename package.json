@@ -13,16 +13,18 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "next build && npm run reload",
+    "deploy": "next build && npm run restart",
     "pmstart": "pm2 start npm --name \"gause.dev\" -- run start -- -p 3000",
-    "reload": "pm2 reload gause.dev",
     "restart": "pm2 restart gause.dev",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "uplibs": "npm update @jade-and-lotus/jade-api-client && npm update @jade-and-lotus/jade-ui"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^2.3.3",
+    "@heroicons/react": "^2.1.4",
     "@jade-and-lotus/jade-api-client": "^1.2.35",
+    "@jade-and-lotus/jade-ui": "^1.0.4",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.1.0",
@@ -32,6 +34,7 @@
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "dotenv": "^16.4.5",
     "lucide-react": "^0.323.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.1",
@@ -46,6 +49,7 @@
     "remark-gfm": "^4.0.0",
     "sharp": "^0.33.2",
     "tailwind-merge": "^2.2.1",
+    "use-debounce": "^10.0.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
