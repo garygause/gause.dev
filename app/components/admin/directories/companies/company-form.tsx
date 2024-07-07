@@ -54,6 +54,17 @@ export default async function CompanyForm({
           />
         </div>
         <div>
+          <label htmlFor="jobsUrl">Jobs URL:</label>
+          <input
+            type="text"
+            id="jobsUrl"
+            name="jobsUrl"
+            defaultValue={company?.jobsUrl}
+            placeholder="Jobs URL"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
           <label htmlFor="slug">
             Slug: <span className="text-palette-red-500">*</span>
           </label>
