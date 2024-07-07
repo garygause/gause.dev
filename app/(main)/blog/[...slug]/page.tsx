@@ -74,9 +74,10 @@ export default async function BlogPostPage({
   const slug = params.slug.slice(-1);
 
   const client = getJadeClient();
-  const { data: posts } = await client.blogs.getPosts(); //searchPosts('status=published');
+  const { data: posts } = await client.blogs.searchPosts(
+    'status=published&limit=3&orderby=isFeatured desc'
+  );
   const { data: post } = await client.blogs.getPostBySlug(slug);
-  const morePosts = posts?.slice(0, 3);
 
   const pageUrl = 'https://gause.dev/blog/' + slug;
   const dateString = new Date(post.datePublished).toLocaleDateString('en-us', {
@@ -129,7 +130,7 @@ export default async function BlogPostPage({
         <h3 className="text-3xl tracking-tight md:text-5xl md:my-10 my-8">
           More <span className="text-palette-brown/50">articles</span>
         </h3>
-        <BlogList posts={morePosts} variant="small" />
+        <BlogList posts={posts} variant="small" />
         <div className="mx-auto flex justify-center items-center w-full">
           <Link
             className="text-2xl mb-10 border py-4 px-10 rounded-lg border-palette-red hover:bg-palette-brown hover:text-white"
