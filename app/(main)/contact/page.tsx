@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
-import ContactForm from '@/app/components/ui/contact-form';
+//import ContactForm from '@/app/components/ui/contact-form';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://gause.dev'),
@@ -37,10 +37,7 @@ export default function ContactPage() {
       <div className="container mx-auto max-w-3xl">
         <div className="py-10 px-4">
           <h1 className="text-4xl md:text-5xl pb-10">Contact Me</h1>
-          <p>
-            Please fill in the form below and I will get back to you right away!
-          </p>
-          <p className="py-4">Or contact me directly:</p>
+          <p className="py-4">Please contact me directly:</p>
 
           <div className="space-x-4">
             <Link
@@ -59,8 +56,6 @@ export default function ContactPage() {
               360.722.9772
             </Link>
           </div>
-
-          <ContactForm />
         </div>
       </div>
     </div>

@@ -1,15 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 
-import ProjectList from '@ui/project-list';
 import { PortfolioItem, MultiImagePortfolioItem } from '../portfolio-item';
-import { getPublishedProjects } from '@/app/lib/api-client';
 
 export default async function PortfolioTeaser() {
-  // this is cached by next fetch caching so it is quick enough to get all posts
-  // TODO: limit posts as the number grows
-  const { data } = await getPublishedProjects();
-  const projects = data?.slice(0, 3);
   return (
     <div className="max-w-screen-xl px-4 mx-auto">
       <div>

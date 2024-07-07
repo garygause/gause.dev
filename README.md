@@ -4,7 +4,7 @@ This is the code for my portfolio website located at [gause.dev](https://gause.d
 
 # Stack
 
-Nextjs 14, App Routing, MDX, Javascript, Typescript, Tailwind CSS, MongoDB
+Nextjs 14, App Routing, MDX, Javascript, Typescript, Tailwind CSS, Jade API (PostgreSQL, Express)
 
 # Usage
 
