@@ -26,12 +26,12 @@ export default async function CompaniesTable({
                       <p className="text-xl font-medium">{company?.name}</p>
                     </div>
                     <div>
-                      <Link href={company?.url}>
+                      <Link href={company?.url} target="_blank">
                         <p className="text-xl font-medium">{company?.url}</p>
                       </Link>
                     </div>
                     <div>
-                      <Link href={company?.jobsUrl || ''}>
+                      <Link href={company?.jobsUrl || ''} target="_blank">
                         <p className="text-xl font-medium">Jobs</p>
                       </Link>
                     </div>
@@ -74,10 +74,14 @@ export default async function CompaniesTable({
                       {company.name}
                     </td>
                     <td className="whitespace-nowrap px-3 py-3">
-                      <Link href={company?.url}>{company.url}</Link>
+                      <Link href={company?.url} target="_blank">
+                        {company.url}
+                      </Link>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3">
-                      <Link href={company?.jobsUrl || ''}>Jobs</Link>
+                      <Link href={company?.jobsUrl || ''} target="_blank">
+                        Jobs
+                      </Link>
                     </td>
                     <td className="whitespace-nowrap py-3 pl-6 pr-3">
                       <div className="flex justify-end gap-3">

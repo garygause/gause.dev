@@ -78,6 +78,58 @@ export default async function CompanyForm({
           />
         </div>
         <div>
+          <label htmlFor="linkedIn">
+            LinkedIn: <span className="text-palette-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="linkedIn"
+            name="linkedIn"
+            defaultValue={company?.linkedIn}
+            placeholder="LinkedIn"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
+          <label htmlFor="instagram">
+            Instagram: <span className="text-palette-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="instagram"
+            name="uinstagramrl"
+            defaultValue={company?.instagram}
+            placeholder="Instagram"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
+          <label htmlFor="facebook">
+            Facebook: <span className="text-palette-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="facebook"
+            name="facebook"
+            defaultValue={company?.facebook}
+            placeholder="Facebook"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
+          <label htmlFor="otherSocial">
+            Other Social: <span className="text-palette-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="otherSocial"
+            name="otherSocial"
+            defaultValue={company?.otherSocial}
+            placeholder="Other Social"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
           <label htmlFor="keywords">Keywords:</label>
           <input
             type="text"
