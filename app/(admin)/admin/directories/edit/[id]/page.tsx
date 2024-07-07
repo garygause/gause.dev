@@ -23,7 +23,7 @@ export default async function DirectoryEditPage({
     <main>
       <BreadCrumbs
         breadcrumbs={[
-          { label: 'Directory', href: PATHS.dashboard },
+          { label: 'Directory', href: PATHS.home },
           {
             label: 'Settings',
             href: `${PATHS.directoriesEdit}/${directory.id}`,

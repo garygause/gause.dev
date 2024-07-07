@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BlogForm } from '@admin/blogs';
-import { BreadCrumbs } from '@ui/breadcrumbs';
+import { BreadCrumbs } from '@jade-and-lotus/jade-ui';
 import { PATHS } from '@/app/lib/constants';
 
 export default function CreateBlogPage() {

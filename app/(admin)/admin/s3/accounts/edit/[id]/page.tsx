@@ -21,7 +21,7 @@ export default async function S3AccountEditPage({
     <main>
       <BreadCrumbs
         breadcrumbs={[
-          { label: 'S3', href: PATHS.dashboard },
+          { label: 'S3', href: PATHS.home },
           {
             label: 'Settings',
             href: `${PATHS.s3AccountsEdit}/${account.id}`,

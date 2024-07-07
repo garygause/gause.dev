@@ -34,7 +34,7 @@ export default async function DirectoryForm({
         </div>
         <div className="mt-6 mr-6 flex flex-row justify-end gap-4">
           <Link
-            href={PATHS.dashboard}
+            href={PATHS.home}
             className="flex h-10 items-center rounded-lg bg-gray-100 px-4 font-medium text-gray-600 transition-colors hover:bg-gray-200"
           >
             Cancel

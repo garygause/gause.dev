@@ -9,7 +9,7 @@ export default function CreateCustomerPage() {
     <main>
       <BreadCrumbs
         breadcrumbs={[
-          { label: 'S3Accounts', href: PATHS.dashboard },
+          { label: 'S3Accounts', href: PATHS.home },
           {
             label: 'Create S3Account',
             href: PATHS.s3AccountsEdit,

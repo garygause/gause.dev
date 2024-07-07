@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import ThemeProvider from '@ui/theme-provider';
-import SideNav from '@ui/admin/sidenav';
+import SideNav from '@admin/layout';
 import ClientSessionProvider from '@app/components/client-session-provider';
 
 import '@/app/globals.css';

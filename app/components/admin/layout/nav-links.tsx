@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Store } from '@jade-and-lotus/jade-api-client';
 import { PATHS } from '@/app/lib/constants';
 
 export default function NavLinks() {

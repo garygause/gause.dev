@@ -21,7 +21,7 @@ export default async function BlogEditPage({
     <main>
       <BreadCrumbs
         breadcrumbs={[
-          { label: 'Blog', href: PATHS.dashboard },
+          { label: 'Blog', href: PATHS.home },
           {
             label: 'Settings',
             href: `${PATHS.blogsEdit}/${blog.id}`,

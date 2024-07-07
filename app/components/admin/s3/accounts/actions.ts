@@ -29,7 +29,7 @@ export async function saveS3AccountForm(id: string, formData: FormData) {
 
   revalidatePath(PATHS.s3Accounts);
   revalidatePath(PATHS.s3AccountsEdit, 'page');
-  redirect(PATHS.dashboard);
+  redirect(PATHS.home);
   //redirect(PATHS.s3Accounts);
 }
 
