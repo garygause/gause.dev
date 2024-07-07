@@ -23,6 +23,7 @@ export async function saveCompanyForm(id: string, formData: FormData) {
   const notes = formData.get('notes') as string;
   const stack = formData.get('stack') as string;
   const numEmployees = formData.get('numEmployees') as string;
+  const valuation = formData.get('valuation') as string;
   const address = formData.get('address') as string;
   const email = formData.get('email') as string;
   const phone = formData.get('phone') as string;
@@ -54,6 +55,7 @@ export async function saveCompanyForm(id: string, formData: FormData) {
         notes: notes,
         stack: stack,
         numEmployees: numEmployees,
+        valuation: valuation,
         address: address,
         email: email,
         phone: phone,
@@ -76,6 +78,7 @@ export async function saveCompanyForm(id: string, formData: FormData) {
         notes: notes,
         stack: stack,
         numEmployees: numEmployees,
+        valuation: valuation,
         address: address,
         email: email,
         phone: phone,
