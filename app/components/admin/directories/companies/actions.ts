@@ -14,6 +14,10 @@ export async function saveCompanyForm(id: string, formData: FormData) {
   const name = formData.get('name') as string;
   const url = formData.get('url') as string;
   const jobsUrl = formData.get('jobsUrl') as string;
+  const linkedIn = formData.get('linkedIn') as string;
+  const facebook = formData.get('facebook') as string;
+  const instagram = formData.get('instagram') as string;
+  const otherSocial = formData.get('otherSocial') as string;
 
   const slug = formData.get('slug') as string;
   const keywords = formData.get('keywords') as string;
@@ -48,6 +52,10 @@ export async function saveCompanyForm(id: string, formData: FormData) {
         name: name,
         url: url,
         jobsUrl: jobsUrl,
+        linkedIn: linkedIn,
+        instagram: instagram,
+        facebook: facebook,
+        otherSocial: otherSocial,
         slug: slug,
         keywords: keywords,
         summary: summary,
@@ -71,6 +79,10 @@ export async function saveCompanyForm(id: string, formData: FormData) {
         name: name,
         url: url,
         jobsUrl: jobsUrl,
+        linkedIn: linkedIn,
+        instagram: instagram,
+        facebook: facebook,
+        otherSocial: otherSocial,
         slug: slug,
         keywords: keywords,
         summary: summary,
