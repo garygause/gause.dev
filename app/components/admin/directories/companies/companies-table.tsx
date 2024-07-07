@@ -3,6 +3,7 @@ import React from 'react';
 import { UpdateButton, DeleteButton } from '@jade-and-lotus/jade-ui';
 import { Company } from '@jade-and-lotus/jade-api-client';
 import { PATHS } from '@/app/lib/constants';
+import Link from 'next/link';
 
 export default async function CompaniesTable({
   companies,
@@ -25,10 +26,14 @@ export default async function CompaniesTable({
                       <p className="text-xl font-medium">{company?.name}</p>
                     </div>
                     <div>
-                      <p className="text-xl font-medium">{company?.url}</p>
+                      <Link href={company?.url}>
+                        <p className="text-xl font-medium">{company?.url}</p>
+                      </Link>
                     </div>
                     <div>
-                      <p className="text-xl font-medium">{company?.slug}</p>
+                      <Link href={company?.jobsUrl || ''}>
+                        <p className="text-xl font-medium">Jobs</p>
+                      </Link>
                     </div>
                     <div className="flex justify-end gap-2">
                       <UpdateButton
@@ -52,7 +57,7 @@ export default async function CompaniesTable({
                     URL
                   </th>
                   <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
-                    Slug
+                    Jobs
                   </th>
                   <th scope="col" className="relative py-3 pl-6 pr-3">
                     <span className="sr-only">Edit</span>
@@ -69,10 +74,10 @@ export default async function CompaniesTable({
                       {company.name}
                     </td>
                     <td className="whitespace-nowrap px-3 py-3">
-                      {company.url}
+                      <Link href={company?.url}>{company.url}</Link>
                     </td>
                     <td className="whitespace-nowrap px-3 py-3">
-                      {company.slug}
+                      <Link href={company?.jobsUrl || ''}>Jobs</Link>
                     </td>
                     <td className="whitespace-nowrap py-3 pl-6 pr-3">
                       <div className="flex justify-end gap-3">
