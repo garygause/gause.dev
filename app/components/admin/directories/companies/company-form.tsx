@@ -149,6 +149,21 @@ export default async function CompanyForm({
           </div>
         </div>
         <div className="mb-4">
+          <label htmlFor="valuation" className="mb-2 block font-medium">
+            Valuation:
+          </label>
+          <div className="relative mt-2 rounded-md">
+            <input
+              id="valuation"
+              name="valuation"
+              type="text"
+              defaultValue={company?.valuation}
+              placeholder="Valuation"
+              className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+            />
+          </div>
+        </div>
+        <div className="mb-4">
           <label htmlFor="stack" className="mb-2 block font-medium">
             Stack:
           </label>
