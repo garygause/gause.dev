@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 import { S3File } from '@jade-and-lotus/jade-api-client';
 import { UpdateButton, DeleteButton } from '@jade-and-lotus/jade-ui';
@@ -48,13 +49,13 @@ export default async function FilesTable({ files }: { files: S3File[] }) {
               <thead className="rounded-lg text-left font-normal">
                 <tr>
                   <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                    File
+                  </th>
+                  <th scope="col" className="px-4 py-5 font-medium">
                     Name
                   </th>
                   <th scope="col" className="px-3 py-5 font-medium">
                     Alt
-                  </th>
-                  <th scope="col" className="px-3 py-5 font-medium">
-                    File
                   </th>
                   <th scope="col" className="px-3 py-5 font-medium">
                     Bucket
@@ -76,15 +77,27 @@ export default async function FilesTable({ files }: { files: S3File[] }) {
                     key={file.id}
                     className="w-full border-b py-3 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                   >
-                    <td className="whitespace-nowrap px-3 py-3">{file.name}</td>
-                    <td className="whitespace-nowrap px-3 py-3">{file?.alt}</td>
                     <td className="whitespace-nowrap px-3 py-3">
                       {file?.url && (
-                        <Link href={file?.url} target="_blank">
-                          File
+                        <Link href={file?.url} target="_blank" className="">
+                          <div className="rounded-md bg-white text-center">
+                            {(file?.type === 'jpg' || file?.type === 'png') && (
+                              <Image
+                                src={file?.url || ''}
+                                width={Number(file?.width) * 0.25}
+                                height={Number(file?.height) * 0.25}
+                                alt={file?.alt || 'default image'}
+                                className="rounded-md"
+                              />
+                            )}
+                            File
+                          </div>
                         </Link>
                       )}
                     </td>
+                    <td className="whitespace-nowrap px-3 py-3">{file.name}</td>
+                    <td className="whitespace-nowrap px-3 py-3">{file?.alt}</td>
+
                     <td className="whitespace-nowrap px-3 py-3">
                       {file.bucket?.name}
                     </td>

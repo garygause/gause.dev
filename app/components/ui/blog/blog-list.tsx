@@ -2,10 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import BlogListItem from '@ui/blog-list-item';
-import { Post } from '@/app/lib/definitions';
+import BlogListItem from './blog-list-item';
+import { Post } from '@jade-and-lotus/jade-api-client';
 
-function BlogList({
+export default function BlogList({
   posts,
   variant,
 }: {
@@ -29,7 +29,7 @@ function BlogList({
             {posts &&
               posts.map((post) => {
                 return (
-                  <BlogListItem key={post._id} post={post} variant={variant} />
+                  <BlogListItem key={post.id} post={post} variant={variant} />
                 );
               })}
           </div>
@@ -38,5 +38,3 @@ function BlogList({
     </div>
   );
 }
-
-export default BlogList;

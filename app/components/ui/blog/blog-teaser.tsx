@@ -1,14 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 
-import BlogList from '@ui/blog-list';
-import { getPublishedPosts } from '@/app/lib/api-client';
+import BlogList from './blog-list';
+import { Post } from '@jade-and-lotus/jade-api-client';
 
-export default async function BlogTeaser() {
-  // this is cached by next fetch caching so it is quick enough to get all posts
-  // TODO: limit posts as the number grows
-  const { data } = await getPublishedPosts(); //searchPosts({ status: 'published' });
-  const posts = data?.slice(0, 3);
+export default function BlogTeaser({ posts }: { posts: Post[] }) {
   return (
     <div className="max-w-screen-xl px-4 mx-auto">
       <div>

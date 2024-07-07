@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ImageSelect, ImageOption, MetaFields } from '@jade-and-lotus/jade-ui';
+import { MetaFields } from '@ui/meta-fields';
 import { Post, S3File, POSTSTATUS } from '@jade-and-lotus/jade-api-client';
-
+import { ImageSelect, ImageOption } from '@ui/image-select';
 import { savePostForm } from './actions';
 
 import Link from 'next/link';

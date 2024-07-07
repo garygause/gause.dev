@@ -29,6 +29,7 @@ export async function saveFileForm(id: string, formData: FormData) {
     });
   } else {
     const { data, meta } = await client.s3.admin.createFile(formData);
+    console.log('CREATE FILE: ', meta, data);
   }
 
   revalidatePath(PATHS.s3Files);

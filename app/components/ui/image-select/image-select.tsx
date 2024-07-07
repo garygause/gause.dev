@@ -21,7 +21,12 @@ export type ImageSelectProps = {
   options: ImageOption[];
 };
 
-function ImageSelect({ id, name, defaultValue, options }: ImageSelectProps) {
+export default function ImageSelect({
+  id,
+  name,
+  defaultValue,
+  options,
+}: ImageSelectProps) {
   const [imageId, setImageId] = useState(defaultValue);
 
   const image = options.find((image) => {
@@ -56,5 +61,3 @@ function ImageSelect({ id, name, defaultValue, options }: ImageSelectProps) {
     </>
   );
 }
-
-export default ImageSelect;

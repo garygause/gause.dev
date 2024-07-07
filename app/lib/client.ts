@@ -16,7 +16,7 @@ export async function getJadeAdminClient() {
   return client;
 }
 
-export async function getJadeClient() {
+export function getJadeClient() {
   const client = new JadeClient();
   if (process.env.JADE_API_URL) {
     client.setBaseUrl(process.env.JADE_API_URL);

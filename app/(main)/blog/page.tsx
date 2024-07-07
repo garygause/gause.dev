@@ -1,11 +1,10 @@
 import React from 'react';
 import type { Metadata } from 'next';
 
-import BlogList from '@ui/blog-list';
-import BlogHero from '@ui/blog-hero';
+import { BlogList, BlogHero } from '@ui/blog';
 
-import { getPublishedPosts } from '@/app/lib/api-client';
-import { Post } from '@/app/lib/definitions';
+import { getJadeClient } from '@/app/lib/client';
+import { Post } from '@jade-and-lotus/jade-api-client';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://gause.dev'),
@@ -36,13 +35,17 @@ export const metadata: Metadata = {
   },
 };
 
-// NOTE: prevents build errors from trying to fetch data from api during build
-// TODO: remove api calls so this isn't necessary (when done testing api)
-export const dynamic = 'force-dynamic';
+//export const dynamic = 'force-dynamic';
 
 export default async function BlogHomePage() {
-  const { data } = await getPublishedPosts();
-  const featuredPost: Post = data?.shift();
+  const client = getJadeClient();
+  const { data, meta } = await client.blogs.searchPosts(
+    'status=published&limit=20&orderby=isFeatured desc'
+  );
+  console.log('POSTS: ', meta);
+
+  const featuredPost = data?.shift();
+
   const posts = data?.slice(0, 3);
   const morePosts = data?.slice(3);
   return (

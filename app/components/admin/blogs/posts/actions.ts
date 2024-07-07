@@ -61,6 +61,7 @@ export async function savePostForm(id: string, formData: FormData) {
         metaDescription: metaDescription,
         status: status,
       });
+      console.log('CREATE POST: ', meta, data);
     }
   } catch (e) {
     console.log(e);

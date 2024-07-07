@@ -2,16 +2,15 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Post } from '@/app/lib/definitions';
+import { Post } from '@jade-and-lotus/jade-api-client';
 
 type Props = {
   post: Post;
   variant?: 'small' | 'medium' | 'large';
 };
 
-function BlogListItem(props: Props) {
-  const { _id, title, author, summary, libraryImage, libraryImageData, slug } =
-    props.post;
+export default function BlogListItem(props: Props) {
+  const { id, title, summary, image, slug } = props.post;
 
   const small = props.variant && props.variant === 'small';
 
@@ -27,10 +26,10 @@ function BlogListItem(props: Props) {
               <div className="overflow-hidden">
                 <div className="img-container">
                   <Image
-                    src={libraryImageData?.path || '/images/blog/default.png'}
-                    width={Number(libraryImageData?.width) || 500}
-                    height={Number(libraryImageData?.height) || 500}
-                    alt={libraryImageData?.alt || 'default image'}
+                    src={image?.url || '/images/blog/default.png'}
+                    width={Number(image?.width) || 500}
+                    height={Number(image?.height) || 500}
+                    alt={image?.alt || 'default image'}
                     className="rounded-t-md "
                   />
                 </div>
@@ -48,5 +47,3 @@ function BlogListItem(props: Props) {
     </Link>
   );
 }
-
-export default BlogListItem;

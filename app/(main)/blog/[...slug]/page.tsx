@@ -11,14 +11,10 @@ import type { Metadata, ResolvingMetadata } from 'next';
 import rehypeHighlight from 'rehype-highlight';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
-import {
-  getPostBySlug,
-  getPublishedPosts,
-  searchPosts,
-} from '@/app/lib/api-client';
 import ShareList from '@ui/share-list';
 import MDXImage from '@ui/mdx-image';
-import BlogList from '@ui/blog-list';
+import { BlogList } from '@ui/blog';
+import { getJadeClient } from '@/app/lib/client';
 
 import './page.css';
 
@@ -27,47 +23,31 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const slug = params.slug.slice(-1);
-  const post = await getPostBySlug(slug);
-  const {
-    _id,
-    title,
-    libraryImage,
-    libraryImageData,
-    keywords,
-    summary,
-    content,
-    date,
-    shares,
-  } = post;
-
-  // optionally access and extend (rather than replace) parent metadata
-  //const previousImages = (await parent).openGraph?.images || [];
+  const client = getJadeClient();
+  const { data: post } = await client.blogs.getPostBySlug(slug);
 
   return {
     metadataBase: new URL('https://gause.dev'),
-    title: 'gause.dev - ' + title,
-    description: summary,
-    keywords: keywords,
+    title: 'gause.dev - ' + post.metaTitle || post.title,
+    description: post.metaSummary || post.summary,
+    keywords: post.metaKeywords || post.keywords,
     creator: 'Gary Gause',
     robots: 'index follow',
-    alternates: { canonical: 'https://gause.dev/blog/' + slug },
+    alternates: { canonical: post.metaUrl || 'https://gause.dev/blog/' + slug },
     openGraph: {
-      title: 'gause.dev - ' + title,
-      description: summary,
-      url: 'https://gause.dev/blog/' + slug,
+      title: post.metaTitle || 'gause.dev - ' + post.title,
+      description: post.metaSummary || post.summary,
+      url: post.metaUrl || 'https://gause.dev/blog/' + slug,
       siteName: 'gause.dev',
       type: 'website',
       images: [
         {
-          url:
-            'https://gause.dev' +
-            (libraryImageData?.path || '/images/blog/default.png'),
+          url: post.image?.url || 'https://gause.dev/images/blog/default.png',
           secureUrl:
-            'https://gause.dev' +
-            (libraryImageData?.path || '/images/blog/default.png'),
-          width: Number(libraryImageData?.width) || 500,
-          height: Number(libraryImageData?.height) || 500,
-          alt: libraryImageData?.alt || 'default image',
+            post.image?.url || 'https://gause.dev/images/blog/default.png',
+          width: Number(post.image?.width) || 500,
+          height: Number(post.image?.height) || 500,
+          alt: post.image?.alt || 'default image',
         },
       ],
     },
@@ -91,25 +71,15 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  const { data: posts } = await getPublishedPosts();
+  const slug = params.slug.slice(-1);
+
+  const client = getJadeClient();
+  const { data: posts } = await client.blogs.getPosts(); //searchPosts('status=published');
+  const { data: post } = await client.blogs.getPostBySlug(slug);
   const morePosts = posts?.slice(0, 3);
-  const { data: post } = await getPostBySlug(params.slug.slice(-1));
-  const {
-    _id,
-    title,
-    libraryImage,
-    libraryImageData,
-    keywords,
-    summary,
-    content,
-    date,
-    slug,
-    shares,
-  } = post;
 
   const pageUrl = 'https://gause.dev/blog/' + slug;
-
-  const dateString = new Date(date).toLocaleDateString('en-us', {
+  const dateString = new Date(post.datePublished).toLocaleDateString('en-us', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -123,30 +93,30 @@ export default async function BlogPostPage({
             <div className="overflow-hidden">
               <div className="img-container">
                 <Image
-                  src={libraryImageData?.path || '/images/blog/default.png'}
-                  width={Number(libraryImageData?.width) || 500}
-                  height={Number(libraryImageData?.height) || 500}
-                  alt={libraryImageData?.alt || 'default image'}
+                  src={post.image?.url || '/images/blog/default.png'}
+                  width={Number(post.image?.width) || 500}
+                  height={Number(post.image?.height) || 500}
+                  alt={post.image?.alt || 'default image'}
                   className="md:rounded-md "
                 />
               </div>
             </div>
           </div>
           <div className="p-6 flex flex-col md:flex-row items-start">
-            <ShareList shares={shares} url={pageUrl} />
+            <ShareList shares={post.shares} url={pageUrl} />
             <div className="md:ml-8 relative max-w-2xl">
-              <h1 className="text-4xl pb-4 md:pb-10 pt-4">{title}</h1>
+              <h1 className="text-4xl pb-4 md:pb-10 pt-4">{post.title}</h1>
               <div className="text-palette-brown/60 mb-4 md:mb-8">
                 Last updated: <span className="px-2">{dateString}</span>
               </div>
               <div>
                 <p className="mb-3 text-palette-brown first-line:uppercase first-line:tracking-widest first-letter:text-2xl first-letter:font-bold first-letter:text-palette-red">
-                  {summary}
+                  {post.summary}
                 </p>
               </div>
               <div className="mdx-container">
                 <MDXRemote
-                  source={content}
+                  source={post.content}
                   components={components}
                   options={options}
                 />

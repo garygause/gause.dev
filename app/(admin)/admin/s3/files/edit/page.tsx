@@ -8,7 +8,6 @@ import { PATHS } from '@lib/constants';
 export default async function CreateFilePage() {
   const client = await getJadeAdminClient();
   const { data: buckets, meta } = await client.s3.admin.getBuckets();
-  console.log('BUCKETS META: ', meta);
 
   return (
     <main>
