@@ -13,7 +13,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "deploy": "npm i && next build && npm run restart",
+    "deploy": "npm ci && next build && npm run restart",
     "pmstart": "pm2 start npm --name \"gause.dev\" -- run start -- -p 3000",
     "restart": "pm2 restart gause.dev",
     "start": "next start",
