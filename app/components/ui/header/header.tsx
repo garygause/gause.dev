@@ -82,7 +82,7 @@ export default function Header() {
             )}
             {status === 'authenticated' ? (
               <Link
-                href="/profile"
+                href="/admin"
                 className="text-base leading-6 font-medium text-secondary-500 hover:text-palette-brown border-transparent border-b-2 hover:border-palette-brown hover:border-b-palette-brown hover:border-b-2 focus:outline-none focus:text-palette-brown transition duration-300"
               >
                 {session?.user?.name}
