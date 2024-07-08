@@ -22,7 +22,7 @@ export default async function JobsTable({ jobs }: { jobs: Job[] }) {
                       <p className="text-xl font-medium">{job?.title}</p>
                     </div>
                     <div>
-                      <Link href={job?.url} target="_blank">
+                      <Link href={job?.url || ''} target="_blank">
                         <p className="text-xl font-medium">{job?.url}</p>
                       </Link>
                     </div>
