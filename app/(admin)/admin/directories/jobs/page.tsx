@@ -18,10 +18,21 @@ export default async function CompaniesPage({
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
 
+  let filter = 'limit=10';
+  if (currentPage) {
+    filter += `&page=${currentPage}`;
+  }
+
+  if (query) {
+    filter += `&_search=${query}`;
+  }
+  console.log('FILTER: ', filter);
   const client = await getJadeAdminClient();
-  const { data: jobs, meta } = await client.directories.admin.getJobs();
-  console.log('Jobs: ', meta);
-  const totalPages = 6;
+  const { data: jobs, meta } = await client.directories.admin.searchJobs(
+    filter
+  );
+
+  const totalPages = meta.pagination?.pages || 1;
 
   return (
     <div className="w-full">

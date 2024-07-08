@@ -8,7 +8,7 @@ import { getJadeAdminClient } from '@/app/lib/client';
 export default async function CreateJobPage() {
   const client = await getJadeAdminClient();
   const { data: companies, meta } =
-    await client.directories.admin.getCompanies();
+    await client.directories.admin.searchCompanies('status=active');
 
   return (
     <main>
