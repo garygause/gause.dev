@@ -3,8 +3,13 @@ import React from 'react';
 import { JobForm } from '@admin/directories';
 import { BreadCrumbs } from '@jade-and-lotus/jade-ui';
 import { PATHS } from '@/app/lib/constants';
+import { getJadeAdminClient } from '@/app/lib/client';
 
-export default function CreateJobPage() {
+export default async function CreateJobPage() {
+  const client = await getJadeAdminClient();
+  const { data: companies, meta } =
+    await client.directories.admin.getCompanies();
+
   return (
     <main>
       <BreadCrumbs
@@ -16,7 +21,7 @@ export default function CreateJobPage() {
           },
         ]}
       />
-      <JobForm job={null} />
+      <JobForm job={null} companies={companies} />
     </main>
   );
 }

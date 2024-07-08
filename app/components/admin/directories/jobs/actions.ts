@@ -11,6 +11,7 @@ export async function saveJobForm(id: string, formData: FormData) {
 
   const client = await getJadeAdminClient();
 
+  const companyId = formData.get('companyId') as string;
   const title = formData.get('title') as string;
   const url = formData.get('url') as string;
   const companyUrl = formData.get('companyUrl') as string;
@@ -35,6 +36,7 @@ export async function saveJobForm(id: string, formData: FormData) {
   try {
     if (id) {
       const { data, meta } = await client.directories.admin.updateJob(id, {
+        companyId: companyId,
         title: title,
         url: url,
         companyUrl: companyUrl,
@@ -51,6 +53,7 @@ export async function saveJobForm(id: string, formData: FormData) {
       });
     } else {
       const { data, meta } = await client.directories.admin.createJob({
+        companyId: companyId,
         title: title,
         url: url,
         companyUrl: companyUrl,
