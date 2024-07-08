@@ -17,9 +17,9 @@ export default async function SideNav() {
             width="44"
             height="44"
             alt="logo"
-            className="invert"
+            className=""
           />
-          <div className="text-2xl text-palette-jade ">gause.dev</div>
+          <div className="text-2xl text-palette-white ">gause.dev</div>
         </Link>
       </div>
       <NavLinks />
