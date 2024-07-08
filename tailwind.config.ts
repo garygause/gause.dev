@@ -23,6 +23,14 @@ const config: Config = {
           matte: '#121212',
           black: '#0b0708',
           gray: '#2f2a24',
+          jade: {
+            '100': '#11151c',
+            '200': '#212d40',
+            '300': '#3ccead',
+            '400': '#71e3ca',
+            '500': '#83f7de',
+            DEFAULT: '#3ccead',
+          },
           red: {
             '50': '#ffcbd1',
             '100': '#f69697',

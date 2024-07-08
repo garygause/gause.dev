@@ -78,9 +78,7 @@ export default async function CompanyForm({
           />
         </div>
         <div>
-          <label htmlFor="linkedIn">
-            LinkedIn: <span className="text-palette-red-500">*</span>
-          </label>
+          <label htmlFor="linkedIn">LinkedIn:</label>
           <input
             type="text"
             id="linkedIn"
@@ -91,9 +89,7 @@ export default async function CompanyForm({
           />
         </div>
         <div>
-          <label htmlFor="instagram">
-            Instagram: <span className="text-palette-red-500">*</span>
-          </label>
+          <label htmlFor="instagram">Instagram:</label>
           <input
             type="text"
             id="instagram"
@@ -104,9 +100,7 @@ export default async function CompanyForm({
           />
         </div>
         <div>
-          <label htmlFor="facebook">
-            Facebook: <span className="text-palette-red-500">*</span>
-          </label>
+          <label htmlFor="facebook">Facebook:</label>
           <input
             type="text"
             id="facebook"
@@ -117,9 +111,7 @@ export default async function CompanyForm({
           />
         </div>
         <div>
-          <label htmlFor="otherSocial">
-            Other Social: <span className="text-palette-red-500">*</span>
-          </label>
+          <label htmlFor="otherSocial">Other Social:</label>
           <input
             type="text"
             id="otherSocial"

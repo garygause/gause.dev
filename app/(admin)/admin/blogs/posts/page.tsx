@@ -18,10 +18,20 @@ export default async function PostsPage({
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
 
-  const client = await getJadeAdminClient();
-  const { data: posts, meta } = await client.blogs.admin.getPosts();
+  let filter = 'limit=10';
+  if (currentPage) {
+    filter += `&page=${currentPage}`;
+  }
 
-  const totalPages = 6;
+  if (query) {
+    filter += `&_search=${query}`;
+  }
+
+  console.log('FILTER: ', filter);
+  const client = await getJadeAdminClient();
+  const { data: posts, meta } = await client.blogs.admin.searchPosts(filter);
+
+  const totalPages = meta.pagination?.pages || 1;
 
   return (
     <div className="w-full">
