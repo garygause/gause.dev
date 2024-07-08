@@ -17,6 +17,8 @@ export default async function JobEditPage({
     return notFound();
   }
 
+  const { data: companies } = await client.directories.admin.getCompanies();
+
   return (
     <main>
       <BreadCrumbs
@@ -28,7 +30,7 @@ export default async function JobEditPage({
           },
         ]}
       />
-      <JobForm job={job} />
+      <JobForm job={job} companies={companies} />
     </main>
   );
 }

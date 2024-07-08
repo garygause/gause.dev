@@ -1,12 +1,18 @@
 import React from 'react';
 import { CheckIcon, ClockIcon } from '@heroicons/react/24/outline';
-import { JOBSTATUS, Job } from '@jade-and-lotus/jade-api-client';
+import { Company, JOBSTATUS, Job } from '@jade-and-lotus/jade-api-client';
 import { saveJobForm } from './actions';
 import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
 import Button from '@ui/button';
 
-export default async function JobForm({ job }: { job: Job | null }) {
+export default async function JobForm({
+  job,
+  companies,
+}: {
+  job: Job | null;
+  companies: Company[];
+}) {
   const id = job?.id || '';
 
   return (
@@ -15,6 +21,25 @@ export default async function JobForm({ job }: { job: Job | null }) {
         className="py-4 mt-4 flex flex-col gap-5"
         action={saveJobForm.bind(null, id)}
       >
+        <div className="mb-4">
+          <label htmlFor="companyId">
+            Company: <span className="text-palette-red-500">*</span>
+          </label>
+          <div className="relative">
+            <select
+              defaultValue={job?.companyId}
+              id="companyId"
+              name="companyId"
+              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 outline-2 placeholder:text-gray-500"
+            >
+              {companies?.map((company) => (
+                <option key={company.id} value={company.id}>
+                  {company.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
         <div>
           <label htmlFor="name">
             Title: <span className="text-palette-red-500">*</span>
