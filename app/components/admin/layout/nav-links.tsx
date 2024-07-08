@@ -52,6 +52,13 @@ export default function NavLinks() {
             <p className="hidden md:block">Companies</p>
           </Link>
           <Link
+            key="Jobs"
+            href={PATHS.directoriesJobs}
+            className="flex h-[48px] grow items-center justify-center gap-2 text-white p-4 font-medium hover:bg-palette-brown hover:text-white md:flex-none md:justify-start md:p-2 md:px-6"
+          >
+            <p className="hidden md:block">Jobs</p>
+          </Link>
+          <Link
             key="People"
             href={PATHS.directoriesPeople}
             className="flex h-[48px] grow items-center justify-center gap-2 text-white p-4 font-medium hover:bg-palette-brown hover:text-white md:flex-none md:justify-start md:p-2 md:px-6"
