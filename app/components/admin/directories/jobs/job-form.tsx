@@ -32,6 +32,7 @@ export default async function JobForm({
               name="companyId"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 outline-2 placeholder:text-gray-500"
             >
+              <option key="noid" value=""></option>
               {companies?.map((company) => (
                 <option key={company.id} value={company.id}>
                   {company.name}
