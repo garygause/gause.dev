@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
 
 export default function NavLinks() {
-  const [isDirectoryVisible, setIsDirectoryVisible] = useState(false);
+  const [isDirectoryVisible, setIsDirectoryVisible] = useState(true);
   const [isBlogVisible, setIsBlogVisible] = useState(true);
-  const [isS3Visible, setIsS3Visible] = useState(false);
-  const [isChannelsVisible, setIsChannelsVisible] = useState(false);
+  const [isS3Visible, setIsS3Visible] = useState(true);
+  const [isChannelsVisible, setIsChannelsVisible] = useState(true);
 
   return (
     <>
@@ -102,7 +102,7 @@ export default function NavLinks() {
         className="p-4 text-palette-jade mt-8 text-xl hover:bg-palette-brown hover:text-white"
         onClick={() => setIsChannelsVisible(!isChannelsVisible)}
       >
-        Sales Channels
+        Channels
       </div>
       {isChannelsVisible && (
         <>
