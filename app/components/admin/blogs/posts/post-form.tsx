@@ -16,6 +16,7 @@ import {
 } from '@heroicons/react/24/outline';
 import Button from '@ui/button';
 import { PATHS } from '@lib/constants';
+import { Status } from '@jade-and-lotus/jade-ui';
 
 export default function PostForm({
   post,
@@ -47,32 +48,26 @@ export default function PostForm({
           <label htmlFor="imageId" className="mb-2 block font-medium">
             Image: <span className="text-palette-red-500">*</span>
           </label>
-          <div className="relative">
-            <ImageSelect
-              defaultValue={post?.imageId || undefined}
-              options={imageOptions}
-              id="imageId"
-              name="imageId"
-            />
-            <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
-          </div>
+          <ImageSelect
+            defaultValue={post?.imageId || undefined}
+            options={imageOptions}
+            id="imageId"
+            name="imageId"
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="title" className="mb-2 block font-medium">
             Title: <span className="text-palette-red-500">*</span>
           </label>
           <div className="relative mt-2 rounded-md">
-            <div className="relative">
-              <input
-                id="title"
-                name="title"
-                type="text"
-                defaultValue={post?.title}
-                placeholder="Title"
-                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 outline-2 placeholder:text-gray-500"
-              />
-              <DocumentTextIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
-            </div>
+            <input
+              id="title"
+              name="title"
+              type="text"
+              defaultValue={post?.title}
+              placeholder="Title"
+              className="peer block w-full rounded-md border border-gray-200 py-2 pl-4 outline-2 placeholder:text-gray-500"
+            />
           </div>
         </div>
         <div className="mb-4">
@@ -80,17 +75,14 @@ export default function PostForm({
             Summary: <span className="text-palette-red-500">*</span>
           </label>
           <div className="relative mt-2 rounded-md">
-            <div className="relative">
-              <input
-                id="summary"
-                name="summary"
-                type="text"
-                defaultValue={post?.summary}
-                placeholder="Summary"
-                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 outline-2 placeholder:text-gray-500"
-              />
-              <DocumentTextIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
-            </div>
+            <input
+              id="summary"
+              name="summary"
+              type="text"
+              defaultValue={post?.summary}
+              placeholder="Summary"
+              className="peer block w-full rounded-md border border-gray-200 py-2 pl-4 outline-2 placeholder:text-gray-500"
+            />
           </div>
         </div>
         <div className="mb-4">
@@ -98,17 +90,14 @@ export default function PostForm({
             Keywords: <span className="text-palette-red-500">*</span>
           </label>
           <div className="relative mt-2 rounded-md">
-            <div className="relative">
-              <input
-                id="keywords"
-                name="keywords"
-                type="text"
-                defaultValue={post?.keywords}
-                placeholder="Keywords"
-                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 outline-2 placeholder:text-gray-500"
-              />
-              <DocumentTextIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
-            </div>
+            <input
+              id="keywords"
+              name="keywords"
+              type="text"
+              defaultValue={post?.keywords}
+              placeholder="Keywords"
+              className="peer block w-full rounded-md border border-gray-200 py-2 pl-4 outline-2 placeholder:text-gray-500"
+            />
           </div>
         </div>
         <div className="mb-4">
@@ -116,17 +105,14 @@ export default function PostForm({
             Slug: <span className="text-palette-red-500">*</span>
           </label>
           <div className="relative mt-2 rounded-md">
-            <div className="relative">
-              <input
-                id="slug"
-                name="slug"
-                type="text"
-                defaultValue={post?.slug}
-                placeholder="Slug"
-                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 outline-2 placeholder:text-gray-500"
-              />
-              <DocumentTextIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
-            </div>
+            <input
+              id="slug"
+              name="slug"
+              type="text"
+              defaultValue={post?.slug}
+              placeholder="Slug"
+              className="peer block w-full rounded-md border border-gray-200 py-2 pl-4 outline-2 placeholder:text-gray-500"
+            />
           </div>
         </div>
         <div className="mb-4">
@@ -169,79 +155,10 @@ export default function PostForm({
           keywords={post?.metaKeywords}
           description={post?.metaDescription}
         />
-        <fieldset>
-          <legend className="mb-2 block font-medium">Status:</legend>
-          <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
-            <div className="flex gap-4">
-              <div className="flex items-center">
-                <input
-                  id="draft"
-                  name="status"
-                  type="radio"
-                  value={POSTSTATUS.draft}
-                  defaultChecked={
-                    post?.status === POSTSTATUS.draft || !post?.status
-                  }
-                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
-                />
-                <label
-                  htmlFor="draft"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-600"
-                >
-                  Draft <ClockIcon className="h-4 w-4" />
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="published"
-                  name="status"
-                  type="radio"
-                  value={POSTSTATUS.published}
-                  defaultChecked={post?.status === POSTSTATUS.published}
-                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
-                />
-                <label
-                  htmlFor="published"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-sm font-medium text-white"
-                >
-                  Published <CheckIcon className="h-4 w-4" />
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="hidden"
-                  name="status"
-                  type="radio"
-                  value={POSTSTATUS.hidden}
-                  defaultChecked={post?.status === POSTSTATUS.hidden}
-                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
-                />
-                <label
-                  htmlFor="hidden"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-sm font-medium text-white"
-                >
-                  Hidden <CheckIcon className="h-4 w-4" />
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="deleted"
-                  name="status"
-                  type="radio"
-                  value={POSTSTATUS.deleted}
-                  defaultChecked={post?.status === POSTSTATUS.deleted}
-                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
-                />
-                <label
-                  htmlFor="deleted"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-sm font-medium text-white"
-                >
-                  Deleted <CheckIcon className="h-4 w-4" />
-                </label>
-              </div>
-            </div>
-          </div>
-        </fieldset>
+        <Status
+          statuses={Object.values(POSTSTATUS)}
+          selectedStatus={post?.status || POSTSTATUS.draft}
+        />
       </div>
       <div className="mt-6 mr-6 flex flex-row justify-end gap-4">
         <Link

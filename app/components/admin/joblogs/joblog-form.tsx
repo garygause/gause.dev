@@ -1,20 +1,23 @@
 import React from 'react';
 
-import { BLOGSTATUS, Blog } from '@jade-and-lotus/jade-api-client';
-import { saveBlogForm } from './actions';
+import { JobLog } from '@jade-and-lotus/jade-api-client';
+import { saveJobLogForm } from './actions';
 import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
-import Button from '@ui/button';
-import { MetaFields, Status } from '@jade-and-lotus/jade-ui';
+import Button from '../../ui/button';
 
-export default async function BlogForm({ blog }: { blog: Blog | null }) {
-  const id = blog?.id || '';
+export default async function JobLogForm({
+  joblog,
+}: {
+  joblog: JobLog | null;
+}) {
+  const id = joblog?.id || '';
 
   return (
     <>
       <form
         className="py-4 mt-4 flex flex-col gap-5"
-        action={saveBlogForm.bind(null, id)}
+        action={saveJobLogForm.bind(null, id)}
       >
         <div>
           <label htmlFor="name">
@@ -24,21 +27,11 @@ export default async function BlogForm({ blog }: { blog: Blog | null }) {
             type="text"
             id="name"
             name="name"
-            defaultValue={blog?.name}
+            defaultValue={joblog?.name}
             placeholder="Name"
             className="dark:bg-palette-white dark:text-palette-black"
           />
         </div>
-        <MetaFields
-          title={blog?.metaTitle}
-          url={blog?.metaUrl}
-          keywords={blog?.metaKeywords}
-          description={blog?.metaDescription}
-        />
-        <Status
-          statuses={Object.values(BLOGSTATUS)}
-          selectedStatus={blog?.status || BLOGSTATUS.active}
-        />
         <div className="mt-6 mr-6 flex flex-row justify-end gap-4">
           <Link
             href={PATHS.home}
@@ -46,7 +39,7 @@ export default async function BlogForm({ blog }: { blog: Blog | null }) {
           >
             Cancel
           </Link>
-          <Button type="submit">Save Blog</Button>
+          <Button type="submit">Save JobLog</Button>
         </div>
       </form>
     </>

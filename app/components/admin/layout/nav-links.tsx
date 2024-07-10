@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
 
 export default function NavLinks() {
-  const [isDirectoryVisible, setIsDirectoryVisible] = useState(true);
+  const [isJobLogVisible, setIsJobLogVisible] = useState(true);
   const [isBlogVisible, setIsBlogVisible] = useState(true);
   const [isS3Visible, setIsS3Visible] = useState(true);
   const [isChannelsVisible, setIsChannelsVisible] = useState(true);
@@ -38,36 +38,36 @@ export default function NavLinks() {
       )}
       <div
         className="p-4 text-palette-jade text-xl hover:bg-palette-brown hover:text-white"
-        onClick={() => setIsDirectoryVisible(!isDirectoryVisible)}
+        onClick={() => setIsJobLogVisible(!isJobLogVisible)}
       >
-        Directory
+        JobLog
       </div>
-      {isDirectoryVisible && (
+      {isJobLogVisible && (
         <>
           <Link
             key="Companies"
-            href={PATHS.directoriesCompanies}
+            href={PATHS.joblogsCompanies}
             className="flex h-[48px] grow items-center justify-center gap-2 text-white p-4 font-medium hover:bg-palette-brown hover:text-white md:flex-none md:justify-start md:p-2 md:px-6"
           >
             <p className="hidden md:block">Companies</p>
           </Link>
           <Link
             key="Jobs"
-            href={PATHS.directoriesJobs}
+            href={PATHS.joblogsJobs}
             className="flex h-[48px] grow items-center justify-center gap-2 text-white p-4 font-medium hover:bg-palette-brown hover:text-white md:flex-none md:justify-start md:p-2 md:px-6"
           >
             <p className="hidden md:block">Jobs</p>
           </Link>
           <Link
             key="People"
-            href={PATHS.directoriesPeople}
+            href={PATHS.joblogsPeople}
             className="flex h-[48px] grow items-center justify-center gap-2 text-white p-4 font-medium hover:bg-palette-brown hover:text-white md:flex-none md:justify-start md:p-2 md:px-6"
           >
             <p className="hidden md:block">People</p>
           </Link>
           <Link
             key="Websites"
-            href={PATHS.directoriesWebsites}
+            href={PATHS.joblogsWebsites}
             className="flex h-[48px] grow items-center justify-center gap-2 text-white p-4 font-medium hover:bg-palette-brown hover:text-white md:flex-none md:justify-start md:p-2 md:px-6"
           >
             <p className="hidden md:block">Websites</p>
