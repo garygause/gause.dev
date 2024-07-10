@@ -11,6 +11,7 @@ export async function saveCompanyForm(id: string, formData: FormData) {
 
   const client = await getJadeAdminClient();
 
+  const companyType = formData.get('companyType') as string;
   const name = formData.get('name') as string;
   const url = formData.get('url') as string;
   const jobsUrl = formData.get('jobsUrl') as string;
@@ -49,6 +50,7 @@ export async function saveCompanyForm(id: string, formData: FormData) {
   try {
     if (id) {
       const { data, meta } = await client.directories.admin.updateCompany(id, {
+        companyType: companyType,
         name: name,
         url: url,
         jobsUrl: jobsUrl,
@@ -76,6 +78,7 @@ export async function saveCompanyForm(id: string, formData: FormData) {
       });
     } else {
       const { data, meta } = await client.directories.admin.createCompany({
+        companyType: companyType,
         name: name,
         url: url,
         jobsUrl: jobsUrl,

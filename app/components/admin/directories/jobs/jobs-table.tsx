@@ -6,6 +6,7 @@ import { PATHS } from '@/app/lib/constants';
 import Link from 'next/link';
 
 export default async function JobsTable({ jobs }: { jobs: Job[] }) {
+  console.log('JOBSTABLE: ', jobs[0]);
   return (
     <>
       <div className="mt-6 flow-root">
@@ -27,8 +28,10 @@ export default async function JobsTable({ jobs }: { jobs: Job[] }) {
                       </Link>
                     </div>
                     <div>
-                      <Link href={job?.companyUrl || ''} target="_blank">
-                        <p className="text-xl font-medium">Company</p>
+                      <Link href={job?.company?.url || ''} target="_blank">
+                        <p className="text-xl font-medium">
+                          {job?.company?.name || 'Company'}
+                        </p>
                       </Link>
                     </div>
                     <div className="flex justify-end gap-2">

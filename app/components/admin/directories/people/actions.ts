@@ -14,6 +14,7 @@ export async function savePersonForm(id: string, formData: FormData) {
   const firstName = formData.get('firstName') as string;
   const lastName = formData.get('lastName') as string;
   const slug = formData.get('slug') as string;
+  const status = formData.get('status') as string;
 
   try {
     if (id) {
@@ -21,12 +22,14 @@ export async function savePersonForm(id: string, formData: FormData) {
         firstName: firstName,
         lastName: lastName,
         slug: slug,
+        status: status,
       });
     } else {
       const { data, meta } = await client.directories.admin.createPerson({
         firstName: firstName,
         lastName: lastName,
         slug: slug,
+        status: status,
       });
     }
   } catch (e) {

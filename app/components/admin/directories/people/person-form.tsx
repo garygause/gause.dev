@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Person } from '@jade-and-lotus/jade-api-client';
+import { PERSONSTATUS, Person } from '@jade-and-lotus/jade-api-client';
 import { savePersonForm } from './actions';
 import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
 import Button from '@ui/button';
+import { Status } from '@jade-and-lotus/jade-ui';
 
 export default async function PersonForm({
   person,
@@ -58,6 +59,10 @@ export default async function PersonForm({
             className="dark:bg-palette-white dark:text-palette-black"
           />
         </div>
+        <Status
+          statuses={Object.values(PERSONSTATUS)}
+          selectedStatus={person?.status || PERSONSTATUS.active}
+        />
         <div className="mt-6 mr-6 flex flex-row justify-end gap-4">
           <Link
             href={PATHS.directoriesPeople}

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Website } from '@jade-and-lotus/jade-api-client';
+import { Website, WEBSITESTATUS } from '@jade-and-lotus/jade-api-client';
+import { Status } from '@jade-and-lotus/jade-ui';
 import { saveWebsiteForm } from './actions';
 import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
@@ -58,6 +59,10 @@ export default async function WebsiteForm({
             className="dark:bg-palette-white dark:text-palette-black"
           />
         </div>
+        <Status
+          statuses={Object.values(WEBSITESTATUS)}
+          selectedStatus={website?.status || WEBSITESTATUS.active}
+        />
         <div className="mt-6 mr-6 flex flex-row justify-end gap-4">
           <Link
             href={PATHS.directoriesWebsites}

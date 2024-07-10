@@ -1,18 +1,15 @@
 import React from 'react';
 import {
-  CheckIcon,
-  ClockIcon,
-  PhotoIcon,
-  UserCircleIcon,
-  DocumentTextIcon,
-  StarIcon,
-} from '@heroicons/react/24/outline';
-import { COMPANYSTATUS, Company } from '@jade-and-lotus/jade-api-client';
+  COMPANYSTATUS,
+  COMPANYTYPE,
+  Company,
+} from '@jade-and-lotus/jade-api-client';
 import { saveCompanyForm } from './actions';
 import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
 import Button from '@ui/button';
 import { MetaFields } from '@ui/meta-fields';
+import { Status } from '@jade-and-lotus/jade-ui';
 
 export default async function CompanyForm({
   company,
@@ -27,6 +24,26 @@ export default async function CompanyForm({
         className="py-4 mt-4 flex flex-col gap-5"
         action={saveCompanyForm.bind(null, id)}
       >
+        <div className="mb-4">
+          <label htmlFor="companyType">
+            Company Type: <span className="text-palette-red-500">*</span>
+          </label>
+          <div className="relative">
+            <select
+              defaultValue={company?.companyType}
+              id="companyType"
+              name="companyType"
+              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-4 outline-2 placeholder:text-gray-500"
+            >
+              <option key="noid" value=""></option>
+              {Object.values(COMPANYTYPE).map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
         <div>
           <label htmlFor="name">
             Name: <span className="text-palette-red-500">*</span>
@@ -293,80 +310,10 @@ export default async function CompanyForm({
           keywords={company?.metaKeywords}
           description={company?.metaDescription}
         />
-        <fieldset>
-          <legend className="mb-2 block font-medium">Status:</legend>
-          <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
-            <div className="flex gap-4">
-              <div className="flex items-center">
-                <input
-                  id="inactive"
-                  name="status"
-                  type="radio"
-                  value={COMPANYSTATUS.inactive}
-                  defaultChecked={
-                    company?.status === COMPANYSTATUS.inactive ||
-                    !company?.status
-                  }
-                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
-                />
-                <label
-                  htmlFor="inactive"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-600"
-                >
-                  Inactive <ClockIcon className="h-4 w-4" />
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="active"
-                  name="status"
-                  type="radio"
-                  value={COMPANYSTATUS.active}
-                  defaultChecked={company?.status === COMPANYSTATUS.active}
-                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
-                />
-                <label
-                  htmlFor="active"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-sm font-medium text-white"
-                >
-                  Active <CheckIcon className="h-4 w-4" />
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="hidden"
-                  name="status"
-                  type="radio"
-                  value={COMPANYSTATUS.hidden}
-                  defaultChecked={company?.status === COMPANYSTATUS.hidden}
-                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
-                />
-                <label
-                  htmlFor="hidden"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-600"
-                >
-                  Hidden <CheckIcon className="h-4 w-4" />
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="deleted"
-                  name="status"
-                  type="radio"
-                  value={COMPANYSTATUS.deleted}
-                  defaultChecked={company?.status === COMPANYSTATUS.deleted}
-                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
-                />
-                <label
-                  htmlFor="deleted"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-600"
-                >
-                  Deleted <CheckIcon className="h-4 w-4" />
-                </label>
-              </div>
-            </div>
-          </div>
-        </fieldset>
+        <Status
+          statuses={Object.values(COMPANYSTATUS)}
+          selectedStatus={company?.status || COMPANYSTATUS.active}
+        />
         <div className="mt-6 mr-6 flex flex-row justify-end gap-4">
           <Link
             href={PATHS.directoriesCompanies}

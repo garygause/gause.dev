@@ -14,6 +14,7 @@ export async function saveWebsiteForm(id: string, formData: FormData) {
   const name = formData.get('name') as string;
   const url = formData.get('url') as string;
   const slug = formData.get('slug') as string;
+  const status = formData.get('status') as string;
 
   try {
     if (id) {
@@ -21,12 +22,14 @@ export async function saveWebsiteForm(id: string, formData: FormData) {
         name: name,
         url: url,
         slug: slug,
+        status: status,
       });
     } else {
       const { data, meta } = await client.directories.admin.createWebsite({
         name: name,
         url: url,
         slug: slug,
+        status: status,
       });
     }
   } catch (e) {

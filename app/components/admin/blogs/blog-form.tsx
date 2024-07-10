@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Blog } from '@jade-and-lotus/jade-api-client';
+import { BLOGSTATUS, Blog } from '@jade-and-lotus/jade-api-client';
 import { saveBlogForm } from './actions';
 import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
 import Button from '@ui/button';
-import { MetaFields } from '@jade-and-lotus/jade-ui';
+import { MetaFields, Status } from '@jade-and-lotus/jade-ui';
 
 export default async function BlogForm({ blog }: { blog: Blog | null }) {
   const id = blog?.id || '';
@@ -34,6 +34,10 @@ export default async function BlogForm({ blog }: { blog: Blog | null }) {
           url={blog?.metaUrl}
           keywords={blog?.metaKeywords}
           description={blog?.metaDescription}
+        />
+        <Status
+          statuses={Object.values(BLOGSTATUS)}
+          selectedStatus={blog?.status || BLOGSTATUS.active}
         />
         <div className="mt-6 mr-6 flex flex-row justify-end gap-4">
           <Link

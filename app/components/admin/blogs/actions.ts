@@ -12,6 +12,7 @@ export async function saveBlogForm(id: string, formData: FormData) {
   const client = await getJadeAdminClient();
 
   const name = formData.get('name') as string;
+  const status = formData.get('status') as string;
   const metaTitle = formData.get('metaTitle') as string;
   const metaUrl = formData.get('metaUrl') as string;
   const metaKeywords = formData.get('metaKeywords') as string;
@@ -25,6 +26,7 @@ export async function saveBlogForm(id: string, formData: FormData) {
         metaUrl: metaUrl,
         metaKeywords: metaKeywords,
         metaDescription: metaDescription,
+        status: status,
       });
     } else {
       const { data, meta } = await client.blogs.admin.createBlog({
@@ -33,6 +35,7 @@ export async function saveBlogForm(id: string, formData: FormData) {
         metaUrl: metaUrl,
         metaKeywords: metaKeywords,
         metaDescription: metaDescription,
+        status: status,
       });
     }
   } catch (e) {
