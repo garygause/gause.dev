@@ -8,7 +8,7 @@ export async function getJadeAdminClient() {
   if (process.env.JADE_API_URL) {
     client.setBaseUrl(process.env.JADE_API_URL);
   }
-  client.setDirectoryId(process.env.JADE_DIR_ID!);
+  client.setJobLogId(process.env.JADE_JOBLOG_ID!);
   client.setBlogId(process.env.JADE_BLOG_ID!);
   client.setS3Id(process.env.JADE_S3_ID!);
   client.setApiKey(process.env.JADE_API_KEY!);
@@ -21,7 +21,7 @@ export function getJadeClient() {
   if (process.env.JADE_API_URL) {
     client.setBaseUrl(process.env.JADE_API_URL);
   }
-  client.setDirectoryId(process.env.JADE_DIR_ID!);
+  client.setJobLogId(process.env.JADE_JOBLOG_ID!);
   client.setBlogId(process.env.JADE_BLOG_ID!);
   client.setS3Id(process.env.JADE_S3_ID!);
   client.setApiKey(process.env.JADE_API_KEY!);
