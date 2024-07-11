@@ -4,9 +4,9 @@ import { UpdateButton, DeleteButton } from '@jade-and-lotus/jade-ui';
 import { JLJob } from '@jade-and-lotus/jade-api-client';
 import { PATHS } from '@/app/lib/constants';
 import Link from 'next/link';
+import { formatDateToLocal } from '@/app/lib/utils';
 
 export default async function JobsTable({ jobs }: { jobs: JLJob[] }) {
-  console.log('JOBSTABLE: ', jobs[0]);
   return (
     <>
       <div className="mt-6 flow-root">
@@ -58,6 +58,12 @@ export default async function JobsTable({ jobs }: { jobs: JLJob[] }) {
                   <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                     Company
                   </th>
+                  <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                    Date Published
+                  </th>
+                  <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                    Status
+                  </th>
                   <th scope="col" className="relative py-3 pl-6 pr-3">
                     <span className="sr-only">Edit</span>
                   </th>
@@ -77,10 +83,14 @@ export default async function JobsTable({ jobs }: { jobs: JLJob[] }) {
                     </td>
                     <td className="whitespace-nowrap px-3 py-3">
                       <Link href={job?.company?.url || ''} target="_blank">
-                        <p className="text-xl font-medium">
-                          {job?.company?.name || 'Company'}
-                        </p>
+                        {job?.company?.name || 'Company'}
                       </Link>
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-3">
+                      {formatDateToLocal(job.datePublished)}
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-3">
+                      {job.status}
                     </td>
                     <td className="whitespace-nowrap py-3 pl-6 pr-3">
                       <div className="flex justify-end gap-3">

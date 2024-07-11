@@ -5,6 +5,7 @@ import { revalidatePath } from 'next/cache';
 
 import { PATHS } from '@lib/constants';
 import { getJadeAdminClient } from '@/app/lib/client';
+import { convertStringToDate } from '@/app/lib/utils';
 
 export async function saveApplicationForm(id: string, formData: FormData) {
   'use server';
@@ -24,6 +25,10 @@ export async function saveApplicationForm(id: string, formData: FormData) {
   const address = formData.get('address') as string;
   const email = formData.get('email') as string;
   const phone = formData.get('phone') as string;
+  const datePublishedString = formData.get('datePublished') as string;
+  const dateAppliedString = formData.get('dateApplied') as string;
+  const dateInterviewedString = formData.get('dateInterviewed') as string;
+  const dateCompleteString = formData.get('dateComplete') as string;
 
   let isFeatured = formData.get('isFeatured') as unknown as boolean;
   const status = formData.get('status') as string;
@@ -33,6 +38,11 @@ export async function saveApplicationForm(id: string, formData: FormData) {
   } else {
     isFeatured = false;
   }
+
+  const datePublished = convertStringToDate(datePublishedString);
+  const dateApplied = convertStringToDate(dateAppliedString);
+  const dateInterviewed = convertStringToDate(dateInterviewedString);
+  const dateComplete = convertStringToDate(dateCompleteString);
 
   try {
     if (id) {
@@ -50,6 +60,10 @@ export async function saveApplicationForm(id: string, formData: FormData) {
         address: address,
         email: email,
         phone: phone,
+        datePublished: datePublished,
+        dateApplied: dateApplied,
+        dateInterviewed: dateInterviewed,
+        dateComplete: dateComplete,
         isFeatured: isFeatured,
         status: status,
       });
@@ -68,6 +82,10 @@ export async function saveApplicationForm(id: string, formData: FormData) {
         address: address,
         email: email,
         phone: phone,
+        datePublished: datePublished,
+        dateApplied: dateApplied,
+        dateInterviewed: dateInterviewed,
+        dateComplete: dateComplete,
         isFeatured: isFeatured,
         status: status,
       });

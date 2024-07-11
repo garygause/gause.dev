@@ -1,30 +1,66 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { DateTime } from 'luxon';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const convertStringToDate = (
+  dateStr: string,
+  tz: string = 'America/Los_Angeles'
+) => {
+  if (!dateStr) {
+    return;
+  }
+  if (dateStr.includes('T')) {
+    dateStr += '-0800';
+  } else {
+    dateStr += 'T12:00:00.000-0800';
+  }
+  console.log(dateStr);
+  const date = new Date(Date.parse(dateStr));
+  console.log(date);
+  return date;
+
+  //const dateObj = new Date(date);
+  // const options: Intl.DateTimeFormatOptions = {
+  //   day: 'numeric',
+  //   month: 'short',
+  //   year: 'numeric',
+  //   hour: 'numeric',
+  //   minute: 'numeric',
+  //   //timeZone: 'America/Log_Angeles',
+  // };
+  // const formatter = new Intl.DateTimeFormat(locale, options);
+  // return formatter.format(dateObj);
+};
+
 export const formatDateToLocal = (
   //dateStr: string,
-  date: Date | undefined,
+  date: Date | string | undefined,
   locale: string = 'en-US'
 ) => {
   if (!date) {
     return;
   }
-  const dateObj = new Date(date);
-  const options: Intl.DateTimeFormatOptions = {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    //timeZone: 'America/Log_Angeles',
-  };
-  console.log('date: ', dateObj);
-  const formatter = new Intl.DateTimeFormat(locale, options);
-  return formatter.format(dateObj);
+  if (date instanceof Date) {
+    date = date.toString();
+  }
+
+  return DateTime.fromISO(date).toFormat('yyyy-MM-dd');
+
+  //const dateObj = new Date(date);
+  // const options: Intl.DateTimeFormatOptions = {
+  //   day: 'numeric',
+  //   month: 'short',
+  //   year: 'numeric',
+  //   hour: 'numeric',
+  //   minute: 'numeric',
+  //   //timeZone: 'America/Log_Angeles',
+  // };
+  // const formatter = new Intl.DateTimeFormat(locale, options);
+  // return formatter.format(dateObj);
 };
 
 export const generatePagination = (currentPage: number, totalPages: number) => {

@@ -98,6 +98,7 @@ export default async function ApplicationsTable({
                   <td className="whitespace-nowrap px-3 py-3">
                     {formatDateToLocal(app.dateInterviewed)}
                   </td>
+                  <td className="whitespace-nowrap px-3 py-3">{app.status}</td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
                       <UpdateButton

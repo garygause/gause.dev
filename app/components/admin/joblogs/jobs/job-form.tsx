@@ -1,10 +1,17 @@
 import React from 'react';
-import { JLCompany, JOBSTATUS, JLJob } from '@jade-and-lotus/jade-api-client';
+
+import {
+  JLCompany,
+  JOBSTATUS,
+  JOBTYPE,
+  JLJob,
+} from '@jade-and-lotus/jade-api-client';
 import { saveJobForm } from './actions';
 import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
 import Button from '@ui/button';
 import { Status } from '@jade-and-lotus/jade-ui';
+import { formatDateToLocal } from '@/app/lib/utils';
 
 export default async function JobForm({
   job,
@@ -41,8 +48,28 @@ export default async function JobForm({
             </select>
           </div>
         </div>
+        <div className="mb-4">
+          <label htmlFor="jobType">
+            Job Type: <span className="text-palette-red-500">*</span>
+          </label>
+          <div className="relative">
+            <select
+              defaultValue={job?.jobType}
+              id="jobType"
+              name="jobType"
+              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-4 outline-2 placeholder:text-gray-500"
+            >
+              <option key="noid" value=""></option>
+              {Object.values(JOBTYPE).map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
         <div>
-          <label htmlFor="name">
+          <label htmlFor="title">
             Title: <span className="text-palette-red-500">*</span>
           </label>
           <input
@@ -193,6 +220,50 @@ export default async function JobForm({
               ></textarea>
             </div>
           </div>
+        </div>
+        <div>
+          <label htmlFor="datePublished">Date Published:</label>
+          <input
+            type="text"
+            id="datePublished"
+            name="datePublished"
+            defaultValue={formatDateToLocal(job?.datePublished)}
+            placeholder="e.g. Jul 10, 2024, 3:43 PM"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
+          <label htmlFor="dateApplied">Date Applied:</label>
+          <input
+            type="text"
+            id="dateApplied"
+            name="dateApplied"
+            defaultValue={formatDateToLocal(job?.dateApplied)}
+            placeholder="e.g. Jul 10, 2024, 3:43 PM"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
+          <label htmlFor="dateInterviewed">Date Interviewed:</label>
+          <input
+            type="text"
+            id="dateInterviewed"
+            name="dateInterviewed"
+            defaultValue={formatDateToLocal(job?.dateInterviewed)}
+            placeholder="e.g. Jul 10, 2024, 3:43 PM"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
+          <label htmlFor="dateComplete">Date Complete:</label>
+          <input
+            type="text"
+            id="dateComplete"
+            name="dateComplete"
+            defaultValue={formatDateToLocal(job?.dateComplete)}
+            placeholder="e.g. Jul 10, 2024, 3:43 PM"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
         </div>
         <div className="mb-4">
           <label htmlFor="isFeatured" className="mb-2 block font-medium">

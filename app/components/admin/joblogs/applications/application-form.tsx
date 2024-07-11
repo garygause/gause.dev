@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   JOBSTATUS,
+  APPLICATIONSTATUS,
   JLJob,
   JLApplication,
 } from '@jade-and-lotus/jade-api-client';
@@ -9,6 +10,7 @@ import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
 import Button from '@ui/button';
 import { Status } from '@jade-and-lotus/jade-ui';
+import { formatDateToLocal } from '@/app/lib/utils';
 
 export default async function ApplicationForm({
   application,
@@ -215,6 +217,50 @@ export default async function ApplicationForm({
             </div>
           </div>
         </div>
+        <div>
+          <label htmlFor="datePublished">Date Published:</label>
+          <input
+            type="text"
+            id="datePublished"
+            name="datePublished"
+            defaultValue={formatDateToLocal(application?.datePublished)}
+            placeholder="e.g. Jul 10, 2024, 3:43 PM"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
+          <label htmlFor="dateApplied">Date Applied:</label>
+          <input
+            type="text"
+            id="dateApplied"
+            name="dateApplied"
+            defaultValue={formatDateToLocal(application?.dateApplied)}
+            placeholder="e.g. Jul 10, 2024, 3:43 PM"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
+          <label htmlFor="dateInterviewed">Date Interviewed:</label>
+          <input
+            type="text"
+            id="dateInterviewed"
+            name="dateInterviewed"
+            defaultValue={formatDateToLocal(application?.dateInterviewed)}
+            placeholder="e.g. Jul 10, 2024, 3:43 PM"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
+        <div>
+          <label htmlFor="dateComplete">Date Complete:</label>
+          <input
+            type="text"
+            id="dateComplete"
+            name="dateComplete"
+            defaultValue={formatDateToLocal(application?.dateComplete)}
+            placeholder="e.g. Jul 10, 2024, 3:43 PM"
+            className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+          />
+        </div>
         <div className="mb-4">
           <label htmlFor="isFeatured" className="mb-2 block font-medium">
             Featured:
@@ -234,8 +280,8 @@ export default async function ApplicationForm({
           </div>
         </div>
         <Status
-          statuses={Object.values(JOBSTATUS)}
-          selectedStatus={application?.status || JOBSTATUS.active}
+          statuses={Object.values(APPLICATIONSTATUS)}
+          selectedStatus={application?.status || APPLICATIONSTATUS.active}
         />
         <div className="mt-6 mr-6 flex flex-row justify-end gap-4">
           <Link

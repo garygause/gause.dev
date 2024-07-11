@@ -5,13 +5,19 @@ import { revalidatePath } from 'next/cache';
 
 import { PATHS } from '@lib/constants';
 import { getJadeAdminClient } from '@/app/lib/client';
+import { convertStringToDate } from '@/app/lib/utils';
 
 export async function saveJobForm(id: string, formData: FormData) {
   'use server';
 
   const client = await getJadeAdminClient();
+  const datePublishedString = formData.get('datePublished') as string;
+  const dateAppliedString = formData.get('dateApplied') as string;
+  const dateInterviewedString = formData.get('dateInterviewed') as string;
+  const dateCompleteString = formData.get('dateComplete') as string;
 
   const companyId = formData.get('companyId') as string;
+  const jobType = formData.get('jobType') as string;
   const title = formData.get('title') as string;
   const url = formData.get('url') as string;
   const companyUrl = formData.get('companyUrl') as string;
@@ -33,10 +39,16 @@ export async function saveJobForm(id: string, formData: FormData) {
     isFeatured = false;
   }
 
+  const datePublished = convertStringToDate(datePublishedString);
+  const dateApplied = convertStringToDate(dateAppliedString);
+  const dateInterviewed = convertStringToDate(dateInterviewedString);
+  const dateComplete = convertStringToDate(dateCompleteString);
+
   try {
     if (id) {
       const { data, meta } = await client.joblogs.updateJob(id, {
         companyId: companyId,
+        jobType: jobType,
         title: title,
         url: url,
         companyUrl: companyUrl,
@@ -49,11 +61,16 @@ export async function saveJobForm(id: string, formData: FormData) {
         email: email,
         phone: phone,
         isFeatured: isFeatured,
+        datePublished: datePublished,
+        dateApplied: dateApplied,
+        dateInterviewed: dateInterviewed,
+        dateComplete: dateComplete,
         status: status,
       });
     } else {
       const { data, meta } = await client.joblogs.createJob({
         companyId: companyId,
+        jobType: jobType,
         title: title,
         url: url,
         companyUrl: companyUrl,
@@ -66,6 +83,10 @@ export async function saveJobForm(id: string, formData: FormData) {
         email: email,
         phone: phone,
         isFeatured: isFeatured,
+        datePublished: datePublished,
+        dateApplied: dateApplied,
+        dateInterviewed: dateInterviewed,
+        dateComplete: dateComplete,
         status: status,
       });
     }
