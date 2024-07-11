@@ -17,7 +17,7 @@ export default async function CreateJobPage() {
         breadcrumbs={[
           { label: 'Jobs', href: PATHS.joblogsJobs },
           {
-            label: 'Create Jobs',
+            label: 'Create Job',
             href: PATHS.joblogsJobsEdit,
           },
         ]}

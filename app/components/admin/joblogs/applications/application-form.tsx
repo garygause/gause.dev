@@ -1,94 +1,73 @@
 import React from 'react';
-
 import {
-  JLCompany,
   JOBSTATUS,
-  JOBTYPE,
+  APPLICATIONSTATUS,
   JLJob,
+  JLApplication,
 } from '@jade-and-lotus/jade-api-client';
-import { saveJobForm } from './actions';
+import { saveApplicationForm } from './actions';
 import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
 import Button from '@ui/button';
 import { Status } from '@jade-and-lotus/jade-ui';
 import { formatDateToLocal } from '@/app/lib/utils';
 
-export default async function JobForm({
-  job,
-  companies,
+export default async function ApplicationForm({
+  application,
+  jobs,
 }: {
-  job: JLJob | null;
-  companies: JLCompany[];
+  application: JLApplication | null;
+  jobs: JLJob[];
 }) {
-  const id = job?.id || '';
+  const id = application?.id || '';
 
   return (
     <>
       <form
         className="py-4 mt-4 flex flex-col gap-5"
-        action={saveJobForm.bind(null, id)}
+        action={saveApplicationForm.bind(null, id)}
       >
         <div className="mb-4">
-          <label htmlFor="companyId">
-            Company: <span className="text-palette-red-500">*</span>
+          <label htmlFor="jobId">
+            Job: <span className="text-palette-red-500">*</span>
           </label>
           <div className="relative">
             <select
-              defaultValue={job?.companyId}
-              id="companyId"
-              name="companyId"
+              defaultValue={application?.jobId}
+              id="jobId"
+              name="jobId"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 outline-2 placeholder:text-gray-500"
             >
               <option key="noid" value=""></option>
-              {companies?.map((company) => (
-                <option key={company.id} value={company.id}>
-                  {company.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="jobType">
-            Job Type: <span className="text-palette-red-500">*</span>
-          </label>
-          <div className="relative">
-            <select
-              defaultValue={job?.jobType}
-              id="jobType"
-              name="jobType"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-4 outline-2 placeholder:text-gray-500"
-            >
-              <option key="noid" value=""></option>
-              {Object.values(JOBTYPE).map((type) => (
-                <option key={type} value={type}>
-                  {type}
+              {jobs?.map((job) => (
+                <option key={job.id} value={job.id}>
+                  {job.title + ' - ' + job.company?.name}
                 </option>
               ))}
             </select>
           </div>
         </div>
         <div>
-          <label htmlFor="title">
+          <label htmlFor="name">
             Title: <span className="text-palette-red-500">*</span>
           </label>
           <input
             type="text"
             id="title"
             name="title"
-            defaultValue={job?.title}
+            defaultValue={application?.title}
             placeholder="Title"
             className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
           />
         </div>
         <div>
-          <label htmlFor="url">URL:</label>
+          <label htmlFor="jobUrl">Job URL:</label>
           <input
             type="text"
-            id="url"
-            name="url"
-            defaultValue={job?.url}
-            placeholder="URL"
+            id="jobUrl"
+            name="jobUrl"
+            defaultValue={application?.jobUrl}
+            placeholder="Job URL"
             className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
           />
         </div>
@@ -98,7 +77,7 @@ export default async function JobForm({
             type="text"
             id="companyUrl"
             name="companyUrl"
-            defaultValue={job?.companyUrl}
+            defaultValue={application?.companyUrl}
             placeholder="Company URL"
             className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
           />
@@ -109,7 +88,7 @@ export default async function JobForm({
             type="text"
             id="keywords"
             name="keywords"
-            defaultValue={job?.keywords}
+            defaultValue={application?.keywords}
             placeholder="Keywords"
             className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
           />
@@ -123,7 +102,7 @@ export default async function JobForm({
               id="phone"
               name="phone"
               type="text"
-              defaultValue={job?.phone}
+              defaultValue={application?.phone}
               placeholder="Phone"
               className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
             />
@@ -138,7 +117,7 @@ export default async function JobForm({
               id="email"
               name="email"
               type="text"
-              defaultValue={job?.email}
+              defaultValue={application?.email}
               placeholder="Email"
               className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
             />
@@ -153,7 +132,7 @@ export default async function JobForm({
               id="address"
               name="address"
               type="text"
-              defaultValue={job?.address}
+              defaultValue={application?.address}
               placeholder="Address"
               className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
             />
@@ -168,38 +147,55 @@ export default async function JobForm({
               id="stack"
               name="stack"
               type="text"
-              defaultValue={job?.stack}
+              defaultValue={application?.stack}
               placeholder="Stack"
               className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
             />
           </div>
         </div>
         <div className="mb-4">
-          <label htmlFor="summary" className="mb-2 block font-medium">
-            Summary:
-          </label>
-          <div className="relative mt-2 rounded-md">
-            <input
-              id="summary"
-              name="summary"
-              type="text"
-              defaultValue={job?.summary}
-              placeholder="Summary"
-              className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
-            />
-          </div>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="content" className="mb-2 block font-medium">
-            Content:
+          <label htmlFor="description" className="mb-2 block font-medium">
+            Description:
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
               <textarea
-                id="content"
-                name="content"
-                defaultValue={job?.content}
-                placeholder="Content"
+                id="description"
+                name="description"
+                defaultValue={application?.description}
+                placeholder="Description"
+                className="h-96 w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="coverLetter" className="mb-2 block font-medium">
+            Cover Letter:
+          </label>
+          <div className="relative mt-2 rounded-md">
+            <div className="relative">
+              <textarea
+                id="coverLetter"
+                name="coverLetter"
+                defaultValue={application?.coverLetter}
+                placeholder="Cover Letter"
+                className="h-96 w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="resume" className="mb-2 block font-medium">
+            Resume:
+          </label>
+          <div className="relative mt-2 rounded-md">
+            <div className="relative">
+              <textarea
+                id="resume"
+                name="resume"
+                defaultValue={application?.resume}
+                placeholder="Resume"
                 className="h-96 w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
               ></textarea>
             </div>
@@ -214,7 +210,7 @@ export default async function JobForm({
               <textarea
                 id="notes"
                 name="notes"
-                defaultValue={job?.notes}
+                defaultValue={application?.notes}
                 placeholder="Notes"
                 className="h-96 w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
               ></textarea>
@@ -227,7 +223,7 @@ export default async function JobForm({
             type="text"
             id="datePublished"
             name="datePublished"
-            defaultValue={formatDateToLocal(job?.datePublished)}
+            defaultValue={formatDateToLocal(application?.datePublished)}
             placeholder="e.g. Jul 10, 2024, 3:43 PM"
             className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
           />
@@ -238,7 +234,7 @@ export default async function JobForm({
             type="text"
             id="dateApplied"
             name="dateApplied"
-            defaultValue={formatDateToLocal(job?.dateApplied)}
+            defaultValue={formatDateToLocal(application?.dateApplied)}
             placeholder="e.g. Jul 10, 2024, 3:43 PM"
             className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
           />
@@ -249,7 +245,7 @@ export default async function JobForm({
             type="text"
             id="dateInterviewed"
             name="dateInterviewed"
-            defaultValue={formatDateToLocal(job?.dateInterviewed)}
+            defaultValue={formatDateToLocal(application?.dateInterviewed)}
             placeholder="e.g. Jul 10, 2024, 3:43 PM"
             className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
           />
@@ -260,7 +256,7 @@ export default async function JobForm({
             type="text"
             id="dateComplete"
             name="dateComplete"
-            defaultValue={formatDateToLocal(job?.dateComplete)}
+            defaultValue={formatDateToLocal(application?.dateComplete)}
             placeholder="e.g. Jul 10, 2024, 3:43 PM"
             className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
           />
@@ -276,7 +272,7 @@ export default async function JobForm({
                   type="checkbox"
                   id="isFeatured"
                   name="isFeatured"
-                  defaultChecked={job?.isFeatured}
+                  defaultChecked={application?.isFeatured}
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                 />
               </div>
@@ -284,17 +280,17 @@ export default async function JobForm({
           </div>
         </div>
         <Status
-          statuses={Object.values(JOBSTATUS)}
-          selectedStatus={job?.status || JOBSTATUS.active}
+          statuses={Object.values(APPLICATIONSTATUS)}
+          selectedStatus={application?.status || APPLICATIONSTATUS.active}
         />
         <div className="mt-6 mr-6 flex flex-row justify-end gap-4">
           <Link
-            href={PATHS.joblogsJobs}
+            href={PATHS.joblogsApps}
             className="flex h-10 items-center rounded-lg bg-gray-100 px-4 font-medium text-gray-600 transition-colors hover:bg-gray-200"
           >
             Cancel
           </Link>
-          <Button type="submit">Save Job</Button>
+          <Button type="submit">Save Application</Button>
         </div>
       </form>
     </>

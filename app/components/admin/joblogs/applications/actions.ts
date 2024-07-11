@@ -7,28 +7,28 @@ import { PATHS } from '@lib/constants';
 import { getJadeAdminClient } from '@/app/lib/client';
 import { convertStringToDate } from '@/app/lib/utils';
 
-export async function saveJobForm(id: string, formData: FormData) {
+export async function saveApplicationForm(id: string, formData: FormData) {
   'use server';
 
   const client = await getJadeAdminClient();
-  const datePublishedString = formData.get('datePublished') as string;
-  const dateAppliedString = formData.get('dateApplied') as string;
-  const dateInterviewedString = formData.get('dateInterviewed') as string;
-  const dateCompleteString = formData.get('dateComplete') as string;
 
-  const companyId = formData.get('companyId') as string;
-  const jobType = formData.get('jobType') as string;
+  const jobId = formData.get('jobId') as string;
   const title = formData.get('title') as string;
-  const url = formData.get('url') as string;
+  const jobUrl = formData.get('jobUrl') as string;
   const companyUrl = formData.get('companyUrl') as string;
   const keywords = formData.get('keywords') as string;
-  const summary = formData.get('summary') as string;
-  const content = formData.get('content') as string;
+  const description = formData.get('description') as string;
+  const coverLetter = formData.get('coverLetter') as string;
+  const resume = formData.get('resume') as string;
   const notes = formData.get('notes') as string;
   const stack = formData.get('stack') as string;
   const address = formData.get('address') as string;
   const email = formData.get('email') as string;
   const phone = formData.get('phone') as string;
+  const datePublishedString = formData.get('datePublished') as string;
+  const dateAppliedString = formData.get('dateApplied') as string;
+  const dateInterviewedString = formData.get('dateInterviewed') as string;
+  const dateCompleteString = formData.get('dateComplete') as string;
 
   let isFeatured = formData.get('isFeatured') as unknown as boolean;
   const status = formData.get('status') as string;
@@ -46,47 +46,47 @@ export async function saveJobForm(id: string, formData: FormData) {
 
   try {
     if (id) {
-      const { data, meta } = await client.joblogs.updateJob(id, {
-        companyId: companyId,
-        jobType: jobType,
+      const { data, meta } = await client.joblogs.updateApplication(id, {
+        jobId: jobId,
         title: title,
-        url: url,
+        jobUrl: jobUrl,
         companyUrl: companyUrl,
         keywords: keywords,
-        summary: summary,
-        content: content,
+        description: description,
+        coverLetter: coverLetter,
+        resume: resume,
         notes: notes,
         stack: stack,
         address: address,
         email: email,
         phone: phone,
-        isFeatured: isFeatured,
         datePublished: datePublished,
         dateApplied: dateApplied,
         dateInterviewed: dateInterviewed,
         dateComplete: dateComplete,
+        isFeatured: isFeatured,
         status: status,
       });
     } else {
-      const { data, meta } = await client.joblogs.createJob({
-        companyId: companyId,
-        jobType: jobType,
+      const { data, meta } = await client.joblogs.createApplication({
+        jobId: jobId,
         title: title,
-        url: url,
+        jobUrl: jobUrl,
         companyUrl: companyUrl,
         keywords: keywords,
-        summary: summary,
-        content: content,
+        description: description,
+        coverLetter: coverLetter,
+        resume: resume,
         notes: notes,
         stack: stack,
         address: address,
         email: email,
         phone: phone,
-        isFeatured: isFeatured,
         datePublished: datePublished,
         dateApplied: dateApplied,
         dateInterviewed: dateInterviewed,
         dateComplete: dateComplete,
+        isFeatured: isFeatured,
         status: status,
       });
     }
@@ -94,7 +94,7 @@ export async function saveJobForm(id: string, formData: FormData) {
     console.log(e);
   }
 
-  revalidatePath(PATHS.joblogsJobs);
-  revalidatePath(PATHS.joblogsJobsEdit, 'page');
-  redirect(PATHS.joblogsJobs);
+  revalidatePath(PATHS.joblogsApps);
+  revalidatePath(PATHS.joblogsAppsEdit, 'page');
+  redirect(PATHS.joblogsApps);
 }
