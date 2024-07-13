@@ -17,10 +17,17 @@ export default async function FilesPage({
 }) {
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
+  let filter = 'limit=10';
+  if (currentPage) {
+    filter += `&page=${currentPage}`;
+  }
+
+  if (query) {
+    filter += `&_search=${query}`;
+  }
   const client = await getJadeAdminClient();
-  const { data: files, meta } = await client.s3.admin.getFiles();
-  console.log('FILES: ', meta, files);
-  const totalPages = 6;
+  const { data: files, meta } = await client.s3.admin.searchFiles(filter);
+  const totalPages = meta.pagination?.pages || 1;
 
   return (
     <div className="w-full">

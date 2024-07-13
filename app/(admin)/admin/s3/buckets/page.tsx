@@ -1,27 +1,13 @@
 import React from 'react';
 
-import { Pagination } from '@ui/pagination';
-import { Search } from '@ui/search';
 import { BucketsTable } from '@admin/s3';
 import { CreateButton } from '@jade-and-lotus/jade-ui';
 import { getJadeAdminClient } from '@/app/lib/client';
 import { PATHS } from '@/app/lib/constants';
 
-export default async function S3BucketsPage({
-  searchParams,
-}: {
-  searchParams?: {
-    query?: string;
-    page?: string;
-  };
-}) {
-  const query = searchParams?.query || '';
-  const currentPage = Number(searchParams?.page) || 1;
-
+export default async function S3BucketsPage() {
   const client = await getJadeAdminClient();
-  const { data: buckets, meta } = await client.s3.admin.getBuckets();
-
-  const totalPages = 6;
+  const { data: buckets } = await client.s3.admin.getBuckets();
 
   return (
     <div className="w-full">
@@ -29,13 +15,9 @@ export default async function S3BucketsPage({
         <h1 className="text-2xl">Buckets</h1>
       </div>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
-        <Search placeholder="Search buckets..." />
         <CreateButton url={PATHS.s3BucketsEdit} title="Create Bucket" />
       </div>
       <BucketsTable buckets={buckets} />
-      <div className="mt-5 flex w-full justify-center">
-        <Pagination totalPages={totalPages} />
-      </div>
     </div>
   );
 }
