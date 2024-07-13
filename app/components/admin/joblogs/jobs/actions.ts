@@ -27,6 +27,7 @@ export async function saveJobForm(id: string, formData: FormData) {
   const notes = formData.get('notes') as string;
   const stack = formData.get('stack') as string;
   const address = formData.get('address') as string;
+  const location = formData.get('location') as string;
   const email = formData.get('email') as string;
   const phone = formData.get('phone') as string;
 
@@ -58,6 +59,7 @@ export async function saveJobForm(id: string, formData: FormData) {
         notes: notes,
         stack: stack,
         address: address,
+        location: location,
         email: email,
         phone: phone,
         isFeatured: isFeatured,
@@ -80,6 +82,7 @@ export async function saveJobForm(id: string, formData: FormData) {
         notes: notes,
         stack: stack,
         address: address,
+        location: location,
         email: email,
         phone: phone,
         isFeatured: isFeatured,

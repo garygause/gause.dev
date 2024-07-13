@@ -160,6 +160,21 @@ export default async function JobForm({
           </div>
         </div>
         <div className="mb-4">
+          <label htmlFor="location" className="mb-2 block font-medium">
+            Location:
+          </label>
+          <div className="relative mt-2 rounded-md">
+            <input
+              id="location"
+              name="location"
+              type="text"
+              defaultValue={job?.location}
+              placeholder="Location"
+              className="w-full rounded-md border border-gray-200 outline-2 placeholder:text-gray-500 dark:bg-white dark:text-palette-black"
+            />
+          </div>
+        </div>
+        <div className="mb-4">
           <label htmlFor="stack" className="mb-2 block font-medium">
             Stack:
           </label>

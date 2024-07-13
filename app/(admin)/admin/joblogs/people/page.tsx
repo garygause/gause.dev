@@ -18,10 +18,19 @@ export default async function PeoplePage({
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
 
-  const client = await getJadeAdminClient();
-  const { data: people, meta } = await client.joblogs.getPeople();
+  let filter = 'limit=10';
+  if (currentPage) {
+    filter += `&page=${currentPage}`;
+  }
 
-  const totalPages = 6;
+  if (query) {
+    filter += `&_search=${query}`;
+  }
+
+  const client = await getJadeAdminClient();
+  const { data: people, meta } = await client.joblogs.searchPeople(filter);
+
+  const totalPages = meta.pagination?.pages || 1;
 
   return (
     <div className="w-full">

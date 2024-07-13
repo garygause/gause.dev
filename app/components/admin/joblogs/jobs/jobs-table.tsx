@@ -59,6 +59,12 @@ export default async function JobsTable({ jobs }: { jobs: JLJob[] }) {
                     Company
                   </th>
                   <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                    Location
+                  </th>
+                  <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                    Job Type
+                  </th>
+                  <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                     Date Published
                   </th>
                   <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
@@ -85,6 +91,12 @@ export default async function JobsTable({ jobs }: { jobs: JLJob[] }) {
                       <Link href={job?.company?.url || ''} target="_blank">
                         {job?.company?.name || 'Company'}
                       </Link>
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-3">
+                      {job.location}
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-3">
+                      {job.jobType}
                     </td>
                     <td className="whitespace-nowrap px-3 py-3">
                       {formatDateToLocal(job.datePublished)}
