@@ -8,7 +8,7 @@ import { getJadeClient } from '@lib/client';
 export default async function Home() {
   const client = getJadeClient();
   const { data: posts, meta } = await client.blogs.searchPosts(
-    'limit=3&status=published'
+    'status=published&limit=3&orderby=isFeatured desc'
   );
   console.log('SEARCH POSTS: ', meta);
   return (

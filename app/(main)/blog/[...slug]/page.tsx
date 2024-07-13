@@ -103,15 +103,22 @@ export default async function BlogPostPage({
               </div>
             </div>
           </div>
+          {post.image?.credit && (
+            <div className="flex justify-center w-full text-palette-gray/50 dark:text-palette-brown italic text-sm">
+              <Link href={post.image?.creditUrl} target="_blank">
+                Image credit: {post.image.credit}
+              </Link>
+            </div>
+          )}
           <div className="p-6 flex flex-col md:flex-row items-start">
             <ShareList shares={post.shares} url={pageUrl} />
             <div className="md:ml-8 relative max-w-2xl">
               <h1 className="text-4xl pb-4 md:pb-10 pt-4">{post.title}</h1>
-              <div className="text-palette-brown/60 mb-4 md:mb-8">
+              <div className="text-palette-brown/60 dark:text-palette-brown/80 mb-4 md:mb-8">
                 Last updated: <span className="px-2">{dateString}</span>
               </div>
               <div>
-                <p className="mb-3 text-palette-brown first-line:uppercase first-line:tracking-widest first-letter:text-2xl first-letter:font-bold first-letter:text-palette-red">
+                <p className="mb-3 text-palette-brown dark:text-palette-brown first-line:uppercase first-line:tracking-widest first-letter:text-2xl first-letter:font-bold first-letter:text-palette-red">
                   {post.summary}
                 </p>
               </div>
