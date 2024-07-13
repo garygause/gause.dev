@@ -2,9 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 import { BlogList, BlogHero } from '@ui/blog';
-
 import { getJadeClient } from '@/app/lib/client';
-import { Post } from '@jade-and-lotus/jade-api-client';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://gause.dev'),
@@ -35,14 +33,14 @@ export const metadata: Metadata = {
   },
 };
 
-//export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 
 export default async function BlogHomePage() {
   const client = getJadeClient();
   const { data, meta } = await client.blogs.searchPosts(
     'status=published&limit=20&orderby=isFeatured desc'
   );
-  console.log('POSTS: ', meta);
+  //console.log('POSTS: ', meta, data);
 
   const featuredPost = data?.shift();
 

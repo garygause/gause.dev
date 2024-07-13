@@ -25,6 +25,8 @@ export async function savePostForm(id: string, formData: FormData) {
   const metaKeywords = formData.get('metaKeywords') as string;
   const metaDescription = formData.get('metaDescription') as string;
 
+  console.log('META: ', metaTitle);
+
   if (isFeatured) {
     isFeatured = true;
   } else {
