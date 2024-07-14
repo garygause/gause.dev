@@ -1,6 +1,8 @@
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
-
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import rehypeMathjax from 'rehype-mathjax';
 import createMDX from '@next/mdx';
 
 /** @type {import('next').NextConfig} */
@@ -38,8 +40,8 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight],
+    remarkPlugins: [remarkMath, remarkGfm],
+    rehypePlugins: [rehypeKatex, rehypeHighlight],
   },
 });
 
