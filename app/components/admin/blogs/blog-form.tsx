@@ -5,7 +5,8 @@ import { saveBlogForm } from './actions';
 import Link from 'next/link';
 import { PATHS } from '@/app/lib/constants';
 import Button from '@ui/button';
-import { MetaFields, Status } from '@jade-and-lotus/jade-ui';
+import { Status } from '@jade-and-lotus/jade-ui';
+import { MetaFields } from '@ui/meta-fields';
 
 export default async function BlogForm({ blog }: { blog: Blog | null }) {
   const id = blog?.id || '';
