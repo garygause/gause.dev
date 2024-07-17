@@ -29,7 +29,7 @@ export default function NavLinks() {
           </Link>
           <Link
             key="BlogSettings"
-            href={`${PATHS.blogsEdit}/${process.env.JADE_BLOG_ID}`}
+            href={`${PATHS.blogsEdit}`}
             className="flex h-[48px] grow items-center justify-center gap-2 text-white p-4 font-medium hover:bg-palette-brown hover:text-white md:flex-none md:justify-start md:p-2 md:px-6"
           >
             <p className="hidden md:block">Settings</p>

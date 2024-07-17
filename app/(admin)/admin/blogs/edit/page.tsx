@@ -2,21 +2,35 @@ import React from 'react';
 
 import { BlogForm } from '@admin/blogs';
 import { BreadCrumbs } from '@jade-and-lotus/jade-ui';
+import { notFound } from 'next/navigation';
+import { getJadeAdminClient } from '@/app/lib/client';
 import { PATHS } from '@/app/lib/constants';
 
-export default function CreateBlogPage() {
+export default async function BlogEditPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const client = await getJadeAdminClient();
+  const { data: blog, meta } = await client.blogs.admin.getBlog(
+    client.getBlogId()
+  );
+  if (!blog) {
+    return notFound();
+  }
+
   return (
     <main>
       <BreadCrumbs
         breadcrumbs={[
-          { label: 'Blogs', href: PATHS.blogs },
+          { label: 'Blog', href: PATHS.home },
           {
-            label: 'Create Blog',
-            href: PATHS.blogsEdit,
+            label: 'Settings',
+            href: `${PATHS.blogsEdit}/${blog.id}`,
           },
         ]}
       />
-      <BlogForm blog={null} />
+      <BlogForm blog={blog} />
     </main>
   );
 }
