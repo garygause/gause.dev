@@ -42,8 +42,6 @@ export async function saveBlogForm(id: string, formData: FormData) {
     console.log(e);
   }
 
-  revalidatePath(PATHS.blogs);
   revalidatePath(PATHS.blogsEdit, 'page');
   redirect(PATHS.home);
-  //redirect(PATHS.blogs);
 }
