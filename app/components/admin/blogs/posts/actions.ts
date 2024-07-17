@@ -32,37 +32,32 @@ export async function savePostForm(id: string, formData: FormData) {
   } else {
     isFeatured = false;
   }
+
+  let saveFields: any = {
+    title: title,
+    keywords: keywords,
+    summary: summary,
+    content: content,
+    imageId: imageId,
+    slug: slug.toLowerCase(),
+    isFeatured: isFeatured,
+    status: status,
+  };
+  if (metaTitle !== null) {
+    saveFields['metaTitle'] = metaTitle;
+    saveFields['metaUrl'] = metaUrl;
+    saveFields['metaKeywords'] = metaKeywords;
+    saveFields['metaDescription'] = metaDescription;
+  }
+
   try {
     if (id) {
-      const { data, meta } = await client.blogs.admin.updatePost(id, {
-        title: title,
-        keywords: keywords,
-        summary: summary,
-        content: content,
-        imageId: imageId,
-        slug: slug.toLowerCase(),
-        isFeatured: isFeatured,
-        metaTitle: metaTitle,
-        metaUrl: metaUrl,
-        metaKeywords: metaKeywords,
-        metaDescription: metaDescription,
-        status: status,
-      });
+      const { data, meta } = await client.blogs.admin.updatePost(
+        id,
+        saveFields
+      );
     } else {
-      const { data, meta } = await client.blogs.admin.createPost({
-        title: title,
-        keywords: keywords,
-        summary: summary,
-        content: content,
-        imageId: imageId,
-        slug: slug.toLowerCase(),
-        isFeatured: isFeatured,
-        metaTitle: metaTitle,
-        metaUrl: metaUrl,
-        metaKeywords: metaKeywords,
-        metaDescription: metaDescription,
-        status: status,
-      });
+      const { data, meta } = await client.blogs.admin.createPost(saveFields);
       console.log('CREATE POST: ', meta, data);
     }
   } catch (e) {

@@ -45,53 +45,34 @@ export async function saveJobForm(id: string, formData: FormData) {
   const dateInterviewed = convertStringToDate(dateInterviewedString);
   const dateComplete = convertStringToDate(dateCompleteString);
 
+  let saveFields: any = {
+    companyId: companyId,
+    jobType: jobType,
+    title: title,
+    url: url,
+    companyUrl: companyUrl,
+    keywords: keywords,
+    summary: summary,
+    content: content,
+    notes: notes,
+    stack: stack,
+    address: address,
+    location: location,
+    email: email,
+    phone: phone,
+    isFeatured: isFeatured,
+    datePublished: datePublished,
+    dateApplied: dateApplied,
+    dateInterviewed: dateInterviewed,
+    dateComplete: dateComplete,
+    status: status,
+  };
+
   try {
     if (id) {
-      const { data, meta } = await client.joblogs.updateJob(id, {
-        companyId: companyId,
-        jobType: jobType,
-        title: title,
-        url: url,
-        companyUrl: companyUrl,
-        keywords: keywords,
-        summary: summary,
-        content: content,
-        notes: notes,
-        stack: stack,
-        address: address,
-        location: location,
-        email: email,
-        phone: phone,
-        isFeatured: isFeatured,
-        datePublished: datePublished,
-        dateApplied: dateApplied,
-        dateInterviewed: dateInterviewed,
-        dateComplete: dateComplete,
-        status: status,
-      });
+      const { data, meta } = await client.joblogs.updateJob(id, saveFields);
     } else {
-      const { data, meta } = await client.joblogs.createJob({
-        companyId: companyId,
-        jobType: jobType,
-        title: title,
-        url: url,
-        companyUrl: companyUrl,
-        keywords: keywords,
-        summary: summary,
-        content: content,
-        notes: notes,
-        stack: stack,
-        address: address,
-        location: location,
-        email: email,
-        phone: phone,
-        isFeatured: isFeatured,
-        datePublished: datePublished,
-        dateApplied: dateApplied,
-        dateInterviewed: dateInterviewed,
-        dateComplete: dateComplete,
-        status: status,
-      });
+      const { data, meta } = await client.joblogs.createJob(saveFields);
     }
   } catch (e) {
     console.log(e);
