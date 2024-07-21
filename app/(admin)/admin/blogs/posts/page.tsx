@@ -43,6 +43,7 @@ export default async function PostsPage({
         <CreateButton url={PATHS.blogPostsEdit} title="Create Post" />
       </div>
       <PostsTable posts={posts} />
+
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalPages={totalPages} />
       </div>
