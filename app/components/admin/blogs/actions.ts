@@ -18,30 +18,32 @@ export async function saveBlogForm(id: string, formData: FormData) {
   const metaKeywords = formData.get('metaKeywords') as string;
   const metaDescription = formData.get('metaDescription') as string;
 
-  let saveFields: any = {
-    name: name,
-    status: status,
-  };
-  if (metaTitle !== null) {
-    saveFields['metaTitle'] = metaTitle;
-    saveFields['metaUrl'] = metaUrl;
-    saveFields['metaKeywords'] = metaKeywords;
-    saveFields['metaDescription'] = metaDescription;
-  }
-
   try {
     if (id) {
-      const { data, meta } = await client.blogs.admin.updateBlog(
-        id,
-        saveFields
-      );
+      const { data, meta } = await client.blogs.admin.updateBlog(id, {
+        name: name,
+        metaTitle: metaTitle,
+        metaUrl: metaUrl,
+        metaKeywords: metaKeywords,
+        metaDescription: metaDescription,
+        status: status,
+      });
     } else {
-      const { data, meta } = await client.blogs.admin.createBlog(saveFields);
+      const { data, meta } = await client.blogs.admin.createBlog({
+        name: name,
+        metaTitle: metaTitle,
+        metaUrl: metaUrl,
+        metaKeywords: metaKeywords,
+        metaDescription: metaDescription,
+        status: status,
+      });
     }
   } catch (e) {
     console.log(e);
   }
 
+  revalidatePath(PATHS.blogs);
   revalidatePath(PATHS.blogsEdit, 'page');
   redirect(PATHS.home);
+  //redirect(PATHS.blogs);
 }

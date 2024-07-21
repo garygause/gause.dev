@@ -45,37 +45,53 @@ export async function saveApplicationForm(id: string, formData: FormData) {
   const dateInterviewed = convertStringToDate(dateInterviewedString);
   const dateComplete = convertStringToDate(dateCompleteString);
 
-  const saveFields: any = {
-    jobId: jobId,
-    title: title,
-    jobUrl: jobUrl,
-    companyUrl: companyUrl,
-    keywords: keywords,
-    description: description,
-    coverLetter: coverLetter,
-    resume: resume,
-    notes: notes,
-    stack: stack,
-    address: address,
-    location: location,
-    email: email,
-    phone: phone,
-    datePublished: datePublished,
-    dateApplied: dateApplied,
-    dateInterviewed: dateInterviewed,
-    dateComplete: dateComplete,
-    isFeatured: isFeatured,
-    status: status,
-  };
-
   try {
     if (id) {
-      const { data, meta } = await client.joblogs.updateApplication(
-        id,
-        saveFields
-      );
+      const { data, meta } = await client.joblogs.updateApplication(id, {
+        jobId: jobId,
+        title: title,
+        jobUrl: jobUrl,
+        companyUrl: companyUrl,
+        keywords: keywords,
+        description: description,
+        coverLetter: coverLetter,
+        resume: resume,
+        notes: notes,
+        stack: stack,
+        address: address,
+        location: location,
+        email: email,
+        phone: phone,
+        datePublished: datePublished,
+        dateApplied: dateApplied,
+        dateInterviewed: dateInterviewed,
+        dateComplete: dateComplete,
+        isFeatured: isFeatured,
+        status: status,
+      });
     } else {
-      const { data, meta } = await client.joblogs.createApplication(saveFields);
+      const { data, meta } = await client.joblogs.createApplication({
+        jobId: jobId,
+        title: title,
+        jobUrl: jobUrl,
+        companyUrl: companyUrl,
+        keywords: keywords,
+        description: description,
+        coverLetter: coverLetter,
+        resume: resume,
+        notes: notes,
+        stack: stack,
+        address: address,
+        location: location,
+        email: email,
+        phone: phone,
+        datePublished: datePublished,
+        dateApplied: dateApplied,
+        dateInterviewed: dateInterviewed,
+        dateComplete: dateComplete,
+        isFeatured: isFeatured,
+        status: status,
+      });
     }
   } catch (e) {
     console.log(e);
