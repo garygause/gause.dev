@@ -41,34 +41,53 @@ export async function saveCompanyForm(id: string, formData: FormData) {
     isFeatured = false;
   }
 
-  let saveFields: any = {
-    companyType: companyType,
-    name: name,
-    url: url,
-    jobsUrl: jobsUrl,
-    linkedIn: linkedIn,
-    instagram: instagram,
-    facebook: facebook,
-    otherSocial: otherSocial,
-    keywords: keywords,
-    summary: summary,
-    content: content,
-    notes: notes,
-    stack: stack,
-    numEmployees: numEmployees,
-    valuation: valuation,
-    address: address,
-    email: email,
-    phone: phone,
-    isFeatured: isFeatured,
-    status: status,
-  };
-
   try {
     if (id) {
-      const { data, meta } = await client.joblogs.updateCompany(id, saveFields);
+      const { data, meta } = await client.joblogs.updateCompany(id, {
+        companyType: companyType,
+        name: name,
+        url: url,
+        jobsUrl: jobsUrl,
+        linkedIn: linkedIn,
+        instagram: instagram,
+        facebook: facebook,
+        otherSocial: otherSocial,
+        keywords: keywords,
+        summary: summary,
+        content: content,
+        notes: notes,
+        stack: stack,
+        numEmployees: numEmployees,
+        valuation: valuation,
+        address: address,
+        email: email,
+        phone: phone,
+        isFeatured: isFeatured,
+        status: status,
+      });
     } else {
-      const { data, meta } = await client.joblogs.createCompany(saveFields);
+      const { data, meta } = await client.joblogs.createCompany({
+        companyType: companyType,
+        name: name,
+        url: url,
+        jobsUrl: jobsUrl,
+        linkedIn: linkedIn,
+        instagram: instagram,
+        facebook: facebook,
+        otherSocial: otherSocial,
+        keywords: keywords,
+        summary: summary,
+        content: content,
+        notes: notes,
+        stack: stack,
+        numEmployees: numEmployees,
+        valuation: valuation,
+        address: address,
+        email: email,
+        phone: phone,
+        isFeatured: isFeatured,
+        status: status,
+      });
     }
   } catch (e) {
     console.log(e);

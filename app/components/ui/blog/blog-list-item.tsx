@@ -12,17 +12,7 @@ type Props = {
 export default function BlogListItem(props: Props) {
   const { id, title, summary, image, slug } = props.post;
 
-  let small = false;
-  let maxWidth = '';
-  if (props.variant) {
-    if (props.variant === 'small') {
-      small = true;
-    } else if (props.variant === 'medium') {
-      maxWidth = 'max-w-300px';
-    }
-  }
-
-  props.variant && props.variant === 'small';
+  const small = props.variant && props.variant === 'small';
 
   return (
     <Link
