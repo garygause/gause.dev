@@ -10,6 +10,11 @@ import type { Metadata, ResolvingMetadata } from 'next';
 
 import rehypeHighlight from 'rehype-highlight';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import rehypeMathjax from 'rehype-mathjax';
 
 import ShareList from '@ui/share-list';
 import MDXImage from '@ui/mdx-image';
@@ -17,6 +22,7 @@ import { BlogList } from '@ui/blog';
 import { getJadeClient } from '@/app/lib/client';
 
 import './page.css';
+import '@/node_modules/katex/dist/katex.min.css';
 
 export async function generateMetadata(
   { params }: Props,
@@ -61,8 +67,8 @@ const components = {
 
 const options = {
   mdxOptions: {
-    remarkPlugins: [],
-    rehypePlugins: [rehypeHighlight],
+    remarkPlugins: [remarkMath, remarkGfm],
+    rehypePlugins: [rehypeKatex, rehypeHighlight],
   },
 };
 export const dynamic = 'force-dynamic';
