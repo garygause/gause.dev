@@ -8,13 +8,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata, ResolvingMetadata } from 'next';
 
-import rehypeHighlight from 'rehype-highlight';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import rehypeMathjax from 'rehype-mathjax';
 
 import ShareList from '@ui/share-list';
 import MDXImage from '@ui/mdx-image';
