@@ -11,26 +11,27 @@ export default async function BlogEditPage({
 }: {
   params: { id: string };
 }) {
-  const client = await getJadeAdminClient();
-  const { data: blog, meta } = await client.blogs.admin.getBlog(
-    client.getBlogId()
-  );
-  if (!blog) {
-    return notFound();
-  }
+  // const client = await getJadeAdminClient();
+  // const { data: blog, meta } = await client.blogs.admin.getBlog(
+  //   client.getBlogId()
+  // );
+  // if (!blog) {
+  //   return notFound();
+  // }
 
-  return (
-    <main>
-      <BreadCrumbs
-        breadcrumbs={[
-          { label: 'Blog', href: PATHS.home },
-          {
-            label: 'Settings',
-            href: `${PATHS.blogsEdit}/${blog.id}`,
-          },
-        ]}
-      />
-      <BlogForm blog={blog} />
-    </main>
-  );
+  // return (
+  //   <main>
+  //     <BreadCrumbs
+  //       breadcrumbs={[
+  //         { label: 'Blog', href: PATHS.home },
+  //         {
+  //           label: 'Settings',
+  //           href: `${PATHS.blogsEdit}/${blog.id}`,
+  //         },
+  //       ]}
+  //     />
+  //     <BlogForm blog={blog} />
+  //   </main>
+  // );
+  return <div>admin blogs</div>;
 }
