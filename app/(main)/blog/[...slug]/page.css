@@ -130,5 +130,5 @@ pre:has(.hljs),
 }
 
 ul {
-  list-style: disc;
+  list-style: disc inside;
 }
