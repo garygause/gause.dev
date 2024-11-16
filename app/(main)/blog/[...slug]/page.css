@@ -128,3 +128,7 @@ pre:has(.hljs),
 .hljs-tag {
   /* purposely ignored */
 }
+
+ul {
+  list-style: disc;
+}
